@@ -9,7 +9,7 @@
 <title>수정</title>
 </head>
 <body>
-		<form:form commandName="boardVO" method="POST">
+		<form:form commandName="boardVO" method="POST">	
 			<table border="1">
 					<tr>
 						<th><form:label path="title">제목</form:label></th>

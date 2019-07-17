@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardDAO">
+		<select id="list" resultType="boardVO">
+				SELECT * FROM BOOK
+				ORDER BY seq
+		</select>
+		
+		<select id="select" parameterType="int" resultType="boardVO">
+				SELECT * FROM
+				BOOK WHERE seq = #{seq}
+		</select>
+		
+		<insert id="insert" parameterType="boardVO" >
+				INSERT INTO BOOK
+				(seq, title, content, money, writer, company, bookisbn, password, regDate, cnt, image)
+				VALUES
+				(BOOK_SEQ.nextval,
+					#{title}, #{content}, #{money}, #{writer}, #{company},
+					#{bookisbn}, #{password}, SYSDATE, 0, #{image})
+				<selectKey keyProperty="seq" resultType="Integer">
+						SELECT NVL(MAX(seq), 0) FROM BOOK
+				</selectKey>
+		</insert>
+		
+		
+		<update id="update" parameterType="boardVO">		
+		UPDATE BOOK SET title = ${title},
+				content = #{content},
+				writer = #{writer},
+				money = #{money},
+				company = #{company},
+				bookisbn = #{bookisbn}
+				image = #{image}				
+				WHERE seq = #{seq} AND password = #{password}
+		</update>
+		
+		<update id="updateCount" parameterType="int">
+				UPDATE BOOK SET cnt = cnt + 1 WHERE seq = #{seq}
+		</update>
+		
+		<delete id="delete" parameterType="boardVO">
+				DELETE FROM BOOK WHERE seq = #{seq}
+				AND password = #{password}
+		</delete>
+		
+		<delete id="deleteAll">
+				DELETE FROM BOOK
+		</delete>
+</mapper>
