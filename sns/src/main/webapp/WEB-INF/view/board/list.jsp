@@ -109,7 +109,7 @@ butt{
   
     <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
     <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="#" class="w3-bar-item w3-button">로그인</a>
+      <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
       <a href="#" class="w3-bar-item w3-button">회원가입</a>
       <!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
     </div>
@@ -256,6 +256,32 @@ $("#joinOk").bind("click",function(){
     });
 
 });
+
+$("[id^=btn]").on('click', function(event){
+	//ex) id=btn51, btn34
+	var id = $(this).attr("id"); 
+	var seq = id.replace("btn", "");
+	
+	$.ajax({
+		url: "<c:url value="/boardLike"/>",
+		type: "post", 
+		data: 'seq='+seq,
+		success: function(data){
+		
+			if(data.check == 0){
+				$('#img'+seq).attr('src', 'img/heart.png');
+				$('#likes'+seq).text(data.likes);
+			}else if(data.check ==1){
+				$('#img'+seq).attr('src', 'img/like.png');
+				$('#likes'+seq).text(data.likes);
+			}
+			if(data.msg != null){
+				alert(data.msg);
+				location.href='<c:url value="/login"/>';
+			}
+		}
+	})
+	})
 </script>
 
 </body>

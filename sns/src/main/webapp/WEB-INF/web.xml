@@ -8,7 +8,7 @@
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>
-		
+				classpath:spring-member.xml
 				classpath:spring-board.xml
 				classpath:spring-controller.xml
 				classpath:spring-mvc.xml

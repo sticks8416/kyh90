@@ -26,20 +26,37 @@
  	   <property name="maxIdleTime" value="600"/>
  	   <property name="idleConnectionTestPeriod" value="300"/>
 	</bean>
-	<bean id="transactionManager"
+<bean id="transactionManager"
 			class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 			<property name="dataSource" ref="dataSource"/>
 	</bean>
-	<bean id="memberDao" class="spring.MemberDao">
-			<constructor-arg ref="dataSource"/>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"/>
+			<property name="configLocation"
+						value="classpath:config/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath:config/sqlmap-member.xml</value>
+				</list>
+			</property>
 	</bean>
-	<bean id="memberRegSvc" class="spring.MemberRegisterService">
-			<constructor-arg ref="memberDao"/>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
+			destroy-method="clearCache">
+			<constructor-arg ref="sqlSessionFactory"/>
+			</bean>
+	<bean id="memberDao" class="member.dao.MemberDaoMybatis">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
-	<bean id="changePwdSvc" class="spring.ChangePasswordService">
-			<constructor-arg ref="memberDao"/>
-	</bean>
-	<bean id="authService" class="spring.AuthService">
+	<bean id="memberService" class="member.service.MemberServiceImpl">
+				<property name="memberDao" ref="memberDao" />
+		</bean>
+	<bean id="memberServiceImpl" class="member.service.MemberServiceImpl">
 		<property name="memberDao" ref="memberDao"/>
 	</bean>
-</beans>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+				<property name="maxUploadSize" value="10485760" />
+		</bean>
+		<bean id="uploadPath" class="java.lang.String">
+				<constructor-arg value="D:\springwork\book\src\main\webapp\WEB-INF\view\image"></constructor-arg>
+		</bean>
+	</beans>
