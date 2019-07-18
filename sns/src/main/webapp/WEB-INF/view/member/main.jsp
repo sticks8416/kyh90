@@ -20,7 +20,7 @@
 <body>
 <body>
 	<c:if test="${empty member}">
-	<form action="<c:url value='/member/main/${member.writer}'/>" method="POST" >
+	<form action="<c:url value='/member/main/'/>" method="POST" >
 		 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
     margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
 	<div>
@@ -34,8 +34,8 @@
 					</div>
 	</form>
 	</c:if>
-	<c:if test="${!empty member}">
-	<p>${member.writer}님 환영합니다.</p>
+	<c:if test="${!empty authInfo}">
+	<p>${authInfo.name}님 환영합니다.</p>
 	<p>
 		<a href="<c:url value='/edit/changePassword'/>">[비밀번호 변경]</a>
 		<a href="<c:url value='/logout'/>">[로그아웃]</a>

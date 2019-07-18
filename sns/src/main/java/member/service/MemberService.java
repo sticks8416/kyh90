@@ -9,5 +9,5 @@ import member.request.LoginRequest;
 public interface MemberService {
 	public List<MemberVO> list();
 	public void write(MemberVO memberVO);
-	public List<MemberVO> login(LoginRequest loginRequest);
+	public MemberVO login(LoginRequest loginRequest);
 }

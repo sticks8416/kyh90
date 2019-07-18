@@ -8,5 +8,5 @@ import member.request.LoginRequest;
 public interface MemberDao {
 	public abstract List<MemberVO> list();
 	public abstract void insert(MemberVO memberVO);
-	public abstract List<MemberVO> login(LoginRequest loginRequest);
+	public abstract MemberVO login(LoginRequest loginRequest);
 }

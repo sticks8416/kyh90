@@ -3,7 +3,9 @@ package member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,21 +54,20 @@ public class MemberController {
 			return "/member/main";
 		}
 	@RequestMapping(value="/member/main", method=RequestMethod.POST)
-	public String login(HttpServletRequest req,HttpServletResponse resp)throws Exception {
-	HttpSession session = req.getSession(true);
+	public String login(Model model, HttpServletRequest req,HttpServletResponse resp)throws Exception {
+	HttpSession session = req.getSession();
 	 String writer = req.getParameter("writer");
 	 String pass = req.getParameter("pass");
-	 
+	 System.out.println("wri="+writer);
 	 LoginRequest loginRequest = new LoginRequest(writer, pass);
-	 List<MemberVO> memberList = memberService.login(loginRequest);
-	 if (memberList.size() == 0) {
-		 // 에러처리
-		 System.out.println("에러");
-		 return "/board/list";
+	 MemberVO memberVO = memberService.login(loginRequest);
+	 if (memberVO==null) {
+		 //회원가입페이지
+		 return "redirect:/member/main";
 	 } else {
 		 //session.setAttribute("writer", writer);
 		 //session.setAttribute("pass", pass); 
-		 session.setAttribute("memberList", memberList.get(0));
+		 session.setAttribute("member", memberVO);
 		 return "/board/list";
 	 }
 	 

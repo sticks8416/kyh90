@@ -1,5 +1,8 @@
 package member.request;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("LoginRequest")
 public class LoginRequest {
 	private String writer;
 	private String pass;

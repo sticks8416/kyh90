@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVO> login(LoginRequest loginRequest) {
+	public MemberVO login(LoginRequest loginRequest) {
 		return memberDao.login(loginRequest);
 	}
 	

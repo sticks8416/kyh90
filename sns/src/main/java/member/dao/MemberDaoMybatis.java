@@ -27,8 +27,8 @@ public void insert(MemberVO memberVO) {
 	sqlSessionTemplate.insert("insert", memberVO);
 }
 @Override
-public List<MemberVO> login(LoginRequest loginRequest) {
-	return sqlSessionTemplate.selectList("login", loginRequest);
+public MemberVO login(LoginRequest loginRequest) {
+	return sqlSessionTemplate.selectOne("memberLogin", loginRequest);
 }
 
 

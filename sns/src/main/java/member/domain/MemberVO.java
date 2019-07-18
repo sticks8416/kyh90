@@ -7,6 +7,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Alias("MemberVO")
 public class MemberVO {
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	private String profile;
 	private String title;
 	public String getTitle() {
 		return title;
