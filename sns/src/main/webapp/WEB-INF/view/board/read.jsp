@@ -6,6 +6,16 @@
 <head>
 <h3>도서정보관리-도서정보</h3>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <title>${boardVO.title}&nbsp;내용</title>
 </head>
 <body>
@@ -43,4 +53,31 @@
 				<a href="<c:url value="/board/list"/>">도서 정보목록</a>		
 		</div>
 </body>
+<script>
+$("#joinOk").keyup("click",function(){
+    $.ajax({
+        url : "/board/list/ajax.seo",
+        type: "get",
+        data : { "id" : $("#id").val() },
+        dataType : "json",
+        success : function(data){
+            $("#ajax").remove();
+            alert(data);
+            if(!data){
+                alert("존재하지 않는 ID입니다");
+                return false;
+            }
+            var html = '';
+            html += '<form class="form-signin" action="" id="ajax">';
+            html += '이름<input type="text" class="form-control"  name="name" value="'+data.name+'">';
+            html += '아이디<input type="text" class="form-control" name=id" value="'+data.id+'">';
+            html += '이메일<input type="text" class="form-control"  name="email" value="'+data.email+'">';
+            html += '비밀번호<input type="text" class="form-control" name="password" value="'+data.password+'">';
+            html += '</form>';
+            $("#container").after(html);
+        }
+    });
+
+});
+</script>
 </html>

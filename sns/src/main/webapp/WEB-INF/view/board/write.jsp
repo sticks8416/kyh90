@@ -38,6 +38,7 @@ butt{
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
   <h1>제목 미정</h1>
+  <button id="start_ajax">서버와 통신시작</button>
   <p>부제 미정</p> 
 </div>
 
@@ -123,6 +124,24 @@ function myFunction() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
+
+
+$("#start_ajax").on('click' (function(){
+    $.ajax({
+        type:"POST",
+        url:"/board/write",
+        data : {name : "홍길동"},
+        dataType : "text",
+        success: function(xml){
+        	alert(성공);
+            console.log(xml);
+        },
+        error: function(xhr, status, error) {
+            alert(error);
+        }  
+    });
+});
+
 </script>
  
 <!-- <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
