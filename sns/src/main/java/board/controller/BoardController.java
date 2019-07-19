@@ -3,6 +3,7 @@ package board.controller;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -50,7 +51,8 @@ public class BoardController {
 	 */
 	//새 글 작성을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
-	public String write(Model model) {
+	public String write(Model model,HttpServletRequest req) {
+		req.getAttribute("member");
 		model.addAttribute("boardVO", new BoardVO());
 		return "/board/write";
 		

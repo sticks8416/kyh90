@@ -72,6 +72,11 @@ public class MemberController {
 	 }
 	 
 	}
+	@RequestMapping(value = "/member/logout" ,method=RequestMethod.GET)
+	public String logout(Model model) {
+	model.addAttribute("memberList", memberService.list());
+		return "/member/main";
+	}
 	 /*@RequestMapping(value="/member/signup", method=RequestMethod.POST)
 	public boolean loginHandle(HttpServletRequest req,HttpServletResponse resp,Object handler)throws Exception  {
 		HttpSession session = req.getSession(false);
