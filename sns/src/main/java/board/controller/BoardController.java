@@ -64,15 +64,15 @@ public class BoardController {
 				return "/board/write";
 			}
 			boardVO.setImages(uploadfile.getOriginalFilename());
-			
+
 			String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
 			boardService.write(boardVO);
 			return "redirect:/board/list";
 	}
-	@RequestMapping(value="/board/edit/{seq}", method=RequestMethod.GET)
-	public String edit(@PathVariable int seq, Model model) {
-		BoardVO boardVO = boardService.read(seq);
+	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.GET)
+	public String edit(@PathVariable int num, Model model) {
+		BoardVO boardVO = boardService.read(num);
 		model.addAttribute("boardVO", boardVO);
 		return "/board/edit";
 	}

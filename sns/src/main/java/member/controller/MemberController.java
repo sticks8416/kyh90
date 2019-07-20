@@ -68,13 +68,19 @@ public class MemberController {
 		 //session.setAttribute("writer", writer);
 		 //session.setAttribute("pass", pass); 
 		 session.setAttribute("member", memberVO);
+		 System.out.println(memberVO.getWriter());
+		 System.out.println(memberVO.getPass());
 		 return "/board/list";
 	 }
 	 
 	}
 	@RequestMapping(value = "/member/logout" ,method=RequestMethod.GET)
-	public String logout(Model model) {
-	model.addAttribute("memberList", memberService.list());
+	public String logout(Model model, HttpServletRequest req,HttpServletResponse resp) throws Exception{
+		
+		HttpSession session = req.getSession();
+		session.invalidate();
+		System.out.println("해제완료!");
+		
 		return "/member/main";
 	}
 	 /*@RequestMapping(value="/member/signup", method=RequestMethod.POST)

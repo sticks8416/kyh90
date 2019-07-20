@@ -109,13 +109,13 @@ butt{
   
     <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
     <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
-     <c:if test="${writer eq null}">
+     <c:if test="${member.writer eq null}">
       <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
       <a href="#" class="w3-bar-item w3-button">회원가입</a>
       
       </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
-       <c:if test="${writer eq not null}">
-      <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그아웃</a>
+       <c:if test="${member.writer eq not null}">
+      <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
       <a href="#" class="w3-bar-item w3-button">내정보</a>
       
       </c:if>
