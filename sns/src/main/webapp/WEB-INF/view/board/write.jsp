@@ -62,11 +62,18 @@ butt{
   
     <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
     <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="#" class="w3-bar-item w3-button">로그인</a>
+      <c:if test="${empty member.writer}">
+      <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
       <a href="#" class="w3-bar-item w3-button">회원가입</a>
-      <!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
-    </div>
-  </div>
+      
+      </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
+       <c:if test="${not empty member.writer}">
+      <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
+      <a href="#" class="w3-bar-item w3-button">내정보</a>
+      
+      </c:if>
+      </div>
+      </div>
 </div>
 </nav>
 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
