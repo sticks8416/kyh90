@@ -94,14 +94,10 @@ butt{
       </li>    
     </ul>
   </div>
-  <!--  serch기능 구현하기  -->
   <form class="form-inline" action="/action_page.php">
     <input class="form-control mr-sm-2" type="text" placeholder="Search">
     <button class="btn btn-success" type="submit">Search</button>
   </form>
-  
-  
-  
  <!--  <i class="fas fa-bars" style= "float:right; font-size: 30px"> -->
   <div class="w3-container">
      
@@ -133,10 +129,7 @@ butt{
 
   <div class="w3-panel w3-card" style="width:90%"><p>아이린</p></div>
   <div class="w3-panel w3-card-2" style="width:90%"><p>출생: 1991년 3월 29일 (28세), 대구광역시</p></div>
-       
-       	<!-- 플레이스홀더 클릭시 글쓰기 팝업창 나타나도록 구현 -->
-        <input type="text" class="form-control" placeholder="글쓰기" name="text1" >
-       <a class="butt"><!-- <button type="submit" class="btn btn-secondary" style = "float:right">답글 달기</button> --></a>
+<!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
 </div>
 </div>
      <c:forEach var="board" items="${boardList}" varStatus="loop">
@@ -157,20 +150,10 @@ butt{
        <div class="form-group" style = "padding: 10px 10px 0px 10px" >
        
        <!-- 좋아요 카운팅으로 넘김버튼 -->
-       
-      <button id="start_ajax">
-      <i class="glyphicon glyphicon-thumbs-up" style ="font-size:25px"></i></button>
+      <i class="glyphicon glyphicon-thumbs-up" style ="font-size:25px"></i>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     
-
-      
        <i class="fas fa-heart" style ="font-size:25px"></i>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      
-      
-      
-      
-      
       <!-- 수정페이지 넘김버튼 -->
        <a href="<c:url value="/board/edit/${board.num}"/>"><i class="fas fa-file" style ="font-size:25px"></i></a>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -217,45 +200,8 @@ function myFunction() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
-$("#start_ajax").click(function(){
-    $.ajax({
-        type:"POST",
-        url:"/board/list",
-        data : {name : "counting"},
-        dataType : "xml",
-        success: function(xml){
-            console.log(xml);
-        },
-        error: function(xhr, status, error) {
-            alert(error);
-        }   
-    });
-}); 
-$("#joinOk").bind("click",function(){
-    $.ajax({
-        url : "/board/list/ajax.seo",
-        type: "get",
-        data : { "id" : $("#id").val() },
-        dataType : "json",
-        success : function(data){
-            $("#ajax").remove();
-            alert(data);
-            if(!data){
-                alert("존재하지 않는 ID입니다");
-                return false;
-            }
-            var html = '';
-            html += '<form class="form-signin" action="" id="ajax">';
-            html += '이름<input type="text" class="form-control"  name="name" value="'+data.name+'">';
-            html += '아이디<input type="text" class="form-control" name=id" value="'+data.id+'">';
-            html += '이메일<input type="text" class="form-control"  name="email" value="'+data.email+'">';
-            html += '비밀번호<input type="text" class="form-control" name="password" value="'+data.password+'">';
-            html += '</form>';
-            $("#container").after(html);
-        }
-    });
 
-});
+
 </script>
 
 </body>

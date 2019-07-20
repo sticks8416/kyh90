@@ -8,7 +8,8 @@
 		ORDER BY regDate desc
 	</select>
 	<select id="serch" parameterType="String" resultType="boardVO">
-	 	SELECT * FROM SNSBOARD WHERE WRITER OR TITLE LIKE ?
+	 	SELECT * FROM SNSBOARD WHERE title = #{%title%}
+	 	ORDER BY seq
 	
 	</select>
 	<select id="count" parameterType="int" resultType="boardVO">

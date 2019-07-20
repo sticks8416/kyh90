@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import board.dao.BoardDao;
 import board.domain.BoardVO;
 import board.service.BoardService;
 
@@ -38,16 +36,11 @@ public class BoardController {
 		model.addAttribute("boardList", boardService.list());
 		return "/board/list";	
 	}
-
-	
-	/*
-	 * @RequestMapping(value="/ajax.seo",method=RequestMethod.GET) public
-	 * ModelAndView AjaxView(@RequestParam("writer") String writer) { ModelAndView
-	 * mav = new ModelAndView();
-	 * 
-	 * SocialPerson person = mav.addObject("person", person);
-	 * mav.setViewName("jsonView"); return mav; }
-	 */
+	@RequestMapping(value="/board/read/{seq}")
+	public String read(Model model, @PathVariable int seq) {
+		model.addAttribute("boardVO", boardService.read(seq));
+		return "/board/read";
+	}
 	//새 글 작성을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
 	public String write(Model model) {

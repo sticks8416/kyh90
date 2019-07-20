@@ -8,5 +8,4 @@
 	<bean id="boardController" class="board.controller.BoardController">
 			<property name="boardService" ref="boardServiceImpl"/>	
 	</bean>
-	
 </beans>
