@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberDAO">
+	<select id="memberlist" resultType="memberVO">
+			SELECT * FROM SNSMEMBER ORDER BY ID
+	</select>
+	<select id="memberLogin" parameterType="loginRequest" resultType="memberVO">
+		SELECT * FROM SNSMEMBER WHERE WRITER=#{writer} and PASS=#{pass}
+	</select>
+	
+	<insert id="memberinsert" parameterType="memberVO">
+			INSERT INTO SNSMEMBER (SEQ, WRITER, EMAIL, PASS, regDate)
+			VALUES(SNSMEMBER_SEQ.nextval, #{WRITER}, #{EMAIL}, #{PASS}, SYSDATE)
+			<selectKey keyProperty="seq" resultType="integer">
+				SELECT NVL(MAX(seq), 0) FROM SNSMEMBER
+			</selectKey>
+	</insert>
+	<update id="memberupdate" parameterType="memberVO">
+			UPDATE SNSMEMBER SET WRITER = #{WRITER}, PASS = #{PASS}
+				WHERE EMAIL = #{EMAIL}
+	</update>
+
+
+	
+	<delete id="memberdeleteAll">
+			DELETE FROM SNSBOARD
+	</delete>
+</mapper>

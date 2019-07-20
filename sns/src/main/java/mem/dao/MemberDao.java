@@ -1,35 +1,12 @@
-package mem.dao;
+package member.dao;
 
-import java.sql.Timestamp;
+import java.util.List;
 
-public class MemberDao {
-		private String writer;
-		private String pass;
-		private Timestamp regDate;
-		private String email;
-		public String getWriter() {
-			return writer;
-		}
-		public void setWriter(String writer) {
-			this.writer = writer;
-		}
-		public String getPass() {
-			return pass;
-		}
-		public void setPass(String pass) {
-			this.pass = pass;
-		}
-		public Timestamp getRegDate() {
-			return regDate;
-		}
-		public void setRegDate(Timestamp regDate) {
-			this.regDate = regDate;
-		}
-		public String getEmail() {
-			return email;
-		}
-		public void setEmail(String email) {
-			this.email = email;
-		}
+import member.domain.MemberVO;
+import member.request.LoginRequest;
 
+public interface MemberDao {
+	public abstract List<MemberVO> list();
+	public abstract void insert(MemberVO memberVO);
+	public abstract MemberVO login(LoginRequest loginRequest);
 }

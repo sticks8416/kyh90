@@ -3,6 +3,7 @@ package board.controller;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,8 @@ public class BoardController {
 	}
 	//새 글 작성을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
-	public String write(Model model) {
+	public String write(Model model,HttpServletRequest req) {
+		req.getAttribute("member");
 		model.addAttribute("boardVO", new BoardVO());
 		return "/board/write";
 		
@@ -55,15 +57,15 @@ public class BoardController {
 				return "/board/write";
 			}
 			boardVO.setImages(uploadfile.getOriginalFilename());
-			
+
 			String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
 			boardService.write(boardVO);
 			return "redirect:/board/list";
 	}
-	@RequestMapping(value="/board/edit/{seq}", method=RequestMethod.GET)
-	public String edit(@PathVariable int seq, Model model) {
-		BoardVO boardVO = boardService.read(seq);
+	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.GET)
+	public String edit(@PathVariable int num, Model model) {
+		BoardVO boardVO = boardService.read(num);
 		model.addAttribute("boardVO", boardVO);
 		return "/board/edit";
 	}

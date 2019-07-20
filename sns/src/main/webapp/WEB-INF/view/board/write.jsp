@@ -73,10 +73,10 @@ butt{
 
 <div class="w3-container">
   <h2></h2>
-  <p><img src="../images/ir2.jpg" width="200" height="150" alt="no img"></p>
+  <p><img src="../images/${member.profile}" width="200" height="150" alt="no img"></p>
 
-  <div class="w3-panel w3-card" style="width:90%"><p>아이린</p></div>
-  <div class="w3-panel w3-card-2" style="width:90%"><p>출생: 1991년 3월 29일 (28세), 대구광역시</p></div>
+  <div class="w3-panel w3-card" style="width:90%"><p>${member.writer}</p></div>
+  <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
 <!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
 </div>
 </div>
@@ -86,7 +86,7 @@ butt{
     margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
   <label><input type="text" name="title" placeholder="제목" style = "padding-top: 0px; padding-bottom: 0px"></label>
    <div class="w3-panel w3-border-top w3-border-bottom" style = "margin-top: 0px; margin-bottom: 0px">
-    <h5><!-- <input type="text" name="" > -->id값 받아오기,<!-- <input type="text" name="regDate" > -->액션 실행시 regdate값 db로(숨김)</h5>
+    <h5><!-- <input type="text" name="" > -->${member.writer}<!-- <input type="text" name="regDate" > -->액션 실행시 regdate값 db로(숨김)</h5>
     
     </div>
       <div>
