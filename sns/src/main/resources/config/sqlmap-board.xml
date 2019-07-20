@@ -22,12 +22,12 @@
 	</select> 
 	<insert id="insert" parameterType="boardVO">
 			INSERT INTO SNSBOARD
-			(seq, num, pass, title, content, price, writer, publisher, ISBN, password, regDate, cnt, images, counting)
+			(num, pass, title, content, writer, regDate, images)
 			VALUES
-			(BOARD_SEQ.nextval,
-					#{pass}, #{num}, #{title}, #{content},#{price}, #{writer}, #{publisher},#{ISBN}, #{password}, SYSDATE, 0,#{images},#{counting})
+			(SNSBOARD_num.nextval,
+					#{pass}, #{title}, #{content}, #{writer}, SYSDATE, #{images})
 			<selectKey keyProperty="seq" resultType="Integer">
-					SELECT NVL(MAX(seq), 0) FROM BOARD
+					SELECT NVL(MAX(num), 0) FROM SNSBOARD
 			</selectKey>
 	</insert>
 	<update id="update" parameterType="boardVO">
@@ -40,8 +40,8 @@
 			UPDATE SNSBOARD SET cnt = cnt + 1 WHERE num = #{num}<!-- 나중에 seq로 수정 -->
 	</update>
 	<delete id="delete" parameterType="boardVO">
-			DELETE FROM SNSBOARD WHERE seq = #{seq}
-			AND pass = #{pass}
+			DELETE FROM SNSBOARD WHERE num = #{num}
+			AND writer = #{writer}
 	</delete>
 	
 	<delete id="deleteAll">

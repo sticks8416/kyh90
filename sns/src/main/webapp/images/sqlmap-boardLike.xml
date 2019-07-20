@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardLikeDao">
+	<insert id="addLike" parameterType="boardLikeVO">
+		insert into boardlike	(id, seq)
+		values(	#{id}, #{seq})
+	</insert>
+
+	<delete id="deleteLike" parameterType="boardLikeVO">
+		delete from boardlike where seq = #{seq} and id = #{id}
+	</delete>
+	
+	<select id="countLike" parameterType="Integer" resultType="java.lang.Integer">
+		 select count(id) from boardlike where seq = #{seq} 
+	</select>
+	
+	<select id="searchId" parameterType="boardLikeVO" resultType="java.lang.Integer">
+		 select count(*) from boardlike where seq = #{seq} and id =#{id} 
+	</select>
+	
+	<update id="updateCount" parameterType="Integer">
+		update proboard set num = (select count(*) from boardlike where seq = #{seq}) where seq = #{seq} 
+	</update>
+	
+	<update id="checkLike" parameterType="map">
+		update proboard set likecheck = #{check} where seq = #{seq} 
+	</update>
+</mapper>

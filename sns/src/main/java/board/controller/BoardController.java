@@ -1,9 +1,10 @@
 package board.controller;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.IOException;import java.io.Writer;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import board.domain.BoardVO;
 import board.service.BoardService;
+import member.domain.MemberVO;
 
 @Controller
 @SessionAttributes("boardVO")
@@ -33,8 +35,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/list")
-	public String list(Model model) {
+	public String list(Model model, HttpServletRequest req) {
 		model.addAttribute("boardList", boardService.list());
+		req.getAttribute("member");
 		return "/board/list";	
 	}
 	@RequestMapping(value="/board/read/{seq}")
@@ -52,14 +55,17 @@ public class BoardController {
 	}
 	//새 글 등록을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.POST)
-	public String write(@Valid BoardVO boardVO, BindingResult bindingResult, @RequestParam("filename")MultipartFile uploadfile)throws IOException {
+	public String write(@Valid BoardVO boardVO, HttpServletRequest req,BindingResult bindingResult, @RequestParam("filename")MultipartFile uploadfile)throws IOException {
 			if(bindingResult.hasErrors()) {
 				return "/board/write";
 			}
+			
+			System.out.println();
 			boardVO.setImages(uploadfile.getOriginalFilename());
-
+			req.getAttribute("member");
 			String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
+			
 			boardService.write(boardVO);
 			return "redirect:/board/list";
 	}
@@ -70,7 +76,7 @@ public class BoardController {
 		return "/board/edit";
 	}
 	
-	@RequestMapping(value="/board/edit/{seq}", method=RequestMethod.POST)
+	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.POST)
 	public String edit(
 			@Valid @ModelAttribute BoardVO boardVO,
 			BindingResult result,

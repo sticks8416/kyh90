@@ -92,7 +92,7 @@ butt{
       </li>    
     </ul>
   </div>
-  <form class="form-inline" action="/action_page.php">
+  <form class="form-inline" action="<c:url value='/member/serchmember'/>">
     <input class="form-control mr-sm-2" type="text" placeholder="Search">
     <button class="btn btn-success" type="submit">Search</button>
   </form>
@@ -206,10 +206,7 @@ function myFunction() {
   } else { 
     x.className = x.className.replace(" w3-show", "");
   }
-}
-
-
-});
+}	
 
 $("[id^=btn]").on('click', function(event){
 	//ex) id=btn51, btn34

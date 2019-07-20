@@ -21,6 +21,9 @@
 			UPDATE SNSMEMBER SET WRITER = #{WRITER}, PASS = #{PASS}
 				WHERE EMAIL = #{EMAIL}
 	</update>
+	<select id="memberserch" parameterType="loginRequest" resultType="memberVO">
+		SELECT * FROM SNSMEMBER WHERE WRITER
+	</select>
 
 
 	
