@@ -37,9 +37,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/list")
-	public String list(Model model, HttpServletRequest req) {
+	public String list(Model model,HttpSession session, HttpServletRequest req) {
 		model.addAttribute("boardList", boardService.list());
-		req.getAttribute("member");
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		//req.getAttribute("member");
+		if(memberVO==null) {
+			return "redirect:/member/main";
+		}
+		else
 		return "/board/list";	
 	}
 	@RequestMapping(value="/board/read/{seq}")
@@ -70,12 +75,9 @@ public class BoardController {
 			boardVO.setImages(uploadfile.getOriginalFilename());
 			String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
-			System.out.println(boardVO.getContent());
-			System.out.println(boardVO.getNum());
-			System.out.println(boardVO.getTitle());
-			System.out.println(boardVO.getWriter());
+//			System.out.println(boardVO.getWriter());
 			boardVO.setWriter(memberVO.getWriter());
-			System.out.println(boardVO.getPass());
+			//System.out.println(boardVO.getPass());
 			boardVO.setPass(memberVO.getPass());
 			memberVO.getWriter();
 			memberVO.getPass();

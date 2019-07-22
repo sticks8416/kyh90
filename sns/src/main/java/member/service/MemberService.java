@@ -9,6 +9,6 @@ import member.request.LoginRequest;
 public interface MemberService {
 	public List<MemberVO> list();
 	public void write(MemberVO memberVO);
-	public MemberVO login(LoginRequest loginRequest);
-	public void serchmember(MemberVO memberVO);
+	public MemberVO memberLogin(LoginRequest loginRequest);
+
 }

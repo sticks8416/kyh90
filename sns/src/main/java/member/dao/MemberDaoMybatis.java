@@ -27,13 +27,10 @@ public void insert(MemberVO memberVO) {
 	sqlSessionTemplate.insert("insert", memberVO);
 }
 @Override
-public MemberVO login(LoginRequest loginRequest) {
+public MemberVO memberLogin(LoginRequest loginRequest) {
 	return sqlSessionTemplate.selectOne("memberLogin", loginRequest);
 }
-@Override
-public void serchmember(MemberVO memberVO) {
-	sqlSessionTemplate.insert("serchmember", memberVO);
-}
+
 
 }
 

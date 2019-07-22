@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import board.domain.BoardVO;
+import board.service.BoardService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +45,11 @@ import member.service.MemberService;
 @SessionAttributes("memberVO")
 public class MemberController {
 	private MemberService memberService;
-	
+	private BoardService boardService;
+	//로그인 버튼 submit시에 피드/메인창으로 넘겼을 시 보드.list 쿼리  실행하면서 들고오기 위해
+	public void setBoardService(BoardService boardService) {
+		this.boardService = boardService;
+	}
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
@@ -60,7 +65,8 @@ public class MemberController {
 	 String pass = req.getParameter("pass");
 	 System.out.println("wri="+writer);
 	 LoginRequest loginRequest = new LoginRequest(writer, pass);
-	 MemberVO memberVO = memberService.login(loginRequest);
+	 MemberVO memberVO = memberService.memberLogin(loginRequest);
+	 //멤버 컨트롤러에 쓰는 방법외
 	 if (memberVO==null) {
 		 //회원가입페이지
 		 return "redirect:/member/main";

@@ -4,9 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<h3>도서정보관리-도서정보</h3>
 <meta charset="UTF-8">
-<title>${boardVO.title}&nbsp;내용</title>
+<title>유저목록</title>
 </head>
 <!-- 검색 후 유저 목록 친구목록 구현 -->
 <body>

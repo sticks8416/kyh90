@@ -35,7 +35,7 @@
 				<list>
 					<value>classpath:config/sqlmap-board.xml</value>
 					<value>classpath:config/sqlmap-member.xml</value>
-				</list>
+					</list>
 			</property>
 	</bean>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
