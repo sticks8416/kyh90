@@ -51,21 +51,19 @@ public class BoardController {
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
 	public String write(Model model,HttpServletRequest req ,HttpServletResponse resp) {
 		HttpSession session = req.getSession();
-		session.getAttribute("member");
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		model.addAttribute("boardVO", new BoardVO());
+		
 		return "/board/write";
 		
 	}
 	//새 글 등록을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.POST)
-	public String write(@Valid Model model,BoardVO boardVO, HttpServletRequest req,BindingResult bindingResult, @RequestParam("filename")MultipartFile uploadfile)throws IOException {
+	public String write(@Valid Model model,HttpSession session,BoardVO boardVO, HttpServletRequest req,BindingResult bindingResult, @RequestParam("filename")MultipartFile uploadfile)throws IOException {
 			if(bindingResult.hasErrors()) {
 				return "/board/write";
 			}
 			model.addAttribute("boardVO", new BoardVO());
-			HttpSession session = req.getSession();
-			session.getAttribute("member");
+			
 			MemberVO memberVO = (MemberVO) session.getAttribute("member");
 			
 			System.out.println();
@@ -75,8 +73,10 @@ public class BoardController {
 			System.out.println(boardVO.getContent());
 			System.out.println(boardVO.getNum());
 			System.out.println(boardVO.getTitle());
-			System.out.println(memberVO.getWriter());
-			System.out.println(memberVO.getPass());
+			System.out.println(boardVO.getWriter());
+			boardVO.setWriter(memberVO.getWriter());
+			System.out.println(boardVO.getPass());
+			boardVO.setPass(memberVO.getPass());
 			memberVO.getWriter();
 			memberVO.getPass();
 			boardService.write(boardVO);
