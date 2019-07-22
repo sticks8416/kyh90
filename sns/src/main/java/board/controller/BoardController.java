@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;import java.io.Writer;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import board.domain.BoardVO;
 import board.service.BoardService;
 import member.domain.MemberVO;
+import member.service.MemberService;
 
 @Controller
 @SessionAttributes("boardVO")
@@ -47,25 +49,36 @@ public class BoardController {
 	}
 	//새 글 작성을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
-	public String write(Model model,HttpServletRequest req) {
-		req.getAttribute("member");
+	public String write(Model model,HttpServletRequest req ,HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+		session.getAttribute("member");
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		model.addAttribute("boardVO", new BoardVO());
 		return "/board/write";
 		
 	}
 	//새 글 등록을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.POST)
-	public String write(@Valid BoardVO boardVO, HttpServletRequest req,BindingResult bindingResult, @RequestParam("filename")MultipartFile uploadfile)throws IOException {
+	public String write(@Valid Model model,BoardVO boardVO, HttpServletRequest req,BindingResult bindingResult, @RequestParam("filename")MultipartFile uploadfile)throws IOException {
 			if(bindingResult.hasErrors()) {
 				return "/board/write";
 			}
+			model.addAttribute("boardVO", new BoardVO());
+			HttpSession session = req.getSession();
+			session.getAttribute("member");
+			MemberVO memberVO = (MemberVO) session.getAttribute("member");
 			
 			System.out.println();
 			boardVO.setImages(uploadfile.getOriginalFilename());
-			req.getAttribute("member");
 			String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
-			
+			System.out.println(boardVO.getContent());
+			System.out.println(boardVO.getNum());
+			System.out.println(boardVO.getTitle());
+			System.out.println(memberVO.getWriter());
+			System.out.println(memberVO.getPass());
+			memberVO.getWriter();
+			memberVO.getPass();
 			boardService.write(boardVO);
 			return "redirect:/board/list";
 	}

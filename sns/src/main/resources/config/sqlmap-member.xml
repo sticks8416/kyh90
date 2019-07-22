@@ -25,7 +25,6 @@
 		SELECT * FROM SNSMEMBER WHERE WRITER
 	</select>
 
-
 	
 	<delete id="memberdeleteAll">
 			DELETE FROM SNSBOARD

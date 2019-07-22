@@ -147,7 +147,6 @@ butt{
    <div class="w3-panel w3-border-top w3-border-bottom">
     <a style= "text-align:left">${board.writer}</a><a style = "float:right">${board.regDate}</a>
     </div>
-     
       <div><img src="../images/${board.images}" width="auto" height="150" alt="no img"></div>
       <div>
       <h4>${board.content}</h4><!-- content,regdate 안됨 -->
@@ -165,11 +164,7 @@ butt{
        <a href="<c:url value="/board/edit/${board.num}"/>"><i class="fas fa-file" style ="font-size:25px"></i></a>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       
-      
-      
-      
-      
-      
+     
       <!-- 삭제팝업창으로 넘김버튼 -->
         <a href="<c:url value="/board/delete/${board.num}"/>"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
         </div>

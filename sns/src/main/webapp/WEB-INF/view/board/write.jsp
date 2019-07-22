@@ -40,7 +40,6 @@ butt{
   <h1>제목 미정</h1>
   <p>부제 미정</p> 
 </div>
-
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <a class="topnav-icons fa fa-home w3-left w3-bar-item w3-button" title="Home" style ="font-size:25px; color:white" href="<c:url value="/board/list"/>"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -70,7 +69,6 @@ butt{
        <c:if test="${not empty member.writer}">
       <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
       <a href="#" class="w3-bar-item w3-button">내정보</a>
-      
       </c:if>
       </div>
       </div>

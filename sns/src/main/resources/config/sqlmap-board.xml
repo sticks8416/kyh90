@@ -22,11 +22,11 @@
 	</select> 
 	<insert id="insert" parameterType="boardVO">
 			INSERT INTO SNSBOARD
-			(num, pass, title, content, writer, regDate, images)
+			(num, title, writer, pass, content, regDate, images)
 			VALUES
 			(SNSBOARD_num.nextval,
-					#{pass}, #{title}, #{content}, #{writer}, SYSDATE, #{images})
-			<selectKey keyProperty="seq" resultType="Integer">
+					#{title}, #{writer}, #{pass}, #{content}, SYSDATE, #{images})
+			<selectKey keyProperty="num" resultType="Integer">
 					SELECT NVL(MAX(num), 0) FROM SNSBOARD
 			</selectKey>
 	</insert>

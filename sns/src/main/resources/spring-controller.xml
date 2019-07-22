@@ -12,5 +12,4 @@
 	<bean id="memberController" class="member.controller.MemberController">
 			<property name="memberService" ref="memberServiceImpl"/>	
 	</bean>
-
 </beans>

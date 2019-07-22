@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>${boardVO.title}&nbsp;내용</title>
 </head>
+<!-- 검색 후 유저 목록 친구목록 구현 -->
 <body>
 		<table border="1">
 		
