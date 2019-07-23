@@ -19,8 +19,8 @@ public class MemberDaoMybatis implements MemberDao{
 	}
 
 @Override
-public List<MemberVO> list(){
-	return sqlSessionTemplate.selectList("list");
+public List<MemberVO> memberlist(){
+	return sqlSessionTemplate.selectList("memberlist");
 }
 @Override
 public void insert(MemberVO memberVO) {
@@ -30,6 +30,10 @@ public void insert(MemberVO memberVO) {
 public MemberVO memberLogin(LoginRequest loginRequest) {
 	return sqlSessionTemplate.selectOne("memberLogin", loginRequest);
 }
+
+@Override 
+public List<MemberVO> memberSerch(){ 
+	return sqlSessionTemplate.selectList("memberSerch"); }
 
 
 }

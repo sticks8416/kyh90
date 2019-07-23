@@ -36,85 +36,98 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-
 import member.dao.MemberDao;
 import member.domain.MemberVO;
 import member.request.LoginRequest;
 import member.service.MemberService;
+
 @Controller
 @SessionAttributes("memberVO")
 public class MemberController {
 	private MemberService memberService;
 	private BoardService boardService;
-	//로그인 버튼 submit시에 피드/메인창으로 넘겼을 시 보드.list 쿼리  실행하면서 들고오기 위해
+
+	// 로그인 버튼 submit시에 피드/메인창으로 넘겼을 시 보드.list 쿼리 실행하면서 들고오기 위해
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
+
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-@RequestMapping(value = "/member/main" ,method=RequestMethod.GET)
-		public String main(Model model) {
-		model.addAttribute("memberList", memberService.list());
-			return "/member/main";
+
+	@RequestMapping(value = "/member/main", method = RequestMethod.GET)
+	public String main(Model model) {
+		model.addAttribute("memberList", memberService.memberlist());
+		return "/member/main";
+	}
+
+	@RequestMapping(value = "/member/main", method = RequestMethod.POST)
+	public String login(Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		HttpSession session = req.getSession();
+		String writer = req.getParameter("writer");
+		String pass = req.getParameter("pass");
+		System.out.println("wri=" + writer);
+		LoginRequest loginRequest = new LoginRequest(writer, pass);
+		MemberVO memberVO = memberService.memberLogin(loginRequest);
+		if (memberVO == null) {
+			// 회원가입페이지
+			return "redirect:/member/main";
+		} else {
+			// session.setAttribute("writer", writer);
+			// session.setAttribute("pass", pass);
+			session.setAttribute("member", memberVO);
+			System.out.println(memberVO);
+			System.out.println(memberVO.getWriter());
+			System.out.println(memberVO.getPass());
+			return "/board/list";
 		}
-	@RequestMapping(value="/member/main", method=RequestMethod.POST)
-	public String login(Model model, HttpServletRequest req,HttpServletResponse resp)throws Exception {
-	HttpSession session = req.getSession();
-	 String writer = req.getParameter("writer");
-	 String pass = req.getParameter("pass");
-	 System.out.println("wri="+writer);
-	 LoginRequest loginRequest = new LoginRequest(writer, pass);
-	 MemberVO memberVO = memberService.memberLogin(loginRequest);
-	 //멤버 컨트롤러에 쓰는 방법외
-	 if (memberVO==null) {
-		 //회원가입페이지
-		 return "redirect:/member/main";
-	 } else {
-		 //session.setAttribute("writer", writer);
-		 //session.setAttribute("pass", pass); 
-		 session.setAttribute("member", memberVO);
-		 System.out.println(memberVO);
-		 System.out.println(memberVO.getWriter());
-		 System.out.println(memberVO.getPass());
-		 return "/board/list";
-	 }
-	 
+
 	}
-	@RequestMapping(value = "/member/logout" ,method=RequestMethod.GET)
-	public String logout(Model model, HttpServletRequest req,HttpServletResponse resp) throws Exception{
-		
+
+	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
+	public String logout(Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
 		HttpSession session = req.getSession();
 		session.invalidate();
 		System.out.println("해제완료!");
-		
+
 		return "/member/main";
 	}
-	@RequestMapping(value = "/member/serchmember" ,method=RequestMethod.GET)
-	public String serch(Model model, HttpServletRequest req,HttpServletResponse resp) throws Exception{
+
+	@RequestMapping(value = "/member/serchmember", method = RequestMethod.POST)
+	//get방식으로 하나 더 만들어야 하는가
+	public String memberSerch(Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		/* model.addAttribute("memberserch", memberService.memberserch()); */
+		/* model.addAttribute("memberList", memberService.memberlist()); */
+		model.addAttribute("memberSerch", memberService.memberSerch());
 		
-		HttpSession session = req.getSession();
-		session.invalidate();
-		System.out.println("해제완료!");
-		
-		return "/member/main";
+		/* memberService.memberserch(memberVO); */
+		return "/board/read";
 	}
 	
-	 /*@RequestMapping(value="/member/signup", method=RequestMethod.POST)
-	public boolean loginHandle(HttpServletRequest req,HttpServletResponse resp,Object handler)throws Exception  {
-		HttpSession session = req.getSession(false);
-		
-		if(session==null) {
-			resp.sendRedirect(req.getContextPath()+"/member/signup");
-				return false;
-		}
-		
-		MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
-		
-		if(memberVO==null) {
-			resp.sendRedirect(req.getContextPath()+"/member/signup");
-		}
-		return true;
-	}*/
+	/*
+	 * @RequestMapping(value = "/member/serchmember" ,method=RequestMethod.POST)
+	 * public String memberserch(Model model, HttpServletRequest
+	 * req,HttpServletResponse resp) throws Exception{
+	 * model.addAttribute("memberserch", memberService.memberserch());
+	 * model.addAttribute("memberSerch", memberService.memberserch());
+	 * 
+	 * memberService.memberserch(memberVO); return "/board/read"; }
+	 */
+
+	/*
+	 * @RequestMapping(value="/member/signup", method=RequestMethod.POST) public
+	 * boolean loginHandle(HttpServletRequest req,HttpServletResponse resp,Object
+	 * handler)throws Exception { HttpSession session = req.getSession(false);
+	 * 
+	 * if(session==null) { resp.sendRedirect(req.getContextPath()+"/member/signup");
+	 * return false; }
+	 * 
+	 * MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+	 * 
+	 * if(memberVO==null) {
+	 * resp.sendRedirect(req.getContextPath()+"/member/signup"); } return true; }
+	 */
 
 }

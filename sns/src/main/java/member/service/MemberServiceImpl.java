@@ -23,9 +23,14 @@ public class MemberServiceImpl implements MemberService{
 		this.memberDao = memberDao;
 	}
 	@Override
-	public List<MemberVO> list(){
-		return memberDao.list();
+	public List<MemberVO> memberlist(){
+		return memberDao.memberlist();
 	}
+	@Override
+	public List<MemberVO> memberSerch(){
+		return memberDao.memberSerch();
+	}
+	
 	@Override
 	public void write(MemberVO memberVO) {
 		memberDao.insert(memberVO);
@@ -35,5 +40,4 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO memberLogin(LoginRequest loginRequest) {
 		return memberDao.memberLogin(loginRequest);
 	}
-
 }

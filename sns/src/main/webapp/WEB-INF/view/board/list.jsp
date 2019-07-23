@@ -94,7 +94,7 @@ butt{
   </div>
   <form class="form-inline" action="<c:url value='/member/serchmember'/>">
     <input class="form-control mr-sm-2" type="text" placeholder="Search">
-    <button class="btn btn-success" type="submit">Search</button>
+    <button class="btn btn-success" type="submit"> <a href="<c:url value='member/serchmember'/>" method="POST" >serch</a></button>
   </form>
  <!--  <i class="fas fa-bars" style= "float:right; font-size: 30px"> -->
   <div class="w3-container">   

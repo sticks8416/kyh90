@@ -4,7 +4,8 @@
 
 <mapper namespace="memberDAO">
 	<select id="memberlist" resultType="memberVO">
-			SELECT * FROM SNSMEMBER ORDER BY ID
+			SELECT * FROM SNSMEMBER ORDER BY WRITER
+			
 	</select>
 	<select id="memberLogin" parameterType="loginRequest" resultType="memberVO">
 		SELECT * FROM SNSMEMBER WHERE WRITER=#{writer} and PASS=#{pass}
@@ -21,10 +22,11 @@
 			UPDATE SNSMEMBER SET WRITER = #{WRITER}, PASS = #{PASS}
 				WHERE EMAIL = #{EMAIL}
 	</update>
-	<select id="memberserch" parameterType="loginRequest" resultType="memberVO">
-		SELECT * FROM SNSMEMBER WHERE WRITER
+	<select id="memberSerch"  resultType="memberVO">
+			SELECT * FROM SNSMEMBER
+			WHERE WRITER LIKE '%'+'#{WRITER}'+'%'
 	</select>
-
+	
 	
 	<delete id="memberdeleteAll">
 			DELETE FROM SNSBOARD

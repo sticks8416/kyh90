@@ -7,8 +7,8 @@ import member.domain.MemberVO;
 import member.request.LoginRequest;
 
 public interface MemberService {
-	public List<MemberVO> list();
+	public List<MemberVO> memberlist();
 	public void write(MemberVO memberVO);
 	public MemberVO memberLogin(LoginRequest loginRequest);
-
+	public List<MemberVO> memberSerch();
 }
