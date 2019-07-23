@@ -26,10 +26,7 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberVO> memberlist(){
 		return memberDao.memberlist();
 	}
-	@Override
-	public List<MemberVO> memberSerch(){
-		return memberDao.memberSerch();
-	}
+	
 	
 	@Override
 	public void write(MemberVO memberVO) {
@@ -39,5 +36,9 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO memberLogin(LoginRequest loginRequest) {
 		return memberDao.memberLogin(loginRequest);
+	}
+	@Override
+	public List<MemberVO> memberSerch(){
+		return memberDao.memberSerch();
 	}
 }

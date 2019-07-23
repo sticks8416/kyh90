@@ -95,17 +95,30 @@ public class MemberController {
 		return "/member/main";
 	}
 
-	@RequestMapping(value = "/member/serchmember", method = RequestMethod.POST)
-	//get방식으로 하나 더 만들어야 하는가
-	public String memberSerch(Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		/* model.addAttribute("memberserch", memberService.memberserch()); */
-		/* model.addAttribute("memberList", memberService.memberlist()); */
-		model.addAttribute("memberSerch", memberService.memberSerch());
-		
-		/* memberService.memberserch(memberVO); */
-		return "/board/read";
-	}
-	
+	/*
+	 * @RequestMapping(value = "/member/serchmember", method = RequestMethod.GET) //
+	 * get방식으로 하나 더 만들어야 하는가 public String memberlist(Model model,
+	 * HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	 * model.addAttribute("memberserch", memberService.memberserch());
+	 * model.addAttribute("memberList", memberService.memberlist());
+	 * 
+	 * 
+	 * 
+	 * model.addAttribute("memberSerch", memberService.memberSerch());
+	 * 
+	 * memberService.memberserch(memberVO); return "/board/read"; }
+	 */
+	/*
+	 * @RequestMapping(value = "/member/serchmember", method = RequestMethod.POST)
+	 * //get방식으로 하나 더 만들어야 하는가 public String memberSerch(Model model,
+	 * HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	 * model.addAttribute("memberserch", memberService.memberserch());
+	 * model.addAttribute("memberList", memberService.memberlist());
+	 * model.addAttribute("memberSerch", memberService.memberSerch());
+	 * 
+	 * memberService.memberserch(memberVO); return "/board/read"; }
+	 */
+
 	/*
 	 * @RequestMapping(value = "/member/serchmember" ,method=RequestMethod.POST)
 	 * public String memberserch(Model model, HttpServletRequest

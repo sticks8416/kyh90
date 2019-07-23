@@ -6,10 +6,12 @@ import org.springframework.stereotype.Service;
 
 import board.dao.BoardDao;
 import board.domain.BoardVO;
+import member.domain.MemberVO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
 		private BoardDao boardDao;
+		private BoardDao memberDao;
 
 		public BoardDao getBoardDao() {
 			return boardDao;
@@ -39,5 +41,5 @@ public class BoardServiceImpl implements BoardService{
 			boardDao.updateReadCount(seq);
 			return boardDao.select(seq);
 		}
-	
+		
 }

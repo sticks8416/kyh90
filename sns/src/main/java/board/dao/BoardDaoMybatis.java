@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import board.domain.BoardVO;
+import member.domain.MemberVO;
 
 @Repository
 public class BoardDaoMybatis implements BoardDao{
@@ -51,4 +52,6 @@ public class BoardDaoMybatis implements BoardDao{
 	public int updateGCount(int counting) {
 		return sqlSessionTemplate.update("counting", counting);
 	}
+
+
 }

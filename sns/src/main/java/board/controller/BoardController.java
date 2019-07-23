@@ -35,8 +35,12 @@ public class BoardController {
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
-	
-	@RequestMapping(value="/board/list")
+	private MemberService memberService;
+
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
+	@RequestMapping(value="/board/list" , method=RequestMethod.GET)
 	public String list(Model model,HttpSession session, HttpServletRequest req) {
 		model.addAttribute("boardList", boardService.list());
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
@@ -47,11 +51,29 @@ public class BoardController {
 		else
 		return "/board/list";	
 	}
-	@RequestMapping(value="/board/read/{seq}")
-	public String read(Model model, @PathVariable int seq) {
-		model.addAttribute("boardVO", boardService.read(seq));
-		return "/board/read";
+	@RequestMapping(value="/board/list", method=RequestMethod.POST)
+	public String memberserch(Model model, MemberVO memberVO ,HttpSession session, HttpServletRequest req) {
+		
+		memberVO = (MemberVO) session.getAttribute("member");
+		System.out.println(memberVO.getWriter());
+		//세션 아이디 값
+		@RequestParam("naming") = String writer;
+		model.addAttribute("memberSerch", memberService.memberSerch());
+		memberService.memberSerch();
+		//데이터베이스 멤버테이블에 접근한 아이디 값들
+	
+		
+		/*
+		 * if(memberVO.getWriter()==null) { return "redirect:/member/main"; } else
+		 */
+		return "/board/read";	
 	}
+	
+	/*
+	 * @RequestMapping(value="/board/read/{seq}") public String read(Model
+	 * model, @PathVariable int seq) { model.addAttribute("boardVO",
+	 * boardService.read(seq)); return "/board/read"; }
+	 */
 	//새 글 작성을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
 	public String write(Model model,HttpServletRequest req ,HttpServletResponse resp) {

@@ -92,9 +92,10 @@ butt{
       </li>    
     </ul>
   </div>
-  <form class="form-inline" action="<c:url value='/member/serchmember'/>">
+  <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
     <input class="form-control mr-sm-2" type="text" placeholder="Search">
-    <button class="btn btn-success" type="submit"> <a href="<c:url value='member/serchmember'/>" method="POST" >serch</a></button>
+    //input에 네이밍 값은 쿼리문 네이밍한 값 
+    <button class="btn btn-success" type="submit">serch</button>
   </form>
  <!--  <i class="fas fa-bars" style= "float:right; font-size: 30px"> -->
   <div class="w3-container">   

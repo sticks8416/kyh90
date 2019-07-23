@@ -22,10 +22,10 @@
 			UPDATE SNSMEMBER SET WRITER = #{WRITER}, PASS = #{PASS}
 				WHERE EMAIL = #{EMAIL}
 	</update>
-	<select id="memberSerch"  resultType="memberVO">
+	<select id="memberSerch"  parameterType="memberVO" resultType="memberVO">
 			SELECT * FROM SNSMEMBER
-			WHERE WRITER LIKE '%'+'#{WRITER}'+'%'
-	</select>
+			WHERE WRITER LIKE '%'||#{WRITER}||'%'
+	</select> 
 	
 	
 	<delete id="memberdeleteAll">

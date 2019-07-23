@@ -9,7 +9,7 @@
 </head>
 <!-- 검색 후 유저 목록 친구목록 구현 -->
 <body>
-<c:forEach var="member" items="${memberSerch}" varStatus="loop">
+<c:forEach var="member" items="${memberlist}" varStatus="loop">
 <div class="w3-panel w3-card"><p>${member.writer}</p></div>
 
 </c:forEach>

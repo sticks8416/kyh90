@@ -3,6 +3,7 @@ package board.dao;
 import java.util.List;
 
 import board.domain.BoardVO;
+import member.domain.MemberVO;
 
 public interface BoardDao {
 	public abstract List<BoardVO> list();
@@ -13,4 +14,5 @@ public interface BoardDao {
 	public abstract BoardVO select(int seq);
 	public abstract int updateReadCount(int seq);
 	public abstract int updateGCount(int num);
+	
 }

@@ -3,6 +3,7 @@ package board.service;
 import java.util.List;
 
 import board.domain.BoardVO;
+import member.domain.MemberVO;
 
 public interface BoardService {
 	public abstract List<BoardVO> list();
