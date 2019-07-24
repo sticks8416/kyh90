@@ -93,7 +93,7 @@ butt{
     </ul>
   </div>
   <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="serch">
     //input에 네이밍 값은 쿼리문 네이밍한 값 
     <button class="btn btn-success" type="submit">serch</button>
   </form>

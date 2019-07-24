@@ -2,12 +2,15 @@ package board.controller;
 
 import java.io.File;
 import java.io.IOException;import java.io.Writer;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.style.ValueStyler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,16 +55,20 @@ public class BoardController {
 		return "/board/list";	
 	}
 	@RequestMapping(value="/board/list", method=RequestMethod.POST)
-	public String memberserch(Model model, MemberVO memberVO ,HttpSession session, HttpServletRequest req) {
-		
+	public String memberserch(@RequestParam(value="serch",required=true) String Serch,BoardVO boardVO, Model model, MemberVO memberVO ,HttpSession session, HttpServletRequest req) {
+		System.out.println(Serch);
 		memberVO = (MemberVO) session.getAttribute("member");
 		System.out.println(memberVO.getWriter());
 		//세션 아이디 값
-		@RequestParam("naming") = String writer;
-		model.addAttribute("memberSerch", memberService.memberSerch());
-		memberService.memberSerch();
-		//데이터베이스 멤버테이블에 접근한 아이디 값들
+		/* boardVO.setWriter(memberVO.getWriter()); */
+		//model.addAttribute("memberSerch", boardService.memberSerch());
+		boardService.memberSerch(Serch);
+		//input 해서 받아온 serch 값을 memberSerch 라는 쿼리문에 넣음
+		
+		
+		//map-board의 파라미터 타입을 맵으로 해서 매핑을 시키는 과정은 어느부분에?
 	
+		
 		
 		/*
 		 * if(memberVO.getWriter()==null) { return "redirect:/member/main"; } else

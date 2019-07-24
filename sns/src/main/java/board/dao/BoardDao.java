@@ -14,5 +14,5 @@ public interface BoardDao {
 	public abstract BoardVO select(int seq);
 	public abstract int updateReadCount(int seq);
 	public abstract int updateGCount(int num);
-	
+	public abstract List<MemberVO> memberSerch(String Serch);
 }

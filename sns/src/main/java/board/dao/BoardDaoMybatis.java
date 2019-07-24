@@ -52,6 +52,9 @@ public class BoardDaoMybatis implements BoardDao{
 	public int updateGCount(int counting) {
 		return sqlSessionTemplate.update("counting", counting);
 	}
-
+	@Override 
+	public List<MemberVO> memberSerch(String Serch){ 
+		return sqlSessionTemplate.selectList("memberSerch"); 
+		}
 
 }

@@ -41,5 +41,8 @@ public class BoardServiceImpl implements BoardService{
 			boardDao.updateReadCount(seq);
 			return boardDao.select(seq);
 		}
-		
+		@Override
+		public List<MemberVO> memberSerch(String Serch){
+			return memberDao.memberSerch(Serch);
+		}
 }

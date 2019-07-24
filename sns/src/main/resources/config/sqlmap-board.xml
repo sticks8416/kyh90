@@ -30,6 +30,10 @@
 					SELECT NVL(MAX(num), 0) FROM SNSBOARD
 			</selectKey>
 	</insert>
+	<select id="memberSerch"  parameterType="memberVO" resultType="memberVO">
+			SELECT * FROM SNSMEMBER
+			WHERE WRITER LIKE '%'||#{WRITER}||'%'
+	</select> 
 	<update id="update" parameterType="boardVO">
 			UPDATE SNSBOARD  SET title = #{title},
 			content = #{content},
