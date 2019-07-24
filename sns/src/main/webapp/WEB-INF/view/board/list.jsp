@@ -79,7 +79,7 @@ butt{
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
   <h1>${member.writer}님 환영합니다.</h1>
-  <p>경로 값 :<%=request.getContextPath()%></p> 
+  <p>경로 값 :${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/</p> 
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -113,7 +113,7 @@ butt{
       </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
        <c:if test="${not empty member.writer}">
       <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
-      <a href="#" class="w3-bar-item w3-button">내정보</a>
+      <a href="<c:url value='/board/editProfile'/>" class="w3-bar-item w3-button">내정보</a>
       
       </c:if>
     </div>
@@ -134,7 +134,7 @@ butt{
 <div class="w3-container">
   <h2></h2>
   
-  <p><img src="../../images/${member.profile}" width="200" height="150" alt="no img"></p>
+  <p><img src="../images/${member.profile}" width="200" height="150" alt="no img"></p>
 <!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
   <div class="w3-panel w3-card" style="width:90%"><p>${member.writer}</p></div>
   <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>

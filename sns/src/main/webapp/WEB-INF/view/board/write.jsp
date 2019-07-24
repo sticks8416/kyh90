@@ -68,7 +68,7 @@ butt{
       </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
        <c:if test="${not empty member.writer}">
       <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
-      <a href="#" class="w3-bar-item w3-button">내정보</a>
+        <a href="<c:url value='/board/editProfile'/>" class="w3-bar-item w3-button">내정보</a>
       </c:if>
       </div>
       </div>

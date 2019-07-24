@@ -40,6 +40,13 @@
 			writer = #{writer}
 			WHERE num = #{num} <!-- AND pass = #{pass} -->
 	</update>
+		<update id="updateProfile" parameterType="memberVO">
+			UPDATE SNSBOARD  SET 
+			pass = #{pass},
+			email = #{email}
+			profile = #{profile}
+			WHERE writer = #{writer} <!-- AND pass = #{pass} -->
+	</update>
 	<update id="updateCount" parameterType="int">
 			UPDATE SNSBOARD SET cnt = cnt + 1 WHERE num = #{num}<!-- 나중에 seq로 수정 -->
 	</update>

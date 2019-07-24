@@ -42,6 +42,10 @@ public class BoardServiceImpl implements BoardService{
 		public List<MemberVO> memberSearch(String Search){
 			return boardDao.memberSearch(Search);
 		}
+		@Override
+		public int updateProfile(MemberVO memberVO) {
+			return boardDao.updateProfile(memberVO);
+		}
 	/*
 	 * @Override public List<BoardVO> boardSearch(String Search){ return
 	 * boardDao.boardSearch(Search); }

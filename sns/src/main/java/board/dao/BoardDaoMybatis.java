@@ -36,6 +36,10 @@ public class BoardDaoMybatis implements BoardDao{
 		sqlSessionTemplate.insert("insert", boardVO);
 	}
 	@Override
+	public int updateProfile(MemberVO memberVO) {
+		return sqlSessionTemplate.update("updateProfile", memberVO);
+	}
+	@Override
 	public BoardVO select(int seq) {
 		BoardVO vo = (BoardVO) sqlSessionTemplate.selectOne("select", seq);
 		return vo;

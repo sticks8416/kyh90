@@ -40,15 +40,24 @@ public class BoardController {
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
+
 	@RequestMapping(value="/board/list" , method=RequestMethod.GET)
-	public String list(Model model,HttpSession session, HttpServletRequest req) {
+	public String list(Model model,HttpSession session, HttpServletRequest req, Object ServletContext) {
 		model.addAttribute("boardList", boardService.list());
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		/*
+		 * ServletContext context = req.getServletContext();
+		 * 
+		 * String appPath = context.getRealPath("/");
+		 * 
+		 * System.out.println(appPath);
+		 */
 		//req.getAttribute("member");
 		if(memberVO==null) {
 			return "redirect:/member/main";
 		}
 		else
+			
 		return "/board/list";	
 	}
 	@RequestMapping(value="/board/list", method=RequestMethod.POST)
@@ -107,6 +116,7 @@ public class BoardController {
 			boardService.write(boardVO);
 			return "redirect:/board/list";
 	}
+	////글 수정 창
 	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.GET)
 	public String edit(@PathVariable int num, Model model) {
 		BoardVO boardVO = boardService.read(num);
@@ -157,4 +167,15 @@ public class BoardController {
 			return "redirect:/board/list";
 		}
 	}
+	//내정보 수정
+		@RequestMapping(value="/board/editProfile/{writer}", method=RequestMethod.GET)
+		public String editProfile(@PathVariable String writer, Model model,HttpSession session) {
+			MemberVO memberVO = (MemberVO) session.getAttribute("member");
+			return "/board/editProfile";
+		}
+		@RequestMapping(value="/board/editProfile/{writer}", method=RequestMethod.POST)
+		public String editProfile(Model model,HttpSession session) {
+			MemberVO memberVO = (MemberVO) session.getAttribute("member");
+			return "/board/list";
+		}
 }	
