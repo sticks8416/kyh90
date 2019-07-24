@@ -140,12 +140,12 @@ public class BoardController {
 		return "/board/delete";
 	}
 	@RequestMapping(value="/board/delete", method=RequestMethod.POST)
-	public String delete(int num, String pwd, Model model) {
+	public String delete(int num,HttpSession session, String pwd, Model model) {
 		int rowCount;
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		BoardVO boardVO = new BoardVO();
 		boardVO.setNum(num);
-		boardVO.setPass(pwd);
-		
+		boardVO.setWriter(memberVO.getWriter());
 		rowCount = boardService.delete(boardVO);
 		
 		if(rowCount == 0) {

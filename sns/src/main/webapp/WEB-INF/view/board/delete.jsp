@@ -59,7 +59,6 @@
 		action="<c:url value="/board/delete"/>"method="POST">
 				<input size="1" name="num" value="${num}"/>
 				번 글을 삭제하시겠습니까?<br>
-				비밀번호<input name="pwd"/>
 				<input type="submit" value="삭제">
 				<a href="<c:url value="/board/list"/>">취소</a>
 		</form>
