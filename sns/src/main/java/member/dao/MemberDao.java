@@ -9,5 +9,5 @@ public interface MemberDao {
 	public abstract List<MemberVO> memberlist();
 	public abstract void insert(MemberVO memberVO);
 	public abstract MemberVO memberLogin(LoginRequest loginRequest);
-	public abstract List<MemberVO> memberSerch();
+	
 }

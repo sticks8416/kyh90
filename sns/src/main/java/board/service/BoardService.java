@@ -7,9 +7,9 @@ import member.domain.MemberVO;
 
 public interface BoardService {
 	public abstract List<BoardVO> list();
-	public List<MemberVO> memberSerch(String serch);
+	public List<MemberVO> memberSearch(String search);
+	/* public List<BoardVO> boardSearch(String search); */
 	public abstract int delete(BoardVO boardVO);
-	public abstract int edit(BoardVO boardVO);
 	public abstract void write(BoardVO boardVO);
 	public abstract BoardVO read(int seq);
 }

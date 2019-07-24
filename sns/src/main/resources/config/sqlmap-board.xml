@@ -7,9 +7,9 @@
 		SELECT * FROM SNSBOARD
 		ORDER BY regDate desc
 	</select>
-	<select id="serch" parameterType="String" resultType="boardVO">
-	 	SELECT * FROM SNSBOARD WHERE title = #{%title%}
-	 	ORDER BY seq
+	<select id="search" parameterType="String" resultType="boardVO">
+	 	SELECT * FROM SNSBOARD
+			WHERE WRITER LIKE '%'||#{Search}||'%' 
 	
 	</select>
 	<select id="count" parameterType="int" resultType="boardVO">
@@ -30,9 +30,9 @@
 					SELECT NVL(MAX(num), 0) FROM SNSBOARD
 			</selectKey>
 	</insert>
-	<select id="memberSerch"  parameterType="memberVO" resultType="memberVO">
+	<select id="memberSearch"  parameterType="String" resultType="memberVO">
 			SELECT * FROM SNSMEMBER
-			WHERE WRITER LIKE '%'||#{WRITER}||'%'
+			WHERE WRITER LIKE '%'||#{Search}||'%' 
 	</select> 
 	<update id="update" parameterType="boardVO">
 			UPDATE SNSBOARD  SET title = #{title},

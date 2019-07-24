@@ -28,10 +28,6 @@ public class BoardDaoMybatis implements BoardDao{
 		return sqlSessionTemplate.delete("delete", boardVO);
 	}
 	@Override
-	public int deleteAll()	 {
-		return sqlSessionTemplate.delete("deleteAll");
-	}
-	@Override
 	public int update(BoardVO boardVO) {
 		return sqlSessionTemplate.update("update", boardVO);
 	}
@@ -53,8 +49,12 @@ public class BoardDaoMybatis implements BoardDao{
 		return sqlSessionTemplate.update("counting", counting);
 	}
 	@Override 
-	public List<MemberVO> memberSerch(String Serch){ 
-		return sqlSessionTemplate.selectList("memberSerch"); 
+	public List<MemberVO> memberSearch(String Search){ 
+		return sqlSessionTemplate.selectList("memberSearch", Search); 
 		}
+	/*
+	 * @Override public List<BoardVO> boardSearch(String Search){ return
+	 * sqlSessionTemplate.selectList("boardSearch", Search); }
+	 */
 
 }

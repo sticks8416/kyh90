@@ -2,7 +2,9 @@ package board.controller;
 
 import java.io.File;
 import java.io.IOException;import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,11 +40,6 @@ public class BoardController {
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
-	private MemberService memberService;
-
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}
 	@RequestMapping(value="/board/list" , method=RequestMethod.GET)
 	public String list(Model model,HttpSession session, HttpServletRequest req) {
 		model.addAttribute("boardList", boardService.list());
@@ -55,32 +52,29 @@ public class BoardController {
 		return "/board/list";	
 	}
 	@RequestMapping(value="/board/list", method=RequestMethod.POST)
-	public String memberserch(@RequestParam(value="serch",required=true) String Serch,BoardVO boardVO, Model model, MemberVO memberVO ,HttpSession session, HttpServletRequest req) {
-		System.out.println(Serch);
+	public String memberserch(@RequestParam(value="search",required=true) String Search,BoardVO boardVO, Model model, MemberVO memberVO ,HttpSession session, HttpServletRequest req) {
+		System.out.println(Search);
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getWriter());
+		System.out.println(memberVO.getWriter()); 
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("search", Search);
+//		map.put("id", memberVO.getWriter());
 		//세션 아이디 값
 		/* boardVO.setWriter(memberVO.getWriter()); */
 		//model.addAttribute("memberSerch", boardService.memberSerch());
-		boardService.memberSerch(Serch);
+		/* List<MemberVO> searchList = boardService.memberSerch(Search); */
+		model.addAttribute("searchList",boardService.memberSearch(Search));
+		//멤버들 서치결과
+		/* model.addAttribute("SearchList",boardService.boardSearch(Search)); */
+		//인풋 값에 해당하는 게시물들 출력 결과
 		//input 해서 받아온 serch 값을 memberSerch 라는 쿼리문에 넣음
-		
-		
-		//map-board의 파라미터 타입을 맵으로 해서 매핑을 시키는 과정은 어느부분에?
-	
-		
-		
+
+		//map-board의 파라미터 타입을 맵으로 하고 컨트롤러에 매핑형태로 추가 해줌
 		/*
 		 * if(memberVO.getWriter()==null) { return "redirect:/member/main"; } else
 		 */
 		return "/board/read";	
 	}
-	
-	/*
-	 * @RequestMapping(value="/board/read/{seq}") public String read(Model
-	 * model, @PathVariable int seq) { model.addAttribute("boardVO",
-	 * boardService.read(seq)); return "/board/read"; }
-	 */
 	//새 글 작성을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
 	public String write(Model model,HttpServletRequest req ,HttpServletResponse resp) {
@@ -131,7 +125,7 @@ public class BoardController {
 			}
 			else {
 					if(boardVO.getPass() == pwd) {
-						boardService.edit(boardVO);
+						boardService.delete(boardVO);
 						sessionStatus.setComplete();
 						return "redirect:/board/list";
 					}

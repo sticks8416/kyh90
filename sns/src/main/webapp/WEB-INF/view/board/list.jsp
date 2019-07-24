@@ -34,6 +34,10 @@ butt{
  position:fixed;
  right : 0px;
 }
+.s{
+
+
+}
 
 /* The Modal (background) */
         .modal {
@@ -74,8 +78,8 @@ butt{
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <h1>제목 미정</h1>
-  <p>부제 미정</p> 
+  <h1>${member.writer}님 환영합니다.</h1>
+  <p>경로 값 :<%=request.getContextPath()%></p> 
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -93,9 +97,9 @@ butt{
     </ul>
   </div>
   <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="serch">
-    //input에 네이밍 값은 쿼리문 네이밍한 값 
-    <button class="btn btn-success" type="submit">serch</button>
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
+    <!-- //input에 네이밍 값은 쿼리문 네이밍한 값  -->
+    <button class="btn btn-success" type="submit">search User</button>
   </form>
  <!--  <i class="fas fa-bars" style= "float:right; font-size: 30px"> -->
   <div class="w3-container">   
@@ -134,7 +138,6 @@ butt{
 <!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
   <div class="w3-panel w3-card" style="width:90%"><p>${member.writer}</p></div>
   <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
-       
        	<!-- 플레이스홀더 클릭시 글쓰기 팝업창 나타나도록 구현 -->
         <input type="text" class="form-control" placeholder="글쓰기" name="text1" >
        <a class="butt"><!-- <button type="submit" class="btn btn-secondary" style = "float:right">답글 달기</button> --></a>

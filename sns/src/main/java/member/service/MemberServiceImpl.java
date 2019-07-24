@@ -37,8 +37,5 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO memberLogin(LoginRequest loginRequest) {
 		return memberDao.memberLogin(loginRequest);
 	}
-	@Override
-	public List<MemberVO> memberSerch(){
-		return memberDao.memberSerch();
-	}
+
 }

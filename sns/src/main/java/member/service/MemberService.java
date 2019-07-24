@@ -10,5 +10,5 @@ public interface MemberService {
 	public List<MemberVO> memberlist();
 	public void write(MemberVO memberVO);
 	public MemberVO memberLogin(LoginRequest loginRequest);
-	public List<MemberVO> memberSerch();
+	
 }

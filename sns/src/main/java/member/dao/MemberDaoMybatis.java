@@ -30,10 +30,7 @@ public void insert(MemberVO memberVO) {
 public MemberVO memberLogin(LoginRequest loginRequest) {
 	return sqlSessionTemplate.selectOne("memberLogin", loginRequest);
 }
-@Override 
-public List<MemberVO> memberSerch(){ 
-	return sqlSessionTemplate.selectList("memberSerch"); 
-	}
+
 
 
 }

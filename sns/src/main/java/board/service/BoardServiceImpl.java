@@ -11,7 +11,7 @@ import member.domain.MemberVO;
 @Service
 public class BoardServiceImpl implements BoardService{
 		private BoardDao boardDao;
-		private BoardDao memberDao;
+		
 
 		public BoardDao getBoardDao() {
 			return boardDao;
@@ -28,21 +28,22 @@ public class BoardServiceImpl implements BoardService{
 		public int delete(BoardVO boardVO) {
 			return boardDao.delete(boardVO);
 		}
-		@Override
-		public int edit(BoardVO boardVO) {
-			return boardDao.update(boardVO);
-		}
+	
 		@Override
 		public void write(BoardVO boardVO) {
 			boardDao.insert(boardVO);
 		}
 		@Override
-		public BoardVO read(int seq) {
-			boardDao.updateReadCount(seq);
-			return boardDao.select(seq);
+		public BoardVO read(int num) {
+			boardDao.updateReadCount(num);
+			return boardDao.select(num);
 		}
 		@Override
-		public List<MemberVO> memberSerch(String Serch){
-			return memberDao.memberSerch(Serch);
+		public List<MemberVO> memberSearch(String Search){
+			return boardDao.memberSearch(Search);
 		}
+	/*
+	 * @Override public List<BoardVO> boardSearch(String Search){ return
+	 * boardDao.boardSearch(Search); }
+	 */
 }
