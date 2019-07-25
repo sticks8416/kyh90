@@ -35,7 +35,6 @@ public class BoardServiceImpl implements BoardService{
 		}
 		@Override
 		public BoardVO read(int num) {
-			boardDao.updateReadCount(num);
 			return boardDao.select(num);
 		}
 		@Override
@@ -45,6 +44,10 @@ public class BoardServiceImpl implements BoardService{
 		@Override
 		public int updateProfile(MemberVO memberVO) {
 			return boardDao.updateProfile(memberVO);
+		}
+		@Override
+		public int edit(BoardVO boardVO) {
+			return boardDao.update(boardVO);
 		}
 	/*
 	 * @Override public List<BoardVO> boardSearch(String Search){ return

@@ -88,7 +88,7 @@ public class BoardController {
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
 	public String write(Model model,HttpServletRequest req ,HttpServletResponse resp) {
 		HttpSession session = req.getSession();
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		MemberVO memberVO = (MemberVO) session.getAttribute("memHttpSession session = req.getSession();ber");
 		
 		return "/board/write";
 		
@@ -117,9 +117,14 @@ public class BoardController {
 			return "redirect:/board/list";
 	}
 	////글 수정 창
+	//input창에 readonly 라고 걸어두면 수정안됨
 	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.GET)
-	public String edit(@PathVariable int num, Model model) {
+	public String edit(@PathVariable int num,HttpServletRequest req , Model model) {
+		HttpSession session = req.getSession();
 		BoardVO boardVO = boardService.read(num);
+		System.out.println(boardVO.getWriter());
+		System.out.println(boardVO.getTitle());
+		System.out.println(boardVO.getContent());
 		model.addAttribute("boardVO", boardVO);
 		return "/board/edit";
 	}
@@ -128,14 +133,15 @@ public class BoardController {
 	public String edit(
 			@Valid @ModelAttribute BoardVO boardVO,
 			BindingResult result,
-			String pwd, SessionStatus sessionStatus,
+			HttpSession session, SessionStatus sessionStatus,
 			Model model) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 			if(result.hasErrors()) {
 				return "/board/edit";
 			}
 			else {
-					if(boardVO.getPass() == pwd) {
-						boardService.delete(boardVO);
+					if(boardVO.getWriter() == memberVO.getWriter()) {
+						boardService.edit(boardVO);
 						sessionStatus.setComplete();
 						return "redirect:/board/list";
 					}

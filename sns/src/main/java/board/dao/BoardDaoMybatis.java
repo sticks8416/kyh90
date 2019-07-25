@@ -40,19 +40,18 @@ public class BoardDaoMybatis implements BoardDao{
 		return sqlSessionTemplate.update("updateProfile", memberVO);
 	}
 	@Override
-	public BoardVO select(int seq) {
-		BoardVO vo = (BoardVO) sqlSessionTemplate.selectOne("select", seq);
+	public BoardVO select(int num) {
+		BoardVO vo = (BoardVO) sqlSessionTemplate.selectOne("select", num);
 		return vo;
 	}
-	@Override
-	public int updateReadCount(int seq) {
-		return sqlSessionTemplate.update("updateCount", seq);
-	}
-	
-	public int updateGCount(int counting) {
-		return sqlSessionTemplate.update("counting", counting);
-	}
-	@Override 
+
+	/*
+	 * @Override public int updateReadCount(int num) { return
+	 * sqlSessionTemplate.update("updateCount", num); }
+	 * 
+	 * public int updateGCount(int counting) { return
+	 * sqlSessionTemplate.update("counting", counting); }
+	 */@Override 
 	public List<MemberVO> memberSearch(String Search){ 
 		return sqlSessionTemplate.selectList("memberSearch", Search); 
 		}

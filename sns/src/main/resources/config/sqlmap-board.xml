@@ -18,7 +18,7 @@
 	</select>
 	<select id="select" parameterType="int" resultType="boardVO">
 		SELECT * FROM
-		SNSBOARD WHERE seq = #{seq}
+		SNSBOARD WHERE num = #{num}
 	</select>
 	<insert id="insert" parameterType="boardVO">
 			INSERT INTO SNSBOARD

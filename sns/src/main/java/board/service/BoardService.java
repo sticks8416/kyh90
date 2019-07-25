@@ -10,6 +10,7 @@ public interface BoardService {
 	public List<MemberVO> memberSearch(String search);
 	/* public List<BoardVO> boardSearch(String search); */
 	public abstract int delete(BoardVO boardVO);
+	public abstract int edit(BoardVO boardVO);
 	public abstract void write(BoardVO boardVO);
 	public abstract BoardVO read(int num);
 	public abstract int updateProfile(MemberVO memberVO);
