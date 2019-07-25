@@ -98,7 +98,6 @@ butt{
   </div>
   <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
     <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
-    <!-- //input에 네이밍 값은 쿼리문 네이밍한 값  -->
     <button class="btn btn-success" type="submit">search User</button>
   </form>
  <!--  <i class="fas fa-bars" style= "float:right; font-size: 30px"> -->
@@ -113,7 +112,7 @@ butt{
       </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
        <c:if test="${not empty member.writer}">
       <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
-      <a href="<c:url value='/board/editProfile'/>" class="w3-bar-item w3-button">내정보</a>
+      <a href="<c:url value='/board/editProfile/${member.writer}'/>" class="w3-bar-item w3-button">내정보</a>
       
       </c:if>
     </div>

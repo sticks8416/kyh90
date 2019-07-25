@@ -44,7 +44,11 @@ public class BoardDaoMybatis implements BoardDao{
 		BoardVO vo = (BoardVO) sqlSessionTemplate.selectOne("select", num);
 		return vo;
 	}
-
+	@Override
+	public MemberVO selectProfile(String writer) {
+		MemberVO vo = (MemberVO) sqlSessionTemplate.selectOne("selectProfile", writer);
+		return vo;
+	}
 	/*
 	 * @Override public int updateReadCount(int num) { return
 	 * sqlSessionTemplate.update("updateCount", num); }

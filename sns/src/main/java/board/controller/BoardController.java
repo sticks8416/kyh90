@@ -2,6 +2,7 @@ package board.controller;
 
 import java.io.File;
 import java.io.IOException;import java.io.Writer;
+import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,7 +135,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.POST)
 	public String edit(
-			@Valid @ModelAttribute BoardVO boardVO,
+			@Valid @ModelAttribute("boardVO2") BoardVO boardVO,
 			BindingResult result,
 			HttpSession session, SessionStatus sessionStatus,
 			Model model) {
@@ -145,7 +146,7 @@ public class BoardController {
 				return "/board/edit";
 			}
 			else {
-					if(boardVO.getWriter() == memberVO.getWriter()) {
+					if(memberVO.getWriter()!=null) {
 						boardService.edit(boardVO);
 						sessionStatus.setComplete();
 						return "redirect:/board/list";
@@ -180,8 +181,14 @@ public class BoardController {
 	}
 	//내정보 수정
 		@RequestMapping(value="/board/editProfile/{writer}", method=RequestMethod.GET)
-		public String editProfile(@PathVariable String writer, Model model,HttpSession session) {
-			MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		public String editProfile(@PathVariable String writer,HttpServletRequest req , Model model) {
+			model.addAttribute("writer", writer);
+			HttpSession session = req.getSession();
+			MemberVO memberVO = boardService.readProfile(writer);
+			model.addAttribute("memberVO2", memberVO);
+			System.out.println(memberVO.getWriter());
+			System.out.println(memberVO.getPass());
+			System.out.println(memberVO.getEmail());
 			return "/board/editProfile";
 		}
 		@RequestMapping(value="/board/editProfile/{writer}", method=RequestMethod.POST)

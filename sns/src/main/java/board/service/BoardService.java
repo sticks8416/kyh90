@@ -14,4 +14,5 @@ public interface BoardService {
 	public abstract void write(BoardVO boardVO);
 	public abstract BoardVO read(int num);
 	public abstract int updateProfile(MemberVO memberVO);
+	public abstract MemberVO readProfile(String writer);
 }

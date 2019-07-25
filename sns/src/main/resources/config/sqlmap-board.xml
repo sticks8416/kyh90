@@ -20,6 +20,10 @@
 		SELECT * FROM
 		SNSBOARD WHERE num = #{num}
 	</select>
+	<select id="selectProfile" parameterType="String" resultType="memberVO">
+		SELECT * FROM
+		SNSMEMBER WHERE writer = #{writer}
+	</select>
 	<insert id="insert" parameterType="boardVO">
 			INSERT INTO SNSBOARD
 			(num, title, writer, pass, content, regDate, images)
@@ -37,8 +41,9 @@
 	<update id="update" parameterType="boardVO">
 			UPDATE SNSBOARD  SET title = #{title},
 			content = #{content},
-			writer = #{writer}
-			WHERE num = #{num} <!-- AND pass = #{pass} -->
+			images = #{images},
+			writer = writer
+			WHERE num = #{num} AND pass = #{pass}
 	</update>
 		<update id="updateProfile" parameterType="memberVO">
 			UPDATE SNSBOARD  SET 

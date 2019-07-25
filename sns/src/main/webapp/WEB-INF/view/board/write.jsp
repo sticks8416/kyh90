@@ -79,7 +79,7 @@ butt{
 <div class="w3-container">
   <h2></h2>
   <p><img src="../images/${member.profile}" width="200" height="150" alt="no img"></p>
-
+ <!-- 윗줄에 <input type="file" name="filename"> 붙이기 -->
   <div class="w3-panel w3-card" style="width:90%"><p>${member.writer}</p></div>
   <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
 <!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
