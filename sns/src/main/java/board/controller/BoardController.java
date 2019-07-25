@@ -122,10 +122,13 @@ public class BoardController {
 	public String edit(@PathVariable int num,HttpServletRequest req , Model model) {
 		HttpSession session = req.getSession();
 		BoardVO boardVO = boardService.read(num);
+		model.addAttribute("boardVO2", boardVO);
+	
 		System.out.println(boardVO.getWriter());
 		System.out.println(boardVO.getTitle());
 		System.out.println(boardVO.getContent());
-		model.addAttribute("boardVO", boardVO);
+		System.out.println(boardVO.getImages());
+		
 		return "/board/edit";
 	}
 	
@@ -136,6 +139,8 @@ public class BoardController {
 			HttpSession session, SessionStatus sessionStatus,
 			Model model) {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		System.out.println(boardVO.getWriter());
+		System.out.println(memberVO.getWriter());
 			if(result.hasErrors()) {
 				return "/board/edit";
 			}
