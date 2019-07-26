@@ -66,9 +66,15 @@ public class BoardController {
 		System.out.println(Search);
 		memberVO = (MemberVO) session.getAttribute("member");
 		System.out.println(memberVO.getWriter()); 
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("search", Search);
-//		map.put("id", memberVO.getWriter());
+	/*	Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", Search);
+		map.put("id", memberVO.getWriter());
+		System.out.println(map);
+		if(Search==memberVO.getWriter()) {
+			
+			
+		}*/
+		
 		//세션 아이디 값
 		/* boardVO.setWriter(memberVO.getWriter()); */
 		//model.addAttribute("memberSerch", boardService.memberSerch());
@@ -148,7 +154,7 @@ public class BoardController {
 			else {
 					if(memberVO.getWriter()!=null) {
 						boardService.edit(boardVO);
-						//sessionStatus.setComplete();
+						sessionStatus.setComplete();
 						return "redirect:/board/list";
 					}
 			}

@@ -7,7 +7,7 @@
 		SELECT * FROM SNSBOARD
 		ORDER BY regDate desc
 	</select>
-	<select id="search" parameterType="String" resultType="boardVO">
+	<select id="search" parameterType="map" resultType="boardVO">
 	 	SELECT * FROM SNSBOARD
 			WHERE WRITER LIKE '%'||#{Search}||'%' 
 	
@@ -20,7 +20,7 @@
 		SELECT * FROM
 		SNSBOARD WHERE num = #{num}
 	</select>
-	<select id="selectProfile" parameterType="String" resultType="memberVO">
+	<select id="selectProfile" parameterType="map" resultType="memberVO">
 		SELECT * FROM
 		SNSMEMBER WHERE writer = #{writer}
 	</select>
@@ -36,7 +36,7 @@
 	</insert>
 	<select id="memberSearch"  parameterType="String" resultType="memberVO">
 			SELECT * FROM SNSMEMBER
-			WHERE WRITER LIKE '%'||#{Search}||'%' 
+			WHERE WRITER LIKE '%'||#{Search}||'%'
 	</select> 
 	<update id="update" parameterType="boardVO">
 			UPDATE SNSBOARD  SET title = #{title},
@@ -48,7 +48,7 @@
 		<update id="updateProfile" parameterType="memberVO">
 			UPDATE SNSBOARD  SET 
 			pass = #{pass},
-			email = #{email}
+			email = #{email},
 			profile = #{profile}
 			WHERE writer = #{writer} <!-- AND pass = #{pass} -->
 	</update>

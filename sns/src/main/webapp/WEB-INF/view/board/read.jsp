@@ -5,14 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>유저목록</title>
+<title>${memberVO.writer}${id}</title>
 </head>
 <!-- 검색 후 유저 목록 친구목록 구현 -->
 <body>
 <c:forEach var="member" items="${searchList}" varStatus="loop">
+<c:choose>
+<c:when test = "${member.id eq member.writer}">
+<div>
+내 프로필 화면으로 넘어가기
+</div>
+</c:when>
+<c:otherwise>
 <div class="w3-panel w3-card"><p>${member.writer}</p></div>
-
+</c:otherwise>
+</c:choose>
 </c:forEach>
+<!-- 아이디 세션값과 쿼리문 실행후의 아이디값이 같을때와 다른때로 구분하는 작업을 컨트롤러에서 해야되는지 쿼리쪽에서 걸러야 되는지 jsp 에서 걸러야 되는지 확인해보기 -->
 <%-- <c:forEach var="board" items="${SearchList}" varStatus="loop">
 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
     margin-top: 15px; margin-bottom: 15px;height: auto;width: 500;  max-width: 600px; min-height: 100px;">
