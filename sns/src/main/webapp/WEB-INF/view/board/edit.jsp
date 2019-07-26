@@ -42,7 +42,7 @@
         </form>
        </div> --%>
         <!-- ----------------------------------------------------------------------------------- -->
-       <form action="<c:url value="/board/edit/${num}"/>" method="POST" enctype="multipart/form-data" >
+       <form action="<c:url value="/board/edit/"/>" method="POST" enctype="multipart/form-data" >
     	 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
     margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
   <label><input value="${boardVO2.title}" type="text" name="title" placeholder="제목" style = "padding-top: 0px; padding-bottom: 0px"></label>
@@ -60,27 +60,5 @@
 					</div>
 					
 		</form>
-       
-       
-       
-       
-       
-      <!-- ----------------------------------------------------------------------------------- -->
-       
-	<%-- 			<div>
-					 <form name="editForm"action="<c:url value="/board/edit"/>"method="POST">
-				<input size="3" name="num" value="${num}"/>
-				<input size="3" name="num" value="${writer}"/>
-				<input size="3" name="num" value="${title}"/>
-				<input size="3" name="num" value="${content}"/>
-				<br>
-				<input type="submit" value="삭제">
-				<a href="<c:url value="/board/list"/>">취소</a>
-		</form>
-				</div>
-				<div>
-						<input type="submit" value="등록">
-						 <a href="<c:url value="/board/list" />">목록</a> 
-				</div> --%>
 </body>
 </html>

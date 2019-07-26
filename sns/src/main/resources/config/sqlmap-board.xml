@@ -41,7 +41,7 @@
 	<update id="update" parameterType="boardVO">
 			UPDATE SNSBOARD  SET title = #{title},
 			content = #{content},
-			images = #{images},
+			images = images,
 			writer = writer
 			WHERE num = #{num} AND pass = #{pass}
 	</update>

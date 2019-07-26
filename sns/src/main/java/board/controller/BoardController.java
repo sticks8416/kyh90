@@ -148,7 +148,7 @@ public class BoardController {
 			else {
 					if(memberVO.getWriter()!=null) {
 						boardService.edit(boardVO);
-						sessionStatus.setComplete();
+						//sessionStatus.setComplete();
 						return "redirect:/board/list";
 					}
 			}
