@@ -78,8 +78,8 @@ butt{
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <h1>${member.writer}님 환영합니다.</h1>
-  <p>경로 값 :${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/</p> 
+  <h1><%-- ${member.writer}님 환영합니다. --%>제목 미정</h1>
+  <p><%-- 경로 값 :${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/ --%></p> 
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">

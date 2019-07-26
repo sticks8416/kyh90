@@ -109,11 +109,18 @@ butt{
 
 <div class="w3-container">
   <h2></h2>
+  <c:if test="${empty member.writer}">
   <p>친구목록</p>
-
-  <div class="w3-panel w3-card"><p>친구 1</p></div>
-  <div class="w3-panel w3-card-2"><p>친구 2</p></div>
-  <div class="w3-panel w3-card-4"><p>친구 3</p></div>
+<c:forEach var="board" items="${boardList}" varStatus="loop">
+  <div class="w3-panel w3-card"><p>${board.writer}</p></div>
+  </c:forEach>
+  </c:if>
+  <c:if test="${not empty member.writer}">
+  <p>친구목록</p>
+<c:forEach var="board" items="${boardList}" varStatus="loop">
+  <div class="w3-panel w3-card"><p>${board.writer}</p></div>
+  </c:forEach>
+  </c:if>
 </div>
 </div>
 </div>

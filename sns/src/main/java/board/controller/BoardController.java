@@ -144,7 +144,7 @@ public class BoardController {
 		System.out.println(memberVO.getWriter());
 			if(result.hasErrors()) {
 				return "/board/edit";
-			}
+			} 	
 			else {
 					if(memberVO.getWriter()!=null) {
 						boardService.edit(boardVO);

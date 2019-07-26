@@ -54,10 +54,10 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>                                                               
-        <p>아 시발Some text in the Modal..</p>
+        <p></p>
         <form name="deleteForm"
 		action="<c:url value="/board/delete"/>"method="POST">
-				<input size="1" name="num" value="${num}"/>
+				<input size="1" name="num" value="${num}" style= "hidden"/>
 				번 글을 삭제하시겠습니까?<br>
 				<input type="submit" value="삭제">
 				<a href="<c:url value="/board/list"/>">취소</a>
