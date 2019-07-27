@@ -11,7 +11,7 @@
 <body>
 <c:forEach var="member" items="${searchList}" varStatus="loop">
 <c:choose>
-<c:when test = "${member.id eq member.writer}">
+<c:when test = "${id eq member.writer}">
 <div>
 내 프로필 화면으로 넘어가기
 </div>

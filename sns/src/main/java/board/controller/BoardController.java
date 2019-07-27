@@ -109,8 +109,6 @@ public class BoardController {
 			model.addAttribute("boardVO", new BoardVO());
 			
 			MemberVO memberVO = (MemberVO) session.getAttribute("member");
-			
-			System.out.println();
 			boardVO.setImages(uploadfile.getOriginalFilename());
 			String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
@@ -130,7 +128,7 @@ public class BoardController {
 		HttpSession session = req.getSession();
 		BoardVO boardVO = boardService.read(num);
 		model.addAttribute("boardVO2", boardVO);
-	
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		System.out.println(boardVO.getWriter());
 		System.out.println(boardVO.getTitle());
 		System.out.println(boardVO.getContent());
@@ -143,11 +141,21 @@ public class BoardController {
 	public String edit(
 			@Valid @ModelAttribute("boardVO2") BoardVO boardVO,
 			BindingResult result,
-			HttpSession session, SessionStatus sessionStatus,
-			Model model) {
+			HttpSession session, SessionStatus sessionStatus,@RequestParam("filename")MultipartFile uploadfile,
+			Model model)throws IOException  {
+		
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(boardVO.getWriter());
+		boardVO.setImages(uploadfile.getOriginalFilename());
+		String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
+		uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
 		System.out.println(memberVO.getWriter());
+		boardVO.setWriter(memberVO.getWriter());
+		boardVO.setPass(memberVO.getPass());
+		System.out.println(boardVO.getWriter());
+		System.out.println(boardVO.getTitle());
+		System.out.println(boardVO.getPass());
+		System.out.println(boardVO.getContent());
+		System.out.println(boardVO.getImages());
 			if(result.hasErrors()) {
 				return "/board/edit";
 			} 	
