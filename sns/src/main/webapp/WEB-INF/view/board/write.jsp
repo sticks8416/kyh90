@@ -94,7 +94,7 @@ butt{
     </div>
       <div>
       <label><input type="text" name="content" placeholder="글 내용" style="width:250%;height:300px">	</label><!-- content,regdate 안됨 -->
-       </div>
+       </div>	
        <div class="w3-panel w3-border-top w3-border-bottom">
         <div><input type="file" name="filename"></div>
         </div>

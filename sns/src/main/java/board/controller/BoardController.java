@@ -54,7 +54,7 @@ public class BoardController {
 		return "/board/list";	
 	}
 	@RequestMapping(value="/board/list", method=RequestMethod.POST)
-	public String memberserch(@RequestParam(value="search",required=true) String Search,BoardVO boardVO, Model model, MemberVO memberVO ,HttpSession session, HttpServletRequest req) {
+	public String list(@RequestParam(value="search",required=true) String Search,BoardVO boardVO, Model model, MemberVO memberVO ,HttpSession session, HttpServletRequest req) {
 		System.out.println(Search);
 		memberVO = (MemberVO) session.getAttribute("member");
 		System.out.println(memberVO.getWriter()); 
@@ -83,11 +83,21 @@ public class BoardController {
 		 */
 		return "/board/read";	
 	}
+	@RequestMapping(value="/board/read" , method=RequestMethod.GET)
+	public String memberserch(@RequestParam(value="search",required=true) String Search, Model model,HttpSession session, HttpServletRequest req, MemberVO memberVO) {
+		System.out.println(Search);
+		memberVO = (MemberVO) session.getAttribute("member");
+		System.out.println(memberVO.getWriter()); 
+		
+		model.addAttribute("boardList", boardService.list());
+		model.addAttribute("searchList",boardService.memberSearch(Search));	
+		return "/board/read";	
+	}
 	//새 글 작성을 위한 요청을 처리
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
 	public String write(Model model,HttpServletRequest req ,HttpServletResponse resp) {
 		HttpSession session = req.getSession();
-		MemberVO memberVO = (MemberVO) session.getAttribute("memHttpSession session = req.getSession();ber");
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		
 		return "/board/write";
 		
@@ -104,7 +114,9 @@ public class BoardController {
 			boardVO.setImages(uploadfile.getOriginalFilename());
 			String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
+//			System.out.println(boardVO.getWriter());
 			boardVO.setWriter(memberVO.getWriter());
+			//System.out.println(boardVO.getPass());
 			boardVO.setPass(memberVO.getPass());
 			memberVO.getWriter();
 			memberVO.getPass();
@@ -150,10 +162,10 @@ public class BoardController {
 					if(memberVO.getWriter()!=null) {
 						boardService.edit(boardVO);
 						sessionStatus.setComplete();
-						return "/board/list";
+						return "redirect:/board/list";
 					}
 			}
-			model.addAttribute("msg", "게시글 작성자만 수정 가능.");
+			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 			return "/board/edit";
 	}
 	//글 삭제 요청을 처리할 메서드

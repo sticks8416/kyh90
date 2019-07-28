@@ -57,11 +57,11 @@
         <p></p>
         <form name="deleteForm"
 		action="<c:url value="/board/delete"/>"method="POST">
-				<input size="1" name="num" value="${num}" style= "hidden"/>
-				번 글을 삭제하시겠습니까?<br>
+				<input size="1" name="num" value="${num}" type="hidden"/>
+				정말로 삭제하시겠습니까?<br>
 				<input type="submit" value="삭제">
-				<a href="<c:url value="/board/list"/>">취소</a>
 		</form>
+		<a href="<c:url value="/board/list"/>"><button>취소</button></a>
 		<div>${msg}</div>
         
         
