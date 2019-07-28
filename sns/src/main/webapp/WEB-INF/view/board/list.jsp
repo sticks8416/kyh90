@@ -121,11 +121,7 @@ butt{
   <!-- </i>
    -->
 
-  
-  
-  
-  
-  
+
   
 </nav>
 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
@@ -142,7 +138,7 @@ butt{
        <a class="butt"><!-- <button type="submit" class="btn btn-secondary" style = "float:right">답글 달기</button> --></a>
 </div>
 </div>
-	<c:if test="${empty member.writer}">
+<%-- 	<c:if test="${empty member.writer}">
      <c:forEach var="board" items="${boardList}" varStatus="loop">
     <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
     margin-top: 15px; margin-bottom: 15px;height: auto;width: 500;  max-width: 600px; min-height: 100px;">
@@ -158,7 +154,6 @@ butt{
         <form action="/action_page.php">
         <div class="w3-panel w3-border-top w3-border-bottom" style = "margin: 0px 0px 0px 0px">
        <div class="form-group" style = "padding: 10px 10px 0px 10px" >
-       
        <!-- 좋아요 카운팅으로 넘김버튼 -->
       <i class="glyphicon glyphicon-thumbs-up" style ="font-size:25px"></i>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -182,7 +177,7 @@ butt{
        </div>
  </c:forEach>
   </c:if>
-  
+   --%>
   <c:if test="${not empty member.writer}">
   <c:forEach var="board" items="${boardList}" varStatus="loop">
     <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  

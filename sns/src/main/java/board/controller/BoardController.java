@@ -46,14 +46,6 @@ public class BoardController {
 	public String list(Model model,HttpSession session, HttpServletRequest req, Object ServletContext) {
 		model.addAttribute("boardList", boardService.list());
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		/*
-		 * ServletContext context = req.getServletContext();
-		 * 
-		 * String appPath = context.getRealPath("/");
-		 * 
-		 * System.out.println(appPath);
-		 */
-		//req.getAttribute("member");
 		if(memberVO==null) {
 			return "redirect:/member/main";
 		}
@@ -112,9 +104,7 @@ public class BoardController {
 			boardVO.setImages(uploadfile.getOriginalFilename());
 			String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
-//			System.out.println(boardVO.getWriter());
 			boardVO.setWriter(memberVO.getWriter());
-			//System.out.println(boardVO.getPass());
 			boardVO.setPass(memberVO.getPass());
 			memberVO.getWriter();
 			memberVO.getPass();
@@ -141,13 +131,10 @@ public class BoardController {
 	public String edit(
 			@Valid @ModelAttribute("boardVO2") BoardVO boardVO,
 			BindingResult result,
-			HttpSession session, SessionStatus sessionStatus,@RequestParam("filename")MultipartFile uploadfile,
+			HttpSession session, SessionStatus sessionStatus,
 			Model model)throws IOException  {
 		
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		boardVO.setImages(uploadfile.getOriginalFilename());
-		String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
-		uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
 		System.out.println(memberVO.getWriter());
 		boardVO.setWriter(memberVO.getWriter());
 		boardVO.setPass(memberVO.getPass());
@@ -163,10 +150,10 @@ public class BoardController {
 					if(memberVO.getWriter()!=null) {
 						boardService.edit(boardVO);
 						sessionStatus.setComplete();
-						return "redirect:/board/list";
+						return "/board/list";
 					}
 			}
-			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+			model.addAttribute("msg", "게시글 작성자만 수정 가능.");
 			return "/board/edit";
 	}
 	//글 삭제 요청을 처리할 메서드

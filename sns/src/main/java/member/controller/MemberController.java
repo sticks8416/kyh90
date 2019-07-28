@@ -74,6 +74,7 @@ public class MemberController {
 			// 회원가입페이지
 			return "redirect:/member/main";
 		} else {
+			
 			// session.setAttribute("writer", writer);
 			// session.setAttribute("pass", pass);
 			session.setAttribute("member", memberVO);
