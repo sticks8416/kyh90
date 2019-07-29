@@ -92,7 +92,9 @@ butt{
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">    
       <li class="nav-item">
-        <a class="nav-link" href="<c:url value="/board/write"/>">글쓰기</a>
+      <!-- a href="주소 입력" (this.href, '', 'width=400, height=430'); return false;" -->
+<a href="<c:url value="/board/write"/>"  class="nav-link"  target="_blank" >글쓰기</a>
+       <%--  <a class="nav-link" href="<c:url value="/board/write"/>" target="_blank" >글쓰기</a> --%>
       </li>    
     </ul>
   </div>
@@ -164,9 +166,10 @@ butt{
       
      
       <!-- 삭제팝업창으로 넘김버튼 -->
-       <%--  <a href="<c:url value="/board/delete/${board.num}"/>"><button id="myBtn"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></button></a> --%>
-        <button onclick="window.open('<c:url value="/board/delete/${board.num}"/>','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');return false"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></button>
-        <!-- The Modal -->
+      <a href="<c:url value="/board/delete/${board.num}"/>" target="_blank"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
+<%--       <input type="button"  class="glyphicon glyphicon-remove" style ="font-size:25px" value="X" onclick="window.open('<c:url value="/board/delete/${board.num}"/>', 'deleteForm', 'width=400, height=250')">
+ --%><%--         <button onclick="window.open('<c:url value="/board/delete/${board.num}"/>','window_name','width=400,height=250,location=no,status=no,scrollbars=yes');return false"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></button>
+ --%>        <!-- The Modal -->
     <div id="myModal" class="modal">	
  
 
@@ -226,6 +229,8 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 } */
+
+
 </script>
 
 </body>

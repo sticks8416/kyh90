@@ -52,15 +52,15 @@
         <p></p>
         <form name="deleteForm"
 		action="<c:url value="/board/delete"/>"method="POST">
-				<input size="1" name="num" value="${num}" type="hidden"/>
+				<input size="1" name="num" value="${num}" type="hidden" />
 				정말로 삭제하시겠습니까?<br>
-				<input type="submit" value="삭제">
+				<input type="submit" value="삭제" onclick="delete_click();">
 		</form>
 		<a href="<c:url value="/board/list"/>"><button>취소</button></a>
 		<div>${msg}</div>
       </div>
     </div>
-<script>
+<script type="text/javascript">
 //Get the button that opens the modal
 var btn = document.getElementById("myBtn");
  //Get the modal
@@ -83,6 +83,12 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+function delete_click() {	
+    window.opener.location.close();
+    window.reload();
+
+
 }
 </script>
 

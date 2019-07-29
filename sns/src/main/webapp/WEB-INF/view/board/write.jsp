@@ -36,55 +36,6 @@ butt{
 }
 </style>
 <body>
-<div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <h1>제목 미정</h1>
-  <p>부제 미정</p> 
-</div>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="topnav-icons fa fa-home w3-left w3-bar-item w3-button" title="Home" style ="font-size:25px; color:white" href="<c:url value="/board/list"/>"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-    </ul>
-  </div>
- <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
-    <!-- input에 네이밍 값은 쿼리문 네이밍한 값 --> 
-    <button class="btn btn-success" type="submit">search</button>
-  </form>
-   <div class="w3-container">
-     
-  <div class="w3-dropdown-click">
-  
-    <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
-    <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
-      <c:if test="${empty member.email}">
-      <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
-      <a href="#" class="w3-bar-item w3-button">회원가입</a>
-      
-      </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
-       <c:if test="${not empty member.email}">
-      <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
-        <a href="<c:url value='/board/editProfile'/>" class="w3-bar-item w3-button">내정보</a>
-      </c:if>
-      </div>
-      </div>
-</div>
-</nav>
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
-
-<div class="w3-container">
-  <h2></h2>
-  <p><img src="../images/${member.profile}" width="200" height="150" alt="no img"></p>
- <!-- 윗줄에 <input type="file" name="filename"> 붙이기 -->
-  <div class="w3-panel w3-card" style="width:90%"><p>${member.name}</p></div>
-  <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
-<!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
-</div>
-</div>
 	<!-- action="<c:url value="/board/write"/>"  -->
 		<form action="<c:url value="/board/write" />" method="POST" enctype="multipart/form-data" >
     	 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
@@ -99,40 +50,24 @@ butt{
         <div><input type="file" name="filename"></div>
         </div>
     	<div style = "float:right">
-					<input type="submit" value="등록">
+					<input type="submit" value="등록" onclick="write_click();">
 					<input type="submit" value="목록"><a href="<c:url value="/board/list"/>"></a></div>
 					</div>
 					
 		</form>
-<div class ="right">
- <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+ <script type="text/javascript">
+ function write_click() {	
+	 window.opener.location.reload();
+	 
+	/*  var parent = window.opener;
+	 
+     var answer = document.getElementById('pw').value;
 
-<div class="w3-container">
-  <h2></h2>
-  <c:if test="${empty member.email}">
-  <p>친구목록</p>
-<c:forEach var="board" items="${boardList}" varStatus="loop">
-  <div class="w3-panel w3-card"><p>${board.writer}</p></div>
-  </c:forEach>
-  </c:if>
-  <c:if test="${not empty member.email}">
-  <p>친구목록</p>
-<c:forEach var="board" items="${boardList}" varStatus="loop">
-  <div class="w3-panel w3-card"><p>${board.writer}</p></div>
-  </c:forEach>
-  </c:if>
-</div>
-</div>
-</div>
- <script>
-function myFunction() {
-  var x = document.getElementById("Demo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
+     parent.document.getElementById('get').value = answer; */
+	 
+	 
+	 self.close();
+ }
 </script>
  
 <!-- <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
