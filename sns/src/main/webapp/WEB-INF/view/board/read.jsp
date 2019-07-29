@@ -5,19 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${memberVO.writer}</title>
+<title></title>
 </head>
 <!-- 검색 후 유저 목록 친구목록 구현 -->
 <body>
-<c:forEach var="member" items="${searchList}" varStatus="loop">
+<c:forEach var="search" items="${searchList}" varStatus="loop">
 <c:choose>
-<c:when test = "${serchList.writer eq member.writer}">
+<c:when test = "${member.name eq search.name}">
 <div>
 내 프로필 화면으로 넘어가기
 </div>
 </c:when>
 <c:otherwise>
-<div class="w3-panel w3-card"><p>${member.writer}</p></div>
+<div class="w3-panel w3-card"><p>${search.name}</p></div>
 </c:otherwise>
 </c:choose>
 </c:forEach>

@@ -2,7 +2,7 @@ package member.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Writer;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,12 +45,7 @@ import member.service.MemberService;
 @SessionAttributes("memberVO")
 public class MemberController {
 	private MemberService memberService;
-	private BoardService boardService;
-
 	// 로그인 버튼 submit시에 피드/메인창으로 넘겼을 시 보드.list 쿼리 실행하면서 들고오기 위해
-	public void setBoardService(BoardService boardService) {
-		this.boardService = boardService;
-	}
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
@@ -65,23 +60,23 @@ public class MemberController {
 	@RequestMapping(value = "/member/main", method = RequestMethod.POST)
 	public String login(Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		HttpSession session = req.getSession();
-		String writer = req.getParameter("writer");
-		String pass = req.getParameter("pass");
-		System.out.println("wri=" + writer);
-		LoginRequest loginRequest = new LoginRequest(writer, pass);
+		String email = req.getParameter("email");
+		String password = req.getParameter("password");
+		System.out.println("wri=" + email);
+		LoginRequest loginRequest = new LoginRequest(email, password);
 		MemberVO memberVO = memberService.memberLogin(loginRequest);
 		if (memberVO == null) {
 			// 회원가입페이지
 			return "redirect:/member/main";
 		} else {
 			
-			// session.setAttribute("writer", writer);
-			// session.setAttribute("pass", pass);
+			// session.setAttribute("email", email);
+			// session.setAttribute("password", password);
 			session.setAttribute("member", memberVO);
 			System.out.println(memberVO);
-			System.out.println(memberVO.getWriter());
-			System.out.println(memberVO.getPass());
-			return "/board/list";
+			System.out.println(memberVO.getEmail());
+			System.out.println(memberVO.getPassword());
+			return "redirect:/board/list";
 		}
 
 	}

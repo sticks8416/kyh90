@@ -1,7 +1,7 @@
 package board.controller;
 
 import java.io.File;
-import java.io.IOException;import java.io.Writer;
+import java.io.IOException;
 import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
@@ -57,18 +57,18 @@ public class BoardController {
 	public String list(@RequestParam(value="search",required=true) String Search,BoardVO boardVO, Model model, MemberVO memberVO ,HttpSession session, HttpServletRequest req) {
 		System.out.println(Search);
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getWriter()); 
+		System.out.println(memberVO.getEmail()); 
 	/*	Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", Search);
-		map.put("id", memberVO.getWriter());
+		map.put("id", memberVO.getEmail());
 		System.out.println(map);
-		if(Search==memberVO.getWriter()) {
+		if(Search==memberVO.getEmail()) {
 			
 			
 		}*/
 		
 		//세션 아이디 값
-		/* boardVO.setWriter(memberVO.getWriter()); */
+		/* boardVO.setEmail(memberVO.getEmail()); */
 		//model.addAttribute("memberSerch", boardService.memberSerch());
 		/* List<MemberVO> searchList = boardService.memberSerch(Search); */
 		model.addAttribute("searchList",boardService.memberSearch(Search));
@@ -79,7 +79,7 @@ public class BoardController {
 
 		//map-board의 파라미터 타입을 맵으로 하고 컨트롤러에 매핑형태로 추가 해줌
 		/*
-		 * if(memberVO.getWriter()==null) { return "redirect:/member/main"; } else
+		 * if(memberVO.getEmail()==null) { return "redirect:/member/main"; } else
 		 */
 		return "/board/read";	
 	}
@@ -87,7 +87,7 @@ public class BoardController {
 	public String memberserch(@RequestParam(value="search",required=true) String Search, Model model,HttpSession session, HttpServletRequest req, MemberVO memberVO) {
 		System.out.println(Search);
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getWriter()); 
+		System.out.println(memberVO.getEmail()); 
 		
 		model.addAttribute("boardList", boardService.list());
 		model.addAttribute("searchList",boardService.memberSearch(Search));	
@@ -114,12 +114,12 @@ public class BoardController {
 			boardVO.setImages(uploadfile.getOriginalFilename());
 			String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
-//			System.out.println(boardVO.getWriter());
-			boardVO.setWriter(memberVO.getWriter());
+//			System.out.println(boardVO.getEmail());
+			System.out.println(memberVO.getName());
+			System.out.println(memberVO.getPassword());
+			boardVO.setWriter(memberVO.getName());
 			//System.out.println(boardVO.getPass());
-			boardVO.setPass(memberVO.getPass());
-			memberVO.getWriter();
-			memberVO.getPass();
+			boardVO.setPassword(memberVO.getPassword());
 			boardService.write(boardVO);
 			return "redirect:/board/list";
 	}
@@ -131,7 +131,7 @@ public class BoardController {
 		BoardVO boardVO = boardService.read(num);
 		model.addAttribute("boardVO2", boardVO);
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(boardVO.getWriter());
+		System.out.println(boardVO.getEmail());
 		System.out.println(boardVO.getTitle());
 		System.out.println(boardVO.getContent());
 		System.out.println(boardVO.getImages());
@@ -147,19 +147,19 @@ public class BoardController {
 			Model model)throws IOException  {
 		
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getWriter());
-		boardVO.setWriter(memberVO.getWriter());
-		boardVO.setPass(memberVO.getPass());
-		System.out.println(boardVO.getWriter());
+		System.out.println(memberVO.getEmail());
+		boardVO.setEmail(memberVO.getEmail());
+		boardVO.setPassword(memberVO.getPassword());
+		System.out.println(boardVO.getEmail());
 		System.out.println(boardVO.getTitle());
-		System.out.println(boardVO.getPass());
+		System.out.println(boardVO.getPassword());
 		System.out.println(boardVO.getContent());
 		System.out.println(boardVO.getImages());
 			if(result.hasErrors()) {
 				return "/board/edit";
 			} 	
 			else {
-					if(memberVO.getWriter()!=null) {
+					if(memberVO.getEmail()!=null) {
 						boardService.edit(boardVO);
 						sessionStatus.setComplete();
 						return "redirect:/board/list";
@@ -180,7 +180,7 @@ public class BoardController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		BoardVO boardVO = new BoardVO();
 		boardVO.setNum(num);
-		boardVO.setWriter(memberVO.getWriter());
+		boardVO.setEmail(memberVO.getEmail());
 		rowCount = boardService.delete(boardVO);
 		
 		if(rowCount == 0) {
@@ -193,18 +193,18 @@ public class BoardController {
 		}
 	}
 	//내정보 수정
-		@RequestMapping(value="/board/editProfile/{writer}", method=RequestMethod.GET)
-		public String editProfile(@PathVariable String writer,HttpServletRequest req , Model model) {
-			model.addAttribute("writer", writer);
+		@RequestMapping(value="/board/editProfile/{email}", method=RequestMethod.GET)
+		public String editProfile(@PathVariable String email,HttpServletRequest req , Model model) {
+			model.addAttribute("email", email);
 			HttpSession session = req.getSession();
-			MemberVO memberVO = boardService.readProfile(writer);
+			MemberVO memberVO = boardService.readProfile(email);
 			model.addAttribute("memberVO2", memberVO);
-			System.out.println(memberVO.getWriter());
-			System.out.println(memberVO.getPass());
+			System.out.println(memberVO.getEmail());
+			System.out.println(memberVO.getPassword());
 			System.out.println(memberVO.getEmail());
 			return "/board/editProfile";
 		}
-		@RequestMapping(value="/board/editProfile/{writer}", method=RequestMethod.POST)
+		@RequestMapping(value="/board/editProfile/{email}", method=RequestMethod.POST)
 		public String editProfile(Model model,HttpSession session) {
 			MemberVO memberVO = (MemberVO) session.getAttribute("member");
 			return "/board/list";

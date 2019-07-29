@@ -25,11 +25,11 @@
     margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
 	<div>
 	<div>
-	<label><input type="text" name="writer" placeholder="아이디" style = "padding-top: 0px; padding-bottom: 0px"></label>
-	<label><input type="text" name="pass" placeholder="비밀번호" style = "padding-top: 0px; padding-bottom: 0px">	</label>
+	<label><input type="text" name="email" placeholder="아이디" style = "padding-top: 0px; padding-bottom: 0px"></label>
+	<label><input type="text" name="password" placeholder="비밀번호" style = "padding-top: 0px; padding-bottom: 0px">	</label>
 
 		</div>
-		<input type="submit" value="로그인"><a href="<c:url value='/board/list/${member.writer}'/>"></a>
+		<input type="submit" value="로그인"><a href="<c:url value='/board/list/${member.email}'/>"></a>
 					<input type="submit" value="목록"><a href="<c:url value="/board/list"/>"></a></div>
 					</div>
 	</form>

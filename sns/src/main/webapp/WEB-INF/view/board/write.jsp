@@ -61,12 +61,12 @@ butt{
   
     <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
     <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
-      <c:if test="${empty member.writer}">
+      <c:if test="${empty member.email}">
       <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
       <a href="#" class="w3-bar-item w3-button">회원가입</a>
       
       </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
-       <c:if test="${not empty member.writer}">
+       <c:if test="${not empty member.email}">
       <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
         <a href="<c:url value='/board/editProfile'/>" class="w3-bar-item w3-button">내정보</a>
       </c:if>
@@ -80,7 +80,7 @@ butt{
   <h2></h2>
   <p><img src="../images/${member.profile}" width="200" height="150" alt="no img"></p>
  <!-- 윗줄에 <input type="file" name="filename"> 붙이기 -->
-  <div class="w3-panel w3-card" style="width:90%"><p>${member.writer}</p></div>
+  <div class="w3-panel w3-card" style="width:90%"><p>${member.name}</p></div>
   <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
 <!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
 </div>
@@ -109,13 +109,13 @@ butt{
 
 <div class="w3-container">
   <h2></h2>
-  <c:if test="${empty member.writer}">
+  <c:if test="${empty member.email}">
   <p>친구목록</p>
 <c:forEach var="board" items="${boardList}" varStatus="loop">
   <div class="w3-panel w3-card"><p>${board.writer}</p></div>
   </c:forEach>
   </c:if>
-  <c:if test="${not empty member.writer}">
+  <c:if test="${not empty member.email}">
   <p>친구목록</p>
 <c:forEach var="board" items="${boardList}" varStatus="loop">
   <div class="w3-panel w3-card"><p>${board.writer}</p></div>

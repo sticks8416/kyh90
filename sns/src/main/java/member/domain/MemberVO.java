@@ -7,6 +7,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Alias("MemberVO")
 public class MemberVO {
+	public String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getProfile() {
 		return profile;
 	}
@@ -14,45 +27,9 @@ public class MemberVO {
 		this.profile = profile;
 	}
 	private String profile;
-	private String title;
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	private int num;
-	public int getNum() {
-		return num;
-	}
-	private int seq;
-	
-	public int getSeq() {
-		return seq;
-	}
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
-
-	private String writer;
-	private String pass;
+	private String password;
 	private Timestamp regDate;
 	private String email;
-	public String getWriter() {
-		return writer;
-	}
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
 	public Timestamp getRegDate() {
 		return regDate;
 	}
@@ -68,12 +45,13 @@ public class MemberVO {
 
 public MemberVO() {}
 	
-	public MemberVO(String writer, String pass, String email, Timestamp regdate ) {
+	public MemberVO(String name, String password, String email, Timestamp regdate, String profile) {
 		super();
-		this.writer = writer;
-		this.pass = pass;
+		this.name = name;
+		this.password = password;
 		this.email = email;
 		this.regDate = regdate;
+		this.profile = profile;
 	}
 	
 }

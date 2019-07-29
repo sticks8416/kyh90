@@ -4,28 +4,22 @@
 
 <mapper namespace="memberDAO">
 	<select id="memberlist" resultType="memberVO">
-			SELECT * FROM SNSMEMBER ORDER BY WRITER
+			select * from snsmember order by email
 			
 	</select>
 	<select id="memberLogin" parameterType="loginRequest" resultType="memberVO">
-		SELECT * FROM SNSMEMBER WHERE WRITER=#{writer} and PASS=#{pass}
+		SELECT * FROM SNSMEMBER WHERE email=#{email} and password=#{password}
 	</select>
 	
 	<insert id="memberinsert" parameterType="memberVO">
-			INSERT INTO SNSMEMBER (SEQ, WRITER, EMAIL, PASS, regDate)
-			VALUES(SNSMEMBER_SEQ.nextval, #{WRITER}, #{EMAIL}, #{PASS}, SYSDATE)
-			<selectKey keyProperty="seq" resultType="integer">
-				SELECT NVL(MAX(seq), 0) FROM SNSMEMBER
-			</selectKey>
+			INSERT INTO SNSMEMBER (NAME, EMAIL, PASSWORD, regDate, PROFILE)
+			VALUES(#{NAME}, #{EMAIL}, #{PASSWORD}, SYSDATE, #{PROFILE})
 	</insert>
 	<update id="memberupdate" parameterType="memberVO">
-			UPDATE SNSMEMBER SET WRITER = #{WRITER}, PASS = #{PASS}
+			UPDATE SNSMEMBER SET NAME = #{NAME}, PASSWORD = #{PASSWORD}
 				WHERE EMAIL = #{EMAIL}
 	</update>
-	
-	
-	
 	<delete id="memberdeleteAll">
-			DELETE FROM SNSBOARD
+			DELETE FROM SNSMEMBER
 	</delete>
 </mapper>

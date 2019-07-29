@@ -4,33 +4,33 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("LoginRequest")
 public class LoginRequest {
-	private String writer;
-	private String pass;
+	private String email;
+	private String password;
 	
 	
 	public LoginRequest() {
 		super();
 	}
-	public LoginRequest(String writer, String pass) {
+	public LoginRequest(String email, String password) {
 		super();
-		this.writer = writer;
-		this.pass = pass;
+		this.email = email;
+		this.password = password;
 	}
-	public String getWriter() {
-		return writer;
+	public String getEmail() {
+		return email;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getPass() {
-		return pass;
+	public String getPassword() {
+		return password;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	@Override
 	public String toString() {
-		return "LoginRequest [writer=" + writer + ", pass=" + pass + "]";
+		return "LoginRequest [email=" + email + ", password=" + password + "]";
 	}
 	
 	

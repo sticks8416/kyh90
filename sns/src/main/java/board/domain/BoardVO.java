@@ -18,7 +18,20 @@ public class BoardVO {
 	}
 	private String writer;
 	private String title;
-	private String pass;
+	private String password;
+	private String email;
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	private String images;
 	public String getImages() {
 		return images;
@@ -62,12 +75,6 @@ public class BoardVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
 	public int getRef() {
 		return ref;
 	}
@@ -94,13 +101,13 @@ public class BoardVO {
 	}
 	public BoardVO() {}
 	
-	public BoardVO(String title, String images, String content, String writer, String pass, Timestamp regdate) {
+	public BoardVO(String title, String images, String content, String writer, String password, Timestamp regdate) {
 		super();
 		this.title = title;
 		this.images = images;
 		this.content = content;
 		this.writer = writer;
-		this.pass = pass;
+		this.password = password;
 		this.regDate = regdate;
 	}
 }

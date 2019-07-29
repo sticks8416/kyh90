@@ -63,12 +63,7 @@
 		</form>
 		<a href="<c:url value="/board/list"/>"><button>취소</button></a>
 		<div>${msg}</div>
-        
-        
-        
-        
       </div>
- 
     </div>
 <script>
 // Get the modal
