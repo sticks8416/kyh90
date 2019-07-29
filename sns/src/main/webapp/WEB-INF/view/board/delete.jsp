@@ -45,11 +45,6 @@
 </style>
 </head>
 <body>
-<!-- Trigger/Open The Modal -->
-    <button id="myBtn">Open Modal</button>
- 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
  
       <!-- Modal content -->
       <div class="modal-content">
@@ -66,12 +61,10 @@
       </div>
     </div>
 <script>
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
+//Get the button that opens the modal
 var btn = document.getElementById("myBtn");
-
+ //Get the modal
+var modal = document.getElementById('myModal');
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];                                          
 

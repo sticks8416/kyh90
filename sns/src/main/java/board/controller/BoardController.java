@@ -118,6 +118,7 @@ public class BoardController {
 			System.out.println(memberVO.getName());
 			System.out.println(memberVO.getPassword());
 			boardVO.setWriter(memberVO.getName());
+			boardVO.setEmail(memberVO.getEmail());
 			//System.out.println(boardVO.getPass());
 			boardVO.setPassword(memberVO.getPassword());
 			boardService.write(boardVO);
@@ -180,7 +181,12 @@ public class BoardController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		BoardVO boardVO = new BoardVO();
 		boardVO.setNum(num);
+		System.out.println(memberVO.getEmail());
 		boardVO.setEmail(memberVO.getEmail());
+		boardVO.setPassword(memberVO.getPassword());
+		System.out.println(memberVO.getPassword());
+		System.out.println(boardVO.getEmail());
+		System.out.println(boardVO.getPassword());
 		rowCount = boardService.delete(boardVO);
 		
 		if(rowCount == 0) {

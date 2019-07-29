@@ -149,7 +149,7 @@ butt{
       <div>
       <h4>${board.content}</h4><!-- content,regdate 안됨 -->
        </div>
-        <form action="/action_page.php">
+       
         <div class="w3-panel w3-border-top w3-border-bottom" style = "margin: 0px 0px 0px 0px">
        <div class="form-group" style = "padding: 10px 10px 0px 10px" >
        
@@ -164,15 +164,18 @@ butt{
       
      
       <!-- 삭제팝업창으로 넘김버튼 -->
-        <a href="<c:url value="/board/delete/${board.num}"/>"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
+       <%--  <a href="<c:url value="/board/delete/${board.num}"/>"><button id="myBtn"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></button></a> --%>
+        <button onclick="window.open('<c:url value="/board/delete/${board.num}"/>','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');return false"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></button>
+        <!-- The Modal -->
+    <div id="myModal" class="modal">	
+ 
+
+    </div>
         </div>
        </div>
        <input type="text" class="form-control" placeholder="답글 작성" name="text1" >
        <a class="butt"><button type="submit" class="btn btn-secondary" style = "float:right">답글 달기</button></a>
-        
-        
-        
-        </form>
+
        </div>
  </c:forEach>
   </c:if>
@@ -200,41 +203,29 @@ butt{
   <p>Copyright 2019 Yeonheung Kang</p>
 </div>
 <script>
-function myFunction() {
-  var x = document.getElementById("Demo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}	
+/* //Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+ //Get the modal
+var modal = document.getElementById('myModal');
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];                                          
 
-$("[id^=btn]").on('click', function(event){
-	//ex) id=btn51, btn34
-	var id = $(this).attr("id"); 
-	var seq = id.replace("btn", "");
-	
-	$.ajax({
-		url: "<c:url value="/boardLike"/>",
-		type: "post", 
-		data: 'seq='+seq,
-		success: function(data){
-		
-			if(data.check == 0){
-				$('#img'+seq).attr('src', 'img/heart.png');
-				$('#likes'+seq).text(data.likes);
-			}else if(data.check ==1){
-				$('#img'+seq).attr('src', 'img/like.png');
-				$('#likes'+seq).text(data.likes);
-			}
-			if(data.msg != null){
-				alert(data.msg);
-				location.href='<c:url value="/login"/>';
-			}
-		}
-	})
-	})
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
 
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+} */
 </script>
 
 </body>

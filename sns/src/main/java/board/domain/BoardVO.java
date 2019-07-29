@@ -75,24 +75,6 @@ public class BoardVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getRef() {
-		return ref;
-	}
-	public void setRef(int ref) {
-		this.ref = ref;
-	}
-	public int getStep() {
-		return step;
-	}
-	public void setStep(int step) {
-		this.step = step;
-	}
-	public int getDepth() {
-		return depth;
-	}
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
 	public Timestamp getRegDate() {
 		return regDate;
 	}
@@ -101,7 +83,7 @@ public class BoardVO {
 	}
 	public BoardVO() {}
 	
-	public BoardVO(String title, String images, String content, String writer, String password, Timestamp regdate) {
+	public BoardVO(String title, String email, String images, String content, String writer, String password, Timestamp regdate) {
 		super();
 		this.title = title;
 		this.images = images;
@@ -109,5 +91,6 @@ public class BoardVO {
 		this.writer = writer;
 		this.password = password;
 		this.regDate = regdate;
+		this.email = email;
 	}
 }
