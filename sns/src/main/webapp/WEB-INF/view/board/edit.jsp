@@ -18,29 +18,6 @@
 </style>
 </head>
 <body>
-
-					
-    <%-- <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
-    margin-top: 15px; margin-bottom: 15px;height: auto;width: 500;  max-width: 600px; min-height: 100px;">
-    <form name="editForm"action="<c:url value="/board/edit"/>"method="POST">
-   <p style = "text-align: center;"><input size="3" name="num" value="${boardVO2.num}"/><input size="3" name="num" value="${boardVO2.title}"/>
-   <!-- <i class="fas fa-bars" style= "float:right; font-size: 30px"> </i> --></p>
-   <div class="w3-panel w3-border-top w3-border-bottom">
-    <a style= "text-align:left"><input size="3" name="writer" value="${boardVO2.writer}"/></a><a style = "float:right">${boardVO2.regDate}</a>
-    </div>
-      <div><img src="../../images/${boardVO2.images}" width="auto" height="150" alt="no img"></div>
-      <div>
-      <h4><input size="3" name="content" value="${boardVO2.content}"/></h4><!-- content,regdate 안됨 -->
-       </div>
-        <div class="w3-panel w3-border-top w3-border-bottom" style = "margin: 0px 0px 0px 0px">
-       <div class="form-group" style = "padding: 10px 10px 0px 10px" >
-       
-        </div>
-       </div>
-       <input type="submit" value="등록">
-       <input type="submit" value="목록"> 
-        </form>
-       </div> --%>
         <!-- ----------------------------------------------------------------------------------- -->
        <form action="<c:url value="/board/edit/{num}"/>" method="POST" enctype="multipart/form-data" >
     	 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  

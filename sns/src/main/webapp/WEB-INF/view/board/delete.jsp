@@ -42,11 +42,16 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .s{
+        hight: 100%;
+        width: 100%;
+        }
 </style>
 </head>
 <body>
  
       <!-- Modal content -->
+      <div class=".s">
       <div class="modal-content">
         <span class="close">&times;</span>                                                               
         <p></p>
@@ -54,7 +59,7 @@
 		action="<c:url value="/board/delete"/>"method="POST">
 				<input size="1" name="num" value="${num}" type="hidden" />
 				정말로 삭제하시겠습니까?<br>
-				<input type="submit" value="삭제" onclick="delete_click();">
+				<input type="submit" value="삭제" onclick="deletego();">
 		</form>
 		<a href="<c:url value="/board/list"/>"><button>취소</button></a>
 		<div>${msg}</div>
@@ -77,16 +82,18 @@ btn.onclick = function() {
 span.onclick = function() {
     modal.style.display = "none";
 }
-
+}
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+/* window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
-function delete_click() {	
-    window.opener.location.close();
-    window.reload();
+} */
+
+function deletego() {
+	  opener.top.location='<c:url value="/board/delete"/>';
+	  self.close();
+	}
 
 
 }

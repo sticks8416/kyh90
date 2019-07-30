@@ -57,16 +57,15 @@ butt{
 		</form>
  <script type="text/javascript">
  function write_click() {	
-	 window.opener.location.reload();
 	 
 	/*  var parent = window.opener;
 	 
      var answer = document.getElementById('pw').value;
 
      parent.document.getElementById('get').value = answer; */
-	 
-	 
-	 self.close();
+     
+/* 	 
+	 self.close(); */
  }
 </script>
  

@@ -106,7 +106,7 @@ butt{
   <div class="w3-container">   
   <div class="w3-dropdown-click">
     <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
-    <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
+    <div id="ddc" class="w3-dropdown-content w3-bar-block w3-border">
     <c:if test="${empty member.email}">
       <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
       <a href="#" class="w3-bar-item w3-button">회원가입</a>
@@ -128,7 +128,7 @@ butt{
 </nav>
 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
 
-<div class="w3-container">
+<div class="w3-container" style="width:90%">
   <h2></h2>
   
   <p><img src="../images/${member.profile}" width="200" height="150" alt="no img"></p>
@@ -230,7 +230,18 @@ window.onclick = function(event) {
     }
 } */
 
-
+function listgo() {
+	  opener.top.location='<c:url value="/board/write"/>';
+	  self.close();
+	}
+function myFunction() {
+	  var x = document.getElementById("ddc");
+	  if (x.className.indexOf("w3-show") == -1) {
+	    x.className += " w3-show";
+	  } else { 
+	    x.className = x.className.replace(" w3-show", "");
+	  }
+	}
 </script>
 
 </body>
