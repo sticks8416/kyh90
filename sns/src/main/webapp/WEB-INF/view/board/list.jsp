@@ -20,22 +20,32 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
    body{
-        background-color: #F6F6F6;
+        background-color: #FFFFFF;
       }
       .right {
   position:fixed;
-  width: 220px;
-  height: 500px;
+  width: 12%;
+  height: 100%;
   top : 300px;
   right : 0px;
-  border: 3px solid grey;
+  border: 1px solid grey;
+  color: #FFFFFF;
+}
+ .left {
+  position:fixed;
+  width: 12%;
+  height: 100%;
+  top : 300px;
+  right : 0px;
+  border: 1px solid grey;
+  color: #FFFFFF;
 }
 butt{
  position:fixed;
  right : 0px;
 }
 .s{
-
+border: 1px solid grey;
 
 }
 
@@ -77,57 +87,10 @@ butt{
 </style>
 </head>
 <body>
-<div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <h1><%-- ${member.writer}님 환영합니다. --%>제목 미정</h1>
-  <p><%-- 경로 값 :${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/ --%></p> 
-</div>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-<a class="topnav-icons fa fa-home w3-left w3-bar-item w3-button" title="Home" style ="font-size:25px; color:white" href="<c:url value="/board/list"/>"></a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">    
-      <li class="nav-item">
-      <!-- a href="주소 입력" (this.href, '', 'width=400, height=430'); return false;" -->
-<a href="<c:url value="/board/write"/>"  class="nav-link"  target="_blank" >글쓰기</a>
-       <%--  <a class="nav-link" href="<c:url value="/board/write"/>" target="_blank" >글쓰기</a> --%>
-      </li>    
-    </ul>
-  </div>
-  <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
-    <button class="btn btn-success" type="submit">search User</button>
-  </form>
- <!--  <i class="fas fa-bars" style= "float:right; font-size: 30px"> -->
-  <div class="w3-container">   
-  <div class="w3-dropdown-click">
-    <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
-    <div id="ddc" class="w3-dropdown-content w3-bar-block w3-border">
-    <c:if test="${empty member.email}">
-      <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
-      <a href="#" class="w3-bar-item w3-button">회원가입</a>
-      
-      </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
-       <c:if test="${not empty member.email}">
-      <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
-      <a href="<c:url value='/board/editProfile/${member.email}'/>" class="w3-bar-item w3-button">내정보</a>
-      
-      </c:if>
-    </div>
-  </div>
-</div>
-  <!-- </i>
-   -->
-
-
-  
-</nav>
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
-
+<%@include file="header.jsp" %>
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:18%;height:70%;">
+<div class=.s>
 <div class="w3-container" style="width:90%">
   <h2></h2>
   
@@ -135,6 +98,7 @@ butt{
 <!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
   <div class="w3-panel w3-card" style="width:90%"><p>${member.name}</p></div>
   <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
+</div>
 </div>
 </div>
 
@@ -161,15 +125,19 @@ butt{
        <i class="fas fa-heart" style ="font-size:25px"></i>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <!-- 수정페이지 넘김버튼 -->
-       <a href="<c:url value="/board/edit/${board.num}"/>"><i class="fas fa-file" style ="font-size:25px"></i></a>
+       <a href="<c:url value='/board/edit/${board.num}'/>"><i class="fas fa-file" style ="font-size:25px"></i></a>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       
      
       <!-- 삭제팝업창으로 넘김버튼 -->
-      <a href="<c:url value="/board/delete/${board.num}"/>" target="_blank"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
+      <a onclick="window.open('<c:url value="/board/delete/${board.num}"/>','_blank','width=400,height=200, scrollbars=yes');"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
+      <%-- <a href="<c:url value="/board/delete/${board.num}"/>" target="_blank"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a> --%>
 <%--       <input type="button"  class="glyphicon glyphicon-remove" style ="font-size:25px" value="X" onclick="window.open('<c:url value="/board/delete/${board.num}"/>', 'deleteForm', 'width=400, height=250')">
  --%><%--         <button onclick="window.open('<c:url value="/board/delete/${board.num}"/>','window_name','width=400,height=250,location=no,status=no,scrollbars=yes');return false"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></button>
  --%>        <!-- The Modal -->
+   
+   
+   
     <div id="myModal" class="modal">	
  
 
@@ -186,12 +154,6 @@ butt{
  <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
 <div class="w3-container">
   <h2></h2>
-  <c:if test="${empty member.name}">
-  <p>친구목록</p>
-<c:forEach var="board" items="${boardList}" varStatus="loop">
-  <div class="w3-panel w3-card"><p>${board.writer}</p></div>
-  </c:forEach>
-  </c:if>
   <c:if test="${not empty member.name}">
   <p>친구목록</p>
 <c:forEach var="board" items="${boardList}" varStatus="loop">
@@ -200,11 +162,9 @@ butt{
   </c:if>
 </div>
 </div>
-</div>
 
-<div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <p>Copyright 2019 Yeonheung Kang</p>
 </div>
+<%@include file="footer.jsp" %>
 <script>
 /* //Get the button that opens the modal
 var btn = document.getElementById("myBtn");
@@ -229,11 +189,15 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 } */
+/* function openWin(){  
 
-function listgo() {
-	  opener.top.location='<c:url value="/board/write"/>';
-	  self.close();
-	}
+    window.open("<c:url value="/board/delete/${board.num}"/>", "네이버새창", "'_blank','width=400,height=200, scrollbars=yes'" );  
+} */
+
+ function listgo() {
+self.close();
+window.opner.reload();
+}
 function myFunction() {
 	  var x = document.getElementById("ddc");
 	  if (x.className.indexOf("w3-show") == -1) {

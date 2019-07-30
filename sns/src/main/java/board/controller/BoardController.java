@@ -143,11 +143,15 @@ public class BoardController {
 	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.POST)
 	public String edit(
 			@Valid @ModelAttribute("boardVO2") BoardVO boardVO,
-			BindingResult result,
+			BindingResult result,@RequestParam("filename")MultipartFile uploadfile,
 			HttpSession session, SessionStatus sessionStatus,
 			Model model)throws IOException  {
 		
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		boardVO.setImages(uploadfile.getOriginalFilename());
+		String path = "C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\images";
+		uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
+		
 		System.out.println(memberVO.getEmail());
 		boardVO.setEmail(memberVO.getEmail());
 		boardVO.setPassword(memberVO.getPassword());

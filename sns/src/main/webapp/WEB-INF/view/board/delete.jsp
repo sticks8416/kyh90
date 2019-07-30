@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>삭제</title>
 <style>
-/* The Modal (background) */
+//* * The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
@@ -45,13 +45,13 @@
         .s{
         hight: 100%;
         width: 100%;
-        }
+        } */
 </style>
 </head>
-<body>
+<body >
  
       <!-- Modal content -->
-      <div class=".s">
+      <div class="del">
       <div class="modal-content">
         <span class="close">&times;</span>                                                               
         <p></p>
@@ -82,7 +82,7 @@ btn.onclick = function() {
 span.onclick = function() {
     modal.style.display = "none";
 }
-}
+
 // When the user clicks anywhere outside of the modal, close it
 /* window.onclick = function(event) {
     if (event.target == modal) {
@@ -90,13 +90,13 @@ span.onclick = function() {
     }
 } */
 
-function deletego() {
-	  opener.top.location='<c:url value="/board/delete"/>';
-	  self.close();
+function deletego("del") {
+	 self.close();
+	 window.opner.reload(); 
 	}
 
 
-}
+
 </script>
 
 		
