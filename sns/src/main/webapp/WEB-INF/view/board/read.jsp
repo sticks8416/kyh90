@@ -147,15 +147,5 @@ border: 1px solid grey;
 </c:forEach>
  --%>
  <%@include file="footer.jsp" %>
- <script>
- function myFunction() {
-	  var x = document.getElementById("ddc");
-	  if (x.className.indexOf("w3-show") == -1) {
-	    x.className += " w3-show";
-	  } else { 
-	    x.className = x.className.replace(" w3-show", "");
-	  }
-	}
-</script>
 </body>
 </html>

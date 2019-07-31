@@ -102,8 +102,7 @@ border: 1px solid grey;
     <ul class="navbar-nav">    
       <li class="nav-item">
       <!-- a href="주소 입력" (this.href, '', 'width=400, height=430'); return false;" -->
-<a href="<c:url value="/board/write"/>"  class="nav-link"  target="_blank" >글쓰기</a>
-       <%--  <a class="nav-link" href="<c:url value="/board/write"/>" target="_blank" >글쓰기</a> --%>
+     <a class="nav-link" href="<c:url value="/board/write"/>" >글쓰기</a>
       </li>    
     </ul>
   </div>

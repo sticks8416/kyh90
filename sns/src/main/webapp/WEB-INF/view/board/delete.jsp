@@ -51,20 +51,18 @@
 <body >
  
       <!-- Modal content -->
-      <div class="del">
       <div class="modal-content">
         <span class="close">&times;</span>                                                               
         <p></p>
-        <form name="deleteForm"
+        <form id = "del" name="deleteForm"
 		action="<c:url value="/board/delete"/>"method="POST">
 				<input size="1" name="num" value="${num}" type="hidden" />
 				정말로 삭제하시겠습니까?<br>
-				<input type="submit" value="삭제" onclick="deletego();">
+				<input  type="submit" value="삭제" onclick="deletego();">
 		</form>
 		<a href="<c:url value="/board/list"/>"><button>취소</button></a>
 		<div>${msg}</div>
       </div>
-    </div>
 <script type="text/javascript">
 //Get the button that opens the modal
 var btn = document.getElementById("myBtn");
@@ -83,19 +81,20 @@ span.onclick = function() {
     modal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
+//When the user clicks anywhere outside of the modal, close it
 /* window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 } */
 
-function deletego("del") {
-	 self.close();
-	 window.opner.reload(); 
+function deletego() {
+	{
+	 self.close("del"); 
 	}
-
-
+	opener.document.location.href="<c:url value="/board/list"/>"
+	opener.document.location.reload();
+}
 
 </script>
 

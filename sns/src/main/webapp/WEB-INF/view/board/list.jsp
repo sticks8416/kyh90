@@ -22,23 +22,25 @@
    body{
         background-color: #FFFFFF;
       }
-      .right {
+      div.right {
   position:fixed;
   width: 12%;
   height: 100%;
   top : 300px;
-  right : 0px;
+  right : 30px;
   border: 1px solid grey;
+ 
   color: #FFFFFF;
 }
- .left {
+ div.left {
   position:fixed;
-  width: 12%;
-  height: 100%;
+  width: 17%;
   top : 300px;
-  right : 0px;
-  border: 1px solid grey;
-  color: #FFFFFF;
+  left : 20px;
+  bottom : 300px;
+  border: 1px solid black;
+  border-radius:10px;
+  color: #000000;
 }
 butt{
  position:fixed;
@@ -84,17 +86,32 @@ border: 1px solid grey;
             text-decoration: none;
             cursor: pointer;
         }
+        div.container{
+        border: 1px solid grey; 
+        padding: 10px 10px 10px 10px;  
+    	margin-top: 15px; 
+    	margin-bottom: 15px;
+    	height: auto;
+    	width: 500;  
+    	max-width: 600px; 
+    	min-height: 100px;
+        
+        }
 </style>
 </head>
 <body>
 
 <%@include file="header.jsp" %>
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:18%;height:70%;">
-<div class=.s>
-<div class="w3-container" style="width:90%">
+
+
+<div class="w3-sidebar w3-light-white w3-bar-block" style="width:17%">
+
+
+<div class="left">
+<div>
   <h2></h2>
-  
-  <p><img src="../images/${member.profile}" width="200" height="150" alt="no img"></p>
+  <!-- <div><input type="file" name="filename"></div> -->
+  <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img"></label>
 <!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
   <div class="w3-panel w3-card" style="width:90%"><p>${member.name}</p></div>
   <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
@@ -104,8 +121,7 @@ border: 1px solid grey;
 
   <c:if test="${not empty member.email}">
   <c:forEach var="board" items="${boardList}" varStatus="loop">
-    <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
-    margin-top: 15px; margin-bottom: 15px;height: auto;width: 500;  max-width: 600px; min-height: 100px;">
+    <div class="container">
    <p style = "text-align: center;">${board.title}
    <!-- <i class="fas fa-bars" style= "float:right; font-size: 30px"> </i> --></p>
    <div class="w3-panel w3-border-top w3-border-bottom">
@@ -127,26 +143,21 @@ border: 1px solid grey;
       <!-- 수정페이지 넘김버튼 -->
        <a href="<c:url value='/board/edit/${board.num}'/>"><i class="fas fa-file" style ="font-size:25px"></i></a>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      
-     
+
       <!-- 삭제팝업창으로 넘김버튼 -->
-      <a onclick="window.open('<c:url value="/board/delete/${board.num}"/>','_blank','width=400,height=200, scrollbars=yes');"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
-      <%-- <a href="<c:url value="/board/delete/${board.num}"/>" target="_blank"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a> --%>
+<%--       <a onclick="window.open('<c:url value="/board/delete/${board.num}"/>','_blank','width=400,height=200, scrollbars=yes');"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a> --%>
+      <a id = "listgo" href="<c:url value="/board/delete/${board.num}"/>" onclick="window.open(this.href,'_blank','width=400,height=200, scrollbars=yes');return false;"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
+      <%-- <a href="<c:url value="/board/delete/${board.num}"/>" target="_blank" style = "width:400;height:200"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a> --%>
 <%--       <input type="button"  class="glyphicon glyphicon-remove" style ="font-size:25px" value="X" onclick="window.open('<c:url value="/board/delete/${board.num}"/>', 'deleteForm', 'width=400, height=250')">
  --%><%--         <button onclick="window.open('<c:url value="/board/delete/${board.num}"/>','window_name','width=400,height=250,location=no,status=no,scrollbars=yes');return false"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></button>
  --%>        <!-- The Modal -->
-   
-   
-   
-    <div id="myModal" class="modal">	
- 
 
+    <div id="myModal" class="modal">	
     </div>
         </div>
        </div>
        <input type="text" class="form-control" placeholder="답글 작성" name="text1" >
        <a class="butt"><button type="submit" class="btn btn-secondary" style = "float:right">답글 달기</button></a>
-
        </div>
  </c:forEach>
   </c:if>
@@ -166,36 +177,8 @@ border: 1px solid grey;
 </div>
 <%@include file="footer.jsp" %>
 <script>
-/* //Get the button that opens the modal
-var btn = document.getElementById("myBtn");
- //Get the modal
-var modal = document.getElementById('myModal');
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];                                          
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-} */
-/* function openWin(){  
-
-    window.open("<c:url value="/board/delete/${board.num}"/>", "네이버새창", "'_blank','width=400,height=200, scrollbars=yes'" );  
-} */
-
  function listgo() {
-self.close();
+self.close("listgo");
 window.opner.reload();
 }
 function myFunction() {
