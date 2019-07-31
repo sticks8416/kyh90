@@ -11,15 +11,18 @@
 		SELECT * FROM SNSMEMBER WHERE email=#{email} and password=#{password}
 	</select>
 	
-	<insert id="memberinsert" parameterType="memberVO">
+	<insert id="memberInsert" parameterType="memberVO">
 			INSERT INTO SNSMEMBER (NAME, EMAIL, PASSWORD, regdate)
 			VALUES( #{name}, #{email}, #{password}, SYSDATE)
 
 	</insert>
-	<update id="memberupdate" parameterType="memberVO">
+	<update id="memberUpdate" parameterType="memberVO">
 			UPDATE SNSMEMBER SET name = #{name}, PASS = #{PASS}
-				WHERE EMAIL = #{EMAIL}
+				where email = email
 	</update>
+	<select id="matchPW" parameterType="map" resultType="memberVO">
+		select password from snsmember where email =#{email} and name =#{name}
+	</select>
 	
 
 </mapper>

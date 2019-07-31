@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>글 쓰기</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>목록</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -17,35 +18,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
 <style>
-  body{
-        background-color: #FFFFFF;
+   body{
+        background-color: #F6F6F6;
       }
       .right {
   position:fixed;
-  width: 12%;
-  height: 100%;
+  width: 220px;
+  height: 500px;
   top : 300px;
   right : 0px;
-  border: 1px solid grey;
-  color: #FFFFFF;
-}
- .left {
-  position:fixed;
-  width: 12%;
-  height: 100%;
-  top : 300px;
-  right : 0px;
-  border: 1px solid grey;
-  color: #FFFFFF;
+  border: 3px solid grey;
 }
 butt{
  position:fixed;
  right : 0px;
 }
 .s{
-border: 1px solid grey;
+
 
 }
 
@@ -85,28 +75,51 @@ border: 1px solid grey;
             cursor: pointer;
         }
 </style>
+</head>
 <body>
-<%@include file="header.jsp" %>
-	<!-- action="<c:url value="/board/write"/>"  -->
-		<form action="<c:url value="/board/write" />" method="POST" enctype="multipart/form-data" >
-    	 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
-    margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
-  <label><input type="text" name="title" placeholder="제목" style = "padding-top: 0px; padding-bottom: 0px"></label>
-   <div class="w3-panel w3-border-top w3-border-bottom" style = "margin-top: 0px; margin-bottom: 0px">
+<div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
+  <h1> ${member.name}님 환영합니다. 제목 미정</h1>
+  <p><%-- 경로 값 :${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/ --%></p> 
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<a class="topnav-icons fa fa-home w3-left w3-bar-item w3-button" title="Home" style ="font-size:25px; color:white" href="<c:url value="/board/list"/>"></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">    
+      <li class="nav-item">
+        <a class="nav-link" href="<c:url value="/board/write"/>">글쓰기</a>
+      </li>    
+    </ul>
+  </div>&nbsp;&nbsp;&nbsp;
+    <a href="<c:url value="/requestList"/>"><i class="far fa-bell" style ="font-size:25px"></i></a>
+  <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
+    <button class="btn btn-success" type="submit">search User</button>
+  </form>
+ <!--  <i class="fas fa-bars" style= "float:right; font-size: 30px"> -->
+  <div class="w3-container">   
+  <div class="w3-dropdown-click">
+    <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
+    <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
+    <c:if test="${empty member.email}">
+      <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
+      <a href="#" class="w3-bar-item w3-button">회원가입</a>
+      
+      </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
+       <c:if test="${not empty member.email}">
+      <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
+      <a href="<c:url value='/member/editProfile/{email}'/>" class="w3-bar-item w3-button">내정보</a>
+      
+      </c:if>
     </div>
-      <div>
-      <label><input type="text" name="content" placeholder="글 내용" style="width:250%;height:300px">	</label><!-- content,regdate 안됨 -->
-       </div>	
-       <div class="w3-panel w3-border-top w3-border-bottom">
-        <div><input type="file" name="filename"></div>
-        </div>
-    	<div style = "float:right">
-					<input type="submit" value="등록" onclick="write_click();">
-					<input type="submit" value="목록"><a href="<c:url value="/board/list"/>"></a></div>
-					</div>
-					
-		</form> 
-		<%@include file="footer.jsp" %>
+  </div>
+</div>
+</nav>
 <script>
  function myFunction() {
 	  var x = document.getElementById("ddc");
@@ -117,9 +130,6 @@ border: 1px solid grey;
 	  }
 	}
 </script>
- 
-<!-- <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <p>Copyright 2019 Yeonheung Kang</p>
-</div> -->
+
 </body>
 </html>

@@ -24,15 +24,18 @@ public List<MemberVO> memberlist(){
 	return sqlSessionTemplate.selectList("memberlist");
 }
 @Override
-public void insert(MemberVO memberVO) {
-	sqlSessionTemplate.insert("insert", memberVO);
+public void memberInsert(MemberVO memberVO) {
+	sqlSessionTemplate.insert("memberInsert", memberVO);
 }
 @Override
 public MemberVO memberLogin(Map map) {
 
 	return (MemberVO)sqlSessionTemplate.selectOne("memberLogin", map);
 }
-
+@Override
+public MemberVO matchPW(Map map) {
+	return (MemberVO)sqlSessionTemplate.selectOne("matchPW", map);
+}
 
 
 }

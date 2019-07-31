@@ -175,22 +175,33 @@ public class BoardController {
 			return "redirect:/board/list";
 		}
 	}
-	//내정보 수정
-		@RequestMapping(value="/board/editProfile/{writer}", method=RequestMethod.GET)
-		public String editProfile(@PathVariable String writer,HttpServletRequest req , Model model) {
-			model.addAttribute("writer", writer);
+	//내정보 수정					'/member/editProfile/${member.email}'
+		@RequestMapping(value="/member/editProfile/{email}", method=RequestMethod.GET)
+		public String editProfile(@PathVariable String email,HttpServletRequest req , Model model) {
 			HttpSession session = req.getSession();
-			MemberVO memberVO = boardService.readProfile(writer);
+			MemberVO memberVO = (MemberVO) session.getAttribute("member");
+			
+			memberVO = boardService.readProfile(email);
+			memberVO.getEmail();
+			memberVO.getName();
+			memberVO.getPassword();
 			model.addAttribute("memberVO2", memberVO);
+			System.out.println(memberVO.getEmail());
+			System.out.println(memberVO.getName());
+			System.out.println(memberVO.getPassword());
+			
+			
+			return "/board/editProfile";
+		}
+		@RequestMapping(value="/member/editProfile/{email}", method=RequestMethod.POST)
+		public String editProfile(Model model,HttpSession session) {
+			MemberVO memberVO = (MemberVO) session.getAttribute("member");
+			model.addAttribute("memberVO2", memberVO);
+			boardService.updateProfile(memberVO);
 			System.out.println(memberVO.getName());
 			System.out.println(memberVO.getPassword());
 			System.out.println(memberVO.getEmail());
-			return "/board/editProfile";
-		}
-		@RequestMapping(value="/board/editProfile/{writer}", method=RequestMethod.POST)
-		public String editProfile(Model model,HttpSession session) {
-			MemberVO memberVO = (MemberVO) session.getAttribute("member");
-			return "/board/list";
+			return "redirect:/board/list";
 		}
 		
 		

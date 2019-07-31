@@ -19,7 +19,7 @@
 	</select>
 	<select id="selectProfile" parameterType="String" resultType="memberVO">
 		SELECT * FROM
-		SNSMEMBER WHERE email = #{email}
+		SNSMEMBER WHERE email = #{email} and password = #{password}
 	</select>
 	<insert id="insert" parameterType="boardVO">
 			INSERT INTO SNSBOARD

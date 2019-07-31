@@ -45,8 +45,8 @@ public class BoardDaoMybatis implements BoardDao{
 		return vo;
 	}
 	@Override
-	public MemberVO selectProfile(String writer) {
-		MemberVO vo = (MemberVO) sqlSessionTemplate.selectOne("selectProfile", writer);
+	public MemberVO selectProfile(String email) {
+		MemberVO vo = (MemberVO) sqlSessionTemplate.selectOne("selectProfile", email);
 		return vo;
 	}
 	/*

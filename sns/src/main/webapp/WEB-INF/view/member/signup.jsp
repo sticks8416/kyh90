@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>메인창</title>
+<title>회원가입</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -22,20 +22,20 @@
 		<form action="<c:url value="/member/signup" />" method="POST" enctype="multipart/form-data" >
 				<table border="1">
 						<tr>
-								<th><label>아이디
-								<td><input type="text" name="writer" ></td>
+								<th><label>이메일
+								<td><input type="text" name="email" ></td>
 								</label></th>
 						</tr>
 			
 						<tr>
 								<th><label>패스워드
-								<td><input type="text" name="pass" ></td>
+								<td><input type="text" name="password" ></td>
 								</label></th>
 						</tr>
 				
 						<tr>
-								<th><label>email
-								<td><input type="text" name="email" ></td>
+								<th><label>이름
+								<td><input type="text" name="name" ></td>
 								</label></th>
 						</tr>
 			

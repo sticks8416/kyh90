@@ -29,14 +29,16 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	@Override
-	public void write(MemberVO memberVO) {
-		memberDao.insert(memberVO);
+	public void memberInsert(MemberVO memberVO) {
+		memberDao.memberInsert(memberVO);
 	}
 
 	@Override
 	public MemberVO memberLogin(Map map) {
-		
 		return memberDao.memberLogin(map);
 	}
-
+	@Override
+	public MemberVO matchPW(Map map) {
+		return memberDao.matchPW(map);
+	}
 }

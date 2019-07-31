@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>메인창</title>
+<title>비번찾기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -18,25 +18,26 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div>
-	<c:if test="${empty member}">
-	<form action="<c:url value='/member/main/'/>" method="POST" >
-		 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
-    margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
-	<div>
-	<div>
-	<label><input type="text" name="email" placeholder="아이디" style = "padding-top: 0px; padding-bottom: 0px"></label>
-	<label><input type="password" name="password" placeholder="비밀번호" style = "padding-top: 0px; padding-bottom: 0px">	</label>
-
-		</div>
-		<input type="submit" value="로그인"><a href="<c:url value='/board/list/${member.writer}'/>"></a>
-					<input type="submit" value="회원가입"><a href="<c:url value='/member/signup'/>"></a>
-					</div>
-					</div>
-	</form>
-	</c:if>
-	</div>
+<h1>비번찾기</h1>
+		<form action="<c:url value="/member/matchPW"/>" method="POST" enctype="multipart/form-data" >
+				<table border="1">
+						<tr>
+								<th><label>이메일
+								<td><input type="text" name="email" ></td>
+								</label></th>
+						</tr>		
+						<tr>
+								<th><label>이름
+								<td><input type="text" name="name" ></td>
+								</label></th>
+						</tr>
 			
-	<p><a href="<c:url value='/member/matchPW'/>">비밀번호 찾기</a></p>
+				</table>
+				<div>
+						<input type="submit" value="찾기">
+						<a href="<c:url value="/board/list" />">목록</a>
+				</div>
+				</form>
+		
 </body>
 </html>

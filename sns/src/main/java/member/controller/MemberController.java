@@ -74,7 +74,50 @@ public class MemberController {
 		}
 
 	}
-
+	@RequestMapping(value = "/member/signup", method = RequestMethod.GET)
+	public String signUp1(Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		
+		return "/member/signup";
+	}
+	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
+	public String signUp2(Model model, MemberVO memberVO) {
+		model.addAttribute("memberVO", new MemberVO());
+		System.out.println(memberVO.getEmail());
+		System.out.println(memberVO.getPassword());
+		System.out.println(memberVO.getName());
+		
+		memberService.memberInsert(memberVO);
+		return "/member/main";
+	}
+	@RequestMapping(value = "/member/matchPW", method = RequestMethod.GET)
+	public String matchPW(Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		
+		return "/member/matchPW";
+	}
+	@RequestMapping(value = "/member/matchPW", method = RequestMethod.POST)
+	public String matchPW2(Model model, MemberVO memberVO, HttpServletRequest req) {
+		String email = req.getParameter("email");
+		String name = req.getParameter("name");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("email", email);
+		map.put("name", name);
+		System.out.println(map);
+		memberVO = memberService.matchPW(map);
+		System.out.println(memberVO.getPassword());
+		if(memberVO.getPassword()!=null) {
+			model.addAttribute("memberVO", memberService.matchPW(map));
+			System.out.println("비번찾기 성공");
+			System.out.println();
+			return "/member/matchPW2";
+		}
+		else
+			System.out.println("비번찾기 실패");
+		return "/member/signup";
+	}	
 	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
 	public String logout(Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 

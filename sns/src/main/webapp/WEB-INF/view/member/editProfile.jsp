@@ -18,14 +18,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
- <form action="<c:url value="/board/editProfile/${writer}"/>" method="POST" enctype="multipart/form-data" >
+<%@include file="header.jsp" %>
+ <form action="<c:url value="/member/editProfile/{email}"/>" method="POST" enctype="multipart/form-data" >
     	 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
     margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
-  <label><input value="${memberVO2.writer}" type="text" name="writer" placeholder="글쓴이" style = "padding-top: 0px; padding-bottom: 0px" readonly></label>
+  <label><input value="${memberVO2.email}" type="hidden" name="writer" placeholder="글쓴이" style = "padding-top: 0px; padding-bottom: 0px" readonly></label>
    <div class="w3-panel w3-border-top w3-border-bottom" style = "margin-top: 0px; margin-bottom: 0px">
     </div>
       <div>
-      <label><input value="${memberVO2.pass}" type="text" name="pass" placeholder="비번" style="width:250%;height:300px">	</label><!-- content,regdate 안됨 -->
+      <label><input value="${memberVO2.password}" type="text" name="pass" placeholder="비번" style="width:250%;height:300px">	</label><!-- content,regdate 안됨 -->
        </div>
        <div class="w3-panel w3-border-top w3-border-bottom">
         <div><input type="file" name="filename">Profile</div>
@@ -36,5 +37,6 @@
 					</div>
 					
 		</form>
+		<%@include file="footer.jsp" %>
 </body>
 </html>

@@ -8,7 +8,8 @@ import member.request.LoginRequest;
 
 public interface MemberDao {
 	public abstract List<MemberVO> memberlist();
-	public abstract void insert(MemberVO memberVO);
+	public abstract void memberInsert(MemberVO memberVO);
 	public abstract MemberVO memberLogin(Map map);
+	public abstract MemberVO matchPW(Map map);
 	
 }

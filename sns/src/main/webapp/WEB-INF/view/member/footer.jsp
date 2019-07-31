@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>글 쓰기</title>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -46,9 +46,7 @@ butt{
 }
 .s{
 border: 1px solid grey;
-
 }
-
 /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
@@ -85,41 +83,10 @@ border: 1px solid grey;
             cursor: pointer;
         }
 </style>
+</head>
 <body>
-<%@include file="header.jsp" %>
-	<!-- action="<c:url value="/board/write"/>"  -->
-		<form action="<c:url value="/board/write" />" method="POST" enctype="multipart/form-data" >
-    	 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
-    margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
-  <label><input type="text" name="title" placeholder="제목" style = "padding-top: 0px; padding-bottom: 0px"></label>
-   <div class="w3-panel w3-border-top w3-border-bottom" style = "margin-top: 0px; margin-bottom: 0px">
-    </div>
-      <div>
-      <label><input type="text" name="content" placeholder="글 내용" style="width:250%;height:300px">	</label><!-- content,regdate 안됨 -->
-       </div>	
-       <div class="w3-panel w3-border-top w3-border-bottom">
-        <div><input type="file" name="filename"></div>
-        </div>
-    	<div style = "float:right">
-					<input type="submit" value="등록" onclick="write_click();">
-					<input type="submit" value="목록"><a href="<c:url value="/board/list"/>"></a></div>
-					</div>
-					
-		</form> 
-		<%@include file="footer.jsp" %>
-<script>
- function myFunction() {
-	  var x = document.getElementById("ddc");
-	  if (x.className.indexOf("w3-show") == -1) {
-	    x.className += " w3-show";
-	  } else { 
-	    x.className = x.className.replace(" w3-show", "");
-	  }
-	}
-</script>
- 
-<!-- <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
+<div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
   <p>Copyright 2019 Yeonheung Kang</p>
-</div> -->
+</div>
 </body>
 </html>
