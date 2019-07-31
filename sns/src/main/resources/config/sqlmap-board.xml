@@ -37,7 +37,7 @@
 			UPDATE SNSBOARD  SET 
 			title = #{title},
 			content = #{content},
-			images = #{images},
+			images = images,
 			WHERE email =#{email}
 	</update>
 

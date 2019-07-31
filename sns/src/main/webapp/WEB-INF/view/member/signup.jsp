@@ -19,6 +19,8 @@
 </head>
 <body>
 	<h1>회원가입~</h1>
+	
+	<div style ="width:400px" >
 		<form action="<c:url value="/member/signup" />" method="POST" enctype="multipart/form-data" >
 				<!-- 아이디 -->
 <div class="form-group">
@@ -37,7 +39,7 @@
 </div>
 				<input type="submit" value="회원가입">
 						<a href="<c:url value="/board/list" />">목록</a>
-				
+		</div>		
 				
 				
 			<%-- 	<table border="1">

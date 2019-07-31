@@ -30,9 +30,13 @@
 
 		</div>
 		<%-- <button value="로그인"><a href="<c:url value='/board/list/${member.writer}'/>"></a>로그인</button> --%>
-		<button class="btn btn-primary" onclick= "location.href=<c:url value='/board/list/${member.writer}'/>">로그인</button>
-		<button type="button" class="btn btn-primary" onclick= "location.href=<c:url value='/member/signup'/>">회원가입</button>
-		<button type="button" class="btn btn-primary" onclick= "location.href=<c:url value='/member/matchPW'/>" style = "position:right">비밀번호 찾기</button>
+		<button class="btn btn-success" onclick= "location.href=<c:url value='/board/list/${member.email}'/>">로그인</button>
+		<%-- <button type="button" class="btn btn-warning" onclick= "location.href=<c:url value="/member/signup"/>">회원가입</button>
+		<button type="button" class="btn btn-danger	" onclick= "location.href=<c:url value="/member/matchPW"/>">비밀번호 찾기</button> --%>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+			<a href =<c:url value="/member/matchPW"/>>비밀번호 찾기</a>
+			<a href =<c:url value="/member/signup"/>>회원가입</a>
 					</div>
 					</div>
 	</form>

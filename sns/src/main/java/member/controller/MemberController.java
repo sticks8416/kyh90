@@ -88,7 +88,7 @@ public class MemberController {
 		System.out.println(memberVO.getEmail());
 		System.out.println(memberVO.getPassword());
 		System.out.println(memberVO.getName());
-		
+		//멤버보드 쿼리문 list로 가져와서 입력받은값이랑 비교해서 if/else로 페이징 각각 시키기... ajax 실패 
 		memberService.memberInsert(memberVO);
 		return "/member/main";
 	}

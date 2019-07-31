@@ -96,7 +96,7 @@ butt{
       </li>    
     </ul>
   </div>&nbsp;&nbsp;&nbsp;
-    <a href="<c:url value="/requestList"/>"><i class="far fa-bell" style ="font-size:25px"></i></a>
+    <a href="<c:url value="/requestList"/>"><i class="far fa-bell" style ="font-size:25px"></i></a>&nbsp;&nbsp;
   <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
     <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
     <button class="btn btn-success" type="submit">search User</button>

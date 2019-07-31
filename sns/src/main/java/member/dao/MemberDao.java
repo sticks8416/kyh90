@@ -11,6 +11,6 @@ public interface MemberDao {
 	public abstract void memberInsert(MemberVO memberVO);
 	public abstract MemberVO memberLogin(Map map);
 	public abstract MemberVO matchPW(Map map);
-	public abstract int checkOverId(String user_id);
+	int checkOverId(String user_id);
 	
 }

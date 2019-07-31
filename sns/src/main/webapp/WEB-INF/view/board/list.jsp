@@ -11,20 +11,23 @@
       }
       div.right {
   position:fixed;
-  width: 12%;
-  height: 100%;
+  text-position:center;
+  width: 20%;
+  height: 70%;
   top : 300px;
   right : 30px;
-  border: 1px solid grey;
- 
-  color: #FFFFFF;
+  border: 1px solid black;
+ border-radius:10px;
+  color: #000000;
 }
  div.left {
   position:fixed;
-  width: 16%;
-  top : 300px;
-  left : 9px;
-  bottom : 300px;
+  text-position:center;
+  width: 18%;
+  height: 40%;
+  top : 202px;
+  left : 4%;
+  bottom-padding: 100px;
   border: 1px solid black;
   border-radius:10px;	
   color: #000000;
@@ -98,20 +101,19 @@ border: 1px solid grey;
 
   
 <%@include file="header.jsp" %>
-<div class="w3-sidebar w3-light-white w3-bar-block" style="width:17%">
 
 
 <div class="left">
 <div style="width:90%; text-align:center">
   <h2></h2>
   <!-- <div><input type="file" name="filename"></div> -->
-  <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img" ></label>
+  <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label>
 <!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
-  <div class="w3-panel w3-card" style="width:90%" ><p>${member.name}</p></div>
-  <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
+  <div class="w3-panel w3-card" style="width:110%" ><p>${member.name}</p></div>
+  <div class="w3-panel w3-card-2" style="width:110%"><p>${member.email}</p></div>
 </div>
 </div>
-</div>
+
 
   <c:if test="${not empty member.email}">
   <c:forEach var="board" items="${boardList}" varStatus="loop">
@@ -154,17 +156,16 @@ border: 1px solid grey;
  </c:forEach>
   </c:if>
  <div class ="right">
- <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+ 
 <div class="w3-container">
   <h2></h2>
   <c:if test="${not empty member.email}">
   <p>친구목록</p>
 <c:forEach var="friend" items="${friendList}" varStatus="loop">
-  <div class="w3-panel w3-card"><p>${friend.email}</p><p>${friend.name}</p><button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.email }"/>','new','left=650, top=250, width=500, height=600')">Chat</button></div>
+  <div class="w3-panel w3-card" style = "height:70px"><p>${friend.email}</p><p>${friend.name}</p><button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.email }"/>','new','left=650, top=250, width=500, height=600')">Chat</button></div>
   </c:forEach>
   </c:if>
- 
-</div>
+
 </div>
 </div>
 <%@include file="footer.jsp" %>
