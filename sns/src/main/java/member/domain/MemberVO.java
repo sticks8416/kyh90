@@ -7,7 +7,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Alias("MemberVO")
 public class MemberVO {
-	public String name;
+	private String profile;
+	private String name;
+	private String password;
+	private Timestamp regDate;
+	private String email;
+
+	
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	public String getName() {
 		return name;
 	}
@@ -20,16 +32,6 @@ public class MemberVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getProfile() {
-		return profile;
-	}
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-	private String profile;
-	private String password;
-	private Timestamp regDate;
-	private String email;
 	public Timestamp getRegDate() {
 		return regDate;
 	}
@@ -45,13 +47,11 @@ public class MemberVO {
 
 public MemberVO() {}
 	
-	public MemberVO(String name, String password, String email, Timestamp regdate, String profile) {
-		super();
+	public MemberVO(String name, String password, String email, Timestamp regdate ) {
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.regDate = regdate;
-		this.profile = profile;
 	}
 	
 }

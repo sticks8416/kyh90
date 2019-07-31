@@ -45,9 +45,7 @@ butt{
 }
 .s{
 border: 1px solid grey;
-
 }
-
 /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
@@ -86,12 +84,7 @@ border: 1px solid grey;
 </style>
 <style>
 .x{
-
-
-
 }
-
-
 </style>
 </head>
 <body>

@@ -12,6 +12,6 @@
 	<typeAliases>
 		<typeAlias alias="memberVO" type="member.domain.MemberVO"/>
 		<typeAlias alias="boardVO" type="board.domain.BoardVO"/>
-		<typeAlias alias="loginRequest" type="member.request.LoginRequest"/>
+		<typeAlias alias="friendVO" type="friend.domain.FriendVO"/>
 	</typeAliases>
 </configuration>

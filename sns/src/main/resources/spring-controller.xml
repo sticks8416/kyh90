@@ -12,4 +12,12 @@
 	<bean id="memberController" class="member.controller.MemberController">
 			<property name="memberService" ref="memberServiceImpl"/>	
 	</bean>
+	
+	<bean id="friendController" class="friend.controller.FriendController">
+			<property name="friendService" ref="friendServiceImpl"/>	
+	</bean>
+	<bean id="websocketHandler" class="friend.controller.WebsocketHandler">
+			<property name="friendService" ref="friendServiceImpl"/>	
+	</bean>
+
 </beans>

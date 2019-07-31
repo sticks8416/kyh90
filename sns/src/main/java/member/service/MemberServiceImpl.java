@@ -1,7 +1,7 @@
 package member.service;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -34,8 +34,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO memberLogin(LoginRequest loginRequest) {
-		return memberDao.memberLogin(loginRequest);
+	public MemberVO memberLogin(Map map) {
+		
+		return memberDao.memberLogin(map);
 	}
 
 }

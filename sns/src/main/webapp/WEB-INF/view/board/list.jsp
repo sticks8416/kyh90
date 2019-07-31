@@ -5,19 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>목록</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
    body{
         background-color: #FFFFFF;
@@ -34,12 +21,12 @@
 }
  div.left {
   position:fixed;
-  width: 17%;
+  width: 16%;
   top : 300px;
-  left : 20px;
+  left : 9px;
   bottom : 300px;
   border: 1px solid black;
-  border-radius:10px;
+  border-radius:10px;	
   color: #000000;
 }
 butt{
@@ -98,22 +85,29 @@ border: 1px solid grey;
         
         }
 </style>
+
 </head>
-<body>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>목록</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+  <!-- </i>
+   -->
+
+
+  
 <%@include file="header.jsp" %>
-
-
 <div class="w3-sidebar w3-light-white w3-bar-block" style="width:17%">
 
 
 <div class="left">
-<div>
+<div style="width:90%; text-align:center">
   <h2></h2>
   <!-- <div><input type="file" name="filename"></div> -->
-  <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img"></label>
+  <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img" ></label>
 <!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
-  <div class="w3-panel w3-card" style="width:90%"><p>${member.name}</p></div>
+  <div class="w3-panel w3-card" style="width:90%" ><p>${member.name}</p></div>
   <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
 </div>
 </div>
@@ -121,17 +115,18 @@ border: 1px solid grey;
 
   <c:if test="${not empty member.email}">
   <c:forEach var="board" items="${boardList}" varStatus="loop">
-    <div class="container">
+    <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
+    margin-top: 15px; margin-bottom: 15px;height: auto;width: 500;  max-width: 600px; min-height: 100px;">
    <p style = "text-align: center;">${board.title}
    <!-- <i class="fas fa-bars" style= "float:right; font-size: 30px"> </i> --></p>
    <div class="w3-panel w3-border-top w3-border-bottom">
-    <a style= "text-align:left">${board.writer}</a><a style = "float:right">${board.regDate}</a>
+    <a style= "text-align:left">${board.email}</a><a style = "float:right">${board.regDate}</a>
     </div>
-      <div><img src="../images/${board.images}" width="auto" height="150" alt="no img"></div>
+      <div><img src="../upload/${board.images}" width="auto" height="150" alt="no img"></div>
       <div>
       <h4>${board.content}</h4><!-- content,regdate 안됨 -->
        </div>
-       
+        <form action="/action_page.php">
         <div class="w3-panel w3-border-top w3-border-bottom" style = "margin: 0px 0px 0px 0px">
        <div class="form-group" style = "padding: 10px 10px 0px 10px" >
        
@@ -141,23 +136,20 @@ border: 1px solid grey;
        <i class="fas fa-heart" style ="font-size:25px"></i>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <!-- 수정페이지 넘김버튼 -->
-       <a href="<c:url value='/board/edit/${board.num}'/>"><i class="fas fa-file" style ="font-size:25px"></i></a>
+       <a href="<c:url value="/board/edit/${board.num}"/>"><i class="fas fa-file" style ="font-size:25px"></i></a>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+      
+     
       <!-- 삭제팝업창으로 넘김버튼 -->
-<%--       <a onclick="window.open('<c:url value="/board/delete/${board.num}"/>','_blank','width=400,height=200, scrollbars=yes');"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a> --%>
-      <a id = "listgo" href="<c:url value="/board/delete/${board.num}"/>" onclick="window.open(this.href,'_blank','width=400,height=200, scrollbars=yes');return false;"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
-      <%-- <a href="<c:url value="/board/delete/${board.num}"/>" target="_blank" style = "width:400;height:200"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a> --%>
-<%--       <input type="button"  class="glyphicon glyphicon-remove" style ="font-size:25px" value="X" onclick="window.open('<c:url value="/board/delete/${board.num}"/>', 'deleteForm', 'width=400, height=250')">
- --%><%--         <button onclick="window.open('<c:url value="/board/delete/${board.num}"/>','window_name','width=400,height=250,location=no,status=no,scrollbars=yes');return false"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></button>
- --%>        <!-- The Modal -->
-
-    <div id="myModal" class="modal">	
-    </div>
+        <a href="<c:url value="/board/delete/${board.num}"/>"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
         </div>
        </div>
        <input type="text" class="form-control" placeholder="답글 작성" name="text1" >
        <a class="butt"><button type="submit" class="btn btn-secondary" style = "float:right">답글 달기</button></a>
+        
+        
+        
+        </form>
        </div>
  </c:forEach>
   </c:if>
@@ -165,30 +157,56 @@ border: 1px solid grey;
  <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
 <div class="w3-container">
   <h2></h2>
-  <c:if test="${not empty member.name}">
+  <c:if test="${not empty member.email}">
   <p>친구목록</p>
-<c:forEach var="board" items="${boardList}" varStatus="loop">
-  <div class="w3-panel w3-card"><p>${board.writer}</p></div>
+<c:forEach var="friend" items="${friendList}" varStatus="loop">
+  <div class="w3-panel w3-card"><p>${friend.email}</p><p>${friend.name}</p><button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.email }"/>','new','left=650, top=250, width=500, height=600')">Chat</button></div>
   </c:forEach>
   </c:if>
+ 
 </div>
 </div>
-
 </div>
 <%@include file="footer.jsp" %>
 <script>
- function listgo() {
-self.close("listgo");
-window.opner.reload();
-}
 function myFunction() {
-	  var x = document.getElementById("ddc");
-	  if (x.className.indexOf("w3-show") == -1) {
-	    x.className += " w3-show";
-	  } else { 
-	    x.className = x.className.replace(" w3-show", "");
-	  }
+  var x = document.getElementById("Demo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}	
+function listgo() {
+	self.close("listgo");
+	window.opner.reload();
 	}
+$("[id^=btn]").on('click', function(event){
+	//ex) id=btn51, btn34
+	var id = $(this).attr("id"); 
+	var seq = id.replace("btn", "");
+	
+	$.ajax({
+		url: "<c:url value="/boardLike"/>",
+		type: "post", 
+		data: 'seq='+seq,
+		success: function(data){
+		
+			if(data.check == 0){
+				$('#img'+seq).attr('src', 'img/heart.png');
+				$('#likes'+seq).text(data.likes);
+			}else if(data.check ==1){
+				$('#img'+seq).attr('src', 'img/like.png');
+				$('#likes'+seq).text(data.likes);
+			}
+			if(data.msg != null){
+				alert(data.msg);
+				location.href='<c:url value="/login"/>';
+			}
+		}
+	})
+	})
+
 </script>
 
 </body>

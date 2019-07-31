@@ -63,5 +63,9 @@ public class BoardDaoMybatis implements BoardDao{
 	 * @Override public List<BoardVO> boardSearch(String Search){ return
 	 * sqlSessionTemplate.selectList("boardSearch", Search); }
 	 */
+	@Override
+	public List<String> searchFriend(String email) {
+		return sqlSessionTemplate.selectList("friendId", email);
+	}
 
 }

@@ -4,22 +4,22 @@
 
 <mapper namespace="memberDAO">
 	<select id="memberlist" resultType="memberVO">
-			select * from snsmember order by email
+			SELECT * FROM SNSMEMBER ORDER BY email
 			
 	</select>
-	<select id="memberLogin" parameterType="loginRequest" resultType="memberVO">
+	<select id="memberLogin" parameterType="map" resultType="memberVO">
 		SELECT * FROM SNSMEMBER WHERE email=#{email} and password=#{password}
 	</select>
 	
 	<insert id="memberinsert" parameterType="memberVO">
-			INSERT INTO SNSMEMBER (NAME, EMAIL, PASSWORD, regDate, PROFILE)
-			VALUES(#{NAME}, #{EMAIL}, #{PASSWORD}, SYSDATE, #{PROFILE})
+			INSERT INTO SNSMEMBER (NAME, EMAIL, PASSWORD, regdate)
+			VALUES( #{name}, #{email}, #{password}, SYSDATE)
+
 	</insert>
 	<update id="memberupdate" parameterType="memberVO">
-			UPDATE SNSMEMBER SET NAME = #{NAME}, PASSWORD = #{PASSWORD}
+			UPDATE SNSMEMBER SET name = #{name}, PASS = #{PASS}
 				WHERE EMAIL = #{EMAIL}
 	</update>
-	<delete id="memberdeleteAll">
-			DELETE FROM SNSMEMBER
-	</delete>
+	
+
 </mapper>

@@ -46,9 +46,7 @@ butt{
 }
 .s{
 border: 1px solid grey;
-
 }
-
 /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */

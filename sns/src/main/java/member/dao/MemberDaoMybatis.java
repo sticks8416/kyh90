@@ -1,6 +1,7 @@
 package member.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -27,8 +28,9 @@ public void insert(MemberVO memberVO) {
 	sqlSessionTemplate.insert("insert", memberVO);
 }
 @Override
-public MemberVO memberLogin(LoginRequest loginRequest) {
-	return sqlSessionTemplate.selectOne("memberLogin", loginRequest);
+public MemberVO memberLogin(Map map) {
+
+	return (MemberVO)sqlSessionTemplate.selectOne("memberLogin", map);
 }
 
 

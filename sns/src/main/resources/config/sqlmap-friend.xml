@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="friendDao">
+	<insert id="addFriend" parameterType="friendVO">
+		insert into snsfriend (email1, email2, relationship) values(#{email1}, #{email2}, #{relationship})
+	</insert>
+	<delete id="deleteFriend" parameterType="friendVO">
+		delete from snsfriend where email1= #{email1}, email2 =#{email2}, relationship= #{relationship})
+	</delete>
+	
+
+	<select id="checkFriend" parameterType="friendVO" resultType="java.lang.Integer">
+		select count(*) from snsfriend where email1= #{email1} and email2= #{email2}
+	</select>
+	<select id="pendingList" parameterType="String" resultType="java.lang.String">
+		select distinct email1 from snsfriend where email2= #{email} and relationship='pending'
+	</select>
+	
+	<update id="updateFriend" parameterType="friendVO">
+		update snsfriend set relationship = #{relationship} where email1 = #{email1} and email2 = #{email2} 
+	</update>
+	
+	<update id="updateChat" parameterType="friendVO">
+		update snsfriend set chat = #{chat} where email1 = #{email1} and email2 = #{email2} 
+	</update>
+	
+	<select id="checkChat" parameterType="friendVO" resultType="java.lang.String">
+		select chat from snsfriend where email1= #{email1} and email2= #{email2}
+	</select>
+</mapper>

@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>목록</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -17,35 +18,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
 <style>
-  body{
-        background-color: #FFFFFF;
+   body{
+        background-color: #F6F6F6;
       }
       .right {
   position:fixed;
-  width: 12%;
-  height: 100%;
+  width: 220px;
+  height: 500px;
   top : 300px;
   right : 0px;
-  border: 1px solid grey;
-  color: #FFFFFF;
-}
- .left {
-  position:fixed;
-  width: 12%;
-  height: 100%;
-  top : 300px;
-  right : 0px;
-  border: 1px solid grey;
-  color: #FFFFFF;
+  border: 3px solid grey;
 }
 butt{
  position:fixed;
  right : 0px;
 }
 .s{
-border: 1px solid grey;
+
 
 }
 
@@ -85,9 +75,10 @@ border: 1px solid grey;
             cursor: pointer;
         }
 </style>
+</head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <h1><%-- ${member.writer}님 환영합니다. --%>제목 미정</h1>
+  <h1> ${member.name}님 환영합니다. 제목 미정</h1>
   <p><%-- 경로 값 :${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/ --%></p> 
 </div>
 
@@ -101,11 +92,11 @@ border: 1px solid grey;
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">    
       <li class="nav-item">
-      <!-- a href="주소 입력" (this.href, '', 'width=400, height=430'); return false;" -->
-     <a class="nav-link" href="<c:url value="/board/write"/>" >글쓰기</a>
+        <a class="nav-link" href="<c:url value="/board/write"/>">글쓰기</a>
       </li>    
     </ul>
-  </div>
+  </div>&nbsp;&nbsp;&nbsp;
+    <a href="<c:url value="/requestList"/>"><i class="far fa-bell" style ="font-size:25px"></i></a>
   <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
     <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
     <button class="btn btn-success" type="submit">search User</button>
@@ -114,7 +105,7 @@ border: 1px solid grey;
   <div class="w3-container">   
   <div class="w3-dropdown-click">
     <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
-    <div id="ddc" class="w3-dropdown-content w3-bar-block w3-border">
+    <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
     <c:if test="${empty member.email}">
       <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
       <a href="#" class="w3-bar-item w3-button">회원가입</a>
@@ -123,6 +114,7 @@ border: 1px solid grey;
        <c:if test="${not empty member.email}">
       <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
       <a href="<c:url value='/board/editProfile/${member.email}'/>" class="w3-bar-item w3-button">내정보</a>
+      
       </c:if>
     </div>
   </div>

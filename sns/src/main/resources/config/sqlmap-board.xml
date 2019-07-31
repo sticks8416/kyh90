@@ -2,61 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="boardDAO">
+<mapper namespace="boardDao">
 	<select id="list" resultType="boardVO">
 		SELECT * FROM SNSBOARD
 		ORDER BY regDate desc
 	</select>
 	<select id="search" parameterType="map" resultType="boardVO">
 	 	SELECT * FROM SNSBOARD
-			WHERE NAME LIKE '%'||#{Search}||'%' 
+			WHERE WRITER LIKE '%'||#{Search}||'%' 
 	
 	</select>
+
 	<select id="select" parameterType="int" resultType="boardVO">
 		SELECT * FROM
 		SNSBOARD WHERE num = #{num}
 	</select>
 	<select id="selectProfile" parameterType="String" resultType="memberVO">
 		SELECT * FROM
-		SNSMEMBER WHERE NAME = #{NAME}
+		SNSMEMBER WHERE email = #{email}
 	</select>
 	<insert id="insert" parameterType="boardVO">
 			INSERT INTO SNSBOARD
-			(num, title, email, writer, password, content, regDate, images)
+			(num, title, writer, email, content, regdate, images)
 			VALUES
 			(SNSBOARD_num.nextval,
-					#{title}, #{email}, #{writer}, #{password}, #{content}, SYSDATE, #{images})
-			<selectKey keyProperty="num" resultType="Integer">
-					SELECT NVL(MAX(num), 0) FROM SNSBOARD
-			</selectKey>
+					#{title}, #{writer}, #{email}, #{content}, SYSDATE, #{images})
 	</insert>
 	<select id="memberSearch"  parameterType="String" resultType="memberVO">
 			SELECT * FROM SNSMEMBER
-			WHERE NAME LIKE '%'||#{Search}||'%'
+			WHERE email LIKE '%'||#{Search}||'%'
 	</select> 
+	
 	<update id="update" parameterType="boardVO">
 			UPDATE SNSBOARD  SET 
 			title = #{title},
 			content = #{content},
 			images = #{images},
-			WHERE email =#{email} and password = #{password}
+			WHERE email =#{email}
 	</update>
-		<update id="updateProfile" parameterType="memberVO">
-			UPDATE SNSBOARD  SET 
-			password = #{password},
-			email = #{email},
-			profile = #{profile}
-			WHERE email = #{email} <!-- AND pass = #{pass} -->
-	</update>
-	<update id="updateCount" parameterType="int">
-			UPDATE SNSBOARD SET cnt = cnt + 1 WHERE num = #{num}<!-- 나중에 seq로 수정 -->
-	</update>
+
 	<delete id="delete" parameterType="boardVO">
 			DELETE FROM SNSBOARD WHERE num = #{num}
 			AND email = #{email}
 	</delete>
 	
-	<delete id="deleteAll">
-			DELETE FROM SNSBOARD
-	</delete>
+	<select id="friendId" parameterType="String" resultType="java.lang.String">
+		select email2 from snsfriend where email1= #{email} and relationship='friend'
+	</select>
 </mapper>

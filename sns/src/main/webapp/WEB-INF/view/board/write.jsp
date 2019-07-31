@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>글 쓰기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,74 +18,74 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <style>
-  body{
-        background-color: #FFFFFF;
+   body{
+        background-color: #F6F6F6;
       }
       .right {
   position:fixed;
-  width: 12%;
-  height: 100%;
+  width: 220px;
+  height: 500px;
   top : 300px;
   right : 0px;
-  border: 1px solid grey;
-  color: #FFFFFF;
-}
- .left {
-  position:fixed;
-  width: 12%;
-  height: 100%;
-  top : 300px;
-  right : 0px;
-  border: 1px solid grey;
-  color: #FFFFFF;
+  border: 3px solid grey;
+  background-color:dark;
 }
 butt{
  position:fixed;
  right : 0px;
 }
-.s{
-border: 1px solid grey;
-
-}
-
-/* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-    
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%; /* Could be more or less, depending on screen size */                          
-        }
-        /* The Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
 </style>
 <body>
 <%@include file="header.jsp" %>
+<div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
+  <h1>제목 미정</h1>
+  <p>부제 미정</p> 
+</div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="topnav-icons fa fa-home w3-left w3-bar-item w3-button" title="Home" style ="font-size:25px; color:white" href="<c:url value="/board/list"/>"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+    </ul>
+  </div>
+ <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
+    <!-- input에 네이밍 값은 쿼리문 네이밍한 값 --> 
+    <button class="btn btn-success" type="submit">search</button>
+  </form>
+   <div class="w3-container">
+     
+  <div class="w3-dropdown-click">
+  
+    <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
+    <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
+      <c:if test="${empty member.email}">
+      <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
+      <a href="#" class="w3-bar-item w3-button">회원가입</a>
+      
+      </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
+       <c:if test="${not empty member.email}">
+      <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
+        <a href="<c:url value='/board/editProfile'/>" class="w3-bar-item w3-button">내정보</a>
+      </c:if>
+      </div>
+      </div>
+</div>
+</nav>
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
+
+<div class="w3-container">
+  <h2></h2>
+  <p><img src="../images/${member.profile}" width="200" height="150" alt="no img"></p>
+ <!-- 윗줄에 <input type="file" name="filename"> 붙이기 -->
+  <div class="w3-panel w3-card" style="width:90%"><p>${member.name}</p></div>
+  <div class="w3-panel w3-card-2" style="width:90%"><p>${member.email}</p></div>
+<!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
+</div>
+</div>
 	<!-- action="<c:url value="/board/write"/>"  -->
 		<form action="<c:url value="/board/write" />" method="POST" enctype="multipart/form-data" >
     	 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
@@ -101,25 +100,45 @@ border: 1px solid grey;
         <div><input type="file" name="filename"></div>
         </div>
     	<div style = "float:right">
-					<input type="submit" value="등록" onclick="write_click();">
+					<input type="submit" value="등록">
 					<input type="submit" value="목록"><a href="<c:url value="/board/list"/>"></a></div>
 					</div>
 					
-		</form> 
-		<%@include file="footer.jsp" %>
-<script>
- function myFunction() {
-	  var x = document.getElementById("ddc");
-	  if (x.className.indexOf("w3-show") == -1) {
-	    x.className += " w3-show";
-	  } else { 
-	    x.className = x.className.replace(" w3-show", "");
-	  }
-	}
+		</form>
+<div class ="right">
+ <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+
+<div class="w3-container">
+  <h2></h2>
+  <c:if test="${empty member.email}">
+  <p>친구목록</p>
+<c:forEach var="board" items="${boardList}" varStatus="loop">
+  <div class="w3-panel w3-card"><p>${board.writer}</p></div>
+  </c:forEach>
+  </c:if>
+  <c:if test="${not empty member.email}">
+  <p>친구목록</p>
+<c:forEach var="board" items="${boardList}" varStatus="loop">
+  <div class="w3-panel w3-card"><p>${board.writer}</p></div>
+  </c:forEach>
+  </c:if>
+</div>
+</div>
+</div>
+ <script>
+function myFunction() {
+  var x = document.getElementById("Demo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
 </script>
  
 <!-- <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
   <p>Copyright 2019 Yeonheung Kang</p>
 </div> -->
+<%@include file="footer.jsp" %>
 </body>
 </html>
