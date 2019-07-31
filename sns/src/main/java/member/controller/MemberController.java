@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,8 +45,8 @@ import member.service.MemberService;
 @Controller
 @SessionAttributes("memberVO")
 public class MemberController {
+	
 	private MemberService memberService;
-
 	// 로그인 버튼 submit시에 피드/메인창으로 넘겼을 시 보드.list 쿼리 실행하면서 들고오기 위해
 
 
@@ -90,6 +91,12 @@ public class MemberController {
 		
 		memberService.memberInsert(memberVO);
 		return "/member/main";
+	}
+	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(@RequestParam("userId") String email) {
+
+		return memberService.userIdCheck(email);
 	}
 	@RequestMapping(value = "/member/matchPW", method = RequestMethod.GET)
 	public String matchPW(Model model, HttpServletRequest req) {

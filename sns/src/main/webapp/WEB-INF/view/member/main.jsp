@@ -29,14 +29,14 @@
 	<label><input type="password" name="password" placeholder="비밀번호" style = "padding-top: 0px; padding-bottom: 0px">	</label>
 
 		</div>
-		<input type="submit" value="로그인"><a href="<c:url value='/board/list/${member.writer}'/>"></a>
-					<input type="submit" value="회원가입"><a href="<c:url value='/member/signup'/>"></a>
+		<%-- <button value="로그인"><a href="<c:url value='/board/list/${member.writer}'/>"></a>로그인</button> --%>
+		<button class="btn btn-primary" onclick= "location.href=<c:url value='/board/list/${member.writer}'/>">로그인</button>
+		<button type="button" class="btn btn-primary" onclick= "location.href=<c:url value='/member/signup'/>">회원가입</button>
+		<button type="button" class="btn btn-primary" onclick= "location.href=<c:url value='/member/matchPW'/>" style = "position:right">비밀번호 찾기</button>
 					</div>
 					</div>
 	</form>
 	</c:if>
 	</div>
-			
-	<p><a href="<c:url value='/member/matchPW'/>">비밀번호 찾기</a></p>
 </body>
 </html>
