@@ -52,4 +52,8 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO matchPW(Map map) {
 		return memberDao.matchPW(map);
 	}
+	@Override
+	public int matchID(String email) {
+		return memberDao.matchID(email);
+	}
 }

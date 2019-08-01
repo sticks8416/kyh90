@@ -48,8 +48,8 @@
         } */
 </style>
 </head>
-<body >
- 
+<body>
+ <%@include file="header.jsp" %>
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>                                                               
@@ -93,6 +93,6 @@ function deletego() {
 }
 </script>
 
-		
+<%@include file="footer.jsp" %>		
 </body>
 </html>

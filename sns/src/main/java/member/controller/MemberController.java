@@ -3,10 +3,12 @@ package member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -60,13 +62,26 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/main", method = RequestMethod.POST)
-	public String login(Model model, HttpServletRequest req, HttpSession session) throws Exception {
+	public String login(Model model, HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws Exception {
 		String email = req.getParameter("email");
 		String pass = req.getParameter("password");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("email", email);
 		map.put("password", pass);
 		MemberVO memberVO = memberService.memberLogin(map);
+		
+		Cookie[] cookies = req.getCookies();
+		if(cookies != null && cookies.length >0) {
+			for(int i = 0; i<cookies.length; i++) {
+				if(cookies[i].getName().equals("email")) {
+					Cookie cookie = new Cookie("email", "");
+					cookie.setMaxAge(0);
+					resp.addCookie(cookie);
+					
+							
+				}
+			}
+		}
 		if (memberVO == null) {
 			return "redirect:/member/main";
 		} else {
@@ -83,14 +98,28 @@ public class MemberController {
 		return "/member/signup";
 	}
 	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
-	public String signUp2(Model model, MemberVO memberVO) {
+	public String signUp2(Model model,String email, MemberVO memberVO, HttpServletRequest req) {
 		model.addAttribute("memberVO", new MemberVO());
+		email = req.getParameter("email");
 		System.out.println(memberVO.getEmail());
 		System.out.println(memberVO.getPassword());
 		System.out.println(memberVO.getName());
+		System.out.println(email);
+		int check = memberService.matchID(email);
+		System.out.println(memberVO.getEmail());
+		System.out.println(check);
+		if(check==1) {
+			System.out.println("이미 존재하는 아이디 입니다.");
+			return "redirect:/member/signup";
+		}
+		else {
 		//멤버보드 쿼리문 list로 가져와서 입력받은값이랑 비교해서 if/else로 페이징 각각 시키기... ajax 실패 
 		memberService.memberInsert(memberVO);
+		System.out.println(memberVO.getEmail());
+		System.out.println(memberVO.getPassword());
+		System.out.println(memberVO.getName());
 		return "/member/main";
+	}
 	}
 	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
 	@ResponseBody

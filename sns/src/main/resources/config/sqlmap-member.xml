@@ -6,7 +6,8 @@
 	<select id="memberlist" resultType="memberVO">
 			SELECT * FROM SNSMEMBER ORDER BY email
 			
-	</select>
+	</select>	
+	
 	<select id="memberLogin" parameterType="map" resultType="memberVO">
 		SELECT * FROM SNSMEMBER WHERE email=#{email} and password=#{password}
 	</select>
@@ -23,6 +24,8 @@
 	<select id="matchPW" parameterType="map" resultType="memberVO">
 		select password from snsmember where email =#{email} and name =#{name}
 	</select>
-	
+	<select id="matchID" parameterType="String" resultType="java.lang.Integer">
+			SELECT count(*) FROM SNSMEMBER where email =#{email}
+	</select>
 
 </mapper>

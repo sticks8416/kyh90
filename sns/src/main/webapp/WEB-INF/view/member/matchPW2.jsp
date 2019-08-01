@@ -18,7 +18,20 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%@include file="header.jsp" %>
 비번은${memberVO.password}입니다.
 <a href="<c:url value="/member/main" />">로그인 화면으로 돌아가기</a>
+<%@include file="footer.jsp" %>
 </body>
+<script>
+function myFunction() {
+	  var x = document.getElementById("Demo");
+	  if (x.className.indexOf("w3-show") == -1) {
+	    x.className += " w3-show";
+	  } else { 
+	    x.className = x.className.replace(" w3-show", "");
+	  }
+	}	
+
+</script>
 </html>

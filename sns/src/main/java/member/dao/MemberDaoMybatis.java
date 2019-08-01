@@ -36,7 +36,10 @@ public MemberVO memberLogin(Map map) {
 public MemberVO matchPW(Map map) {
 	return (MemberVO)sqlSessionTemplate.selectOne("matchPW", map);
 }
-
+@Override
+public int matchID(String email) {
+	return (int)sqlSessionTemplate.selectOne("matchID", email);
+}
 @Override
 public int checkOverId(String user_id) {
 	// TODO Auto-generated method stub

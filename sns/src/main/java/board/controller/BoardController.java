@@ -158,17 +158,19 @@ public class BoardController {
 		return "/board/delete";
 	}
 	@RequestMapping(value="/board/delete", method=RequestMethod.POST)
-	public String delete(int num,HttpSession session, String pwd, Model model) {
+	public String delete(int num, String email,HttpSession session, String pwd, Model model) {
 		int rowCount;
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		BoardVO boardVO = new BoardVO();
 		boardVO.setNum(num);
-		boardVO.setWriter(memberVO.getName());
+		boardVO.setEmail(memberVO.getEmail());
+		System.out.println(boardVO.getEmail());
+		System.out.println(boardVO.getNum());
 		rowCount = boardService.delete(boardVO);
 		
 		if(rowCount == 0) {
 			model.addAttribute("num", num);
-			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+			model.addAttribute("msg", "게시물 작성자만 삭제 가능합니다.");
 			return "/board/delete";
 		}
 		else {

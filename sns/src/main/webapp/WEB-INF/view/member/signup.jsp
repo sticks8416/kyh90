@@ -18,12 +18,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>회원가입~</h1>
+<%@include file="header.jsp" %>
+
+	<h1>회원가입</h1>
 	
-	<div style ="width:400px" >
-		<form action="<c:url value="/member/signup" />" method="POST" enctype="multipart/form-data" >
+	
+		<form action="<c:url value="/member/signup"/>" method="POST">
+		<div style ="width:600px" style = "position:center">
 				<!-- 아이디 -->
-<div class="form-group">
+<div class="form-group" style="margin:auto">
 	<label for="user_email">이메일</label>
 		<input type="text" class="form-control" id="email" name="email" placeholder="E-mail" required>
 <div class="check_font" id="id_check"></div>
@@ -39,8 +42,10 @@
 </div>
 				<input type="submit" value="회원가입">
 						<a href="<c:url value="/board/list" />">목록</a>
-		</div>		
+		</div>
+		</form>	
 				
+			
 				
 			<%-- 	<table border="1">
 						<tr>
@@ -66,10 +71,18 @@
 						<input type="submit" value="회원가입">
 						<a href="<c:url value="/board/list" />">목록</a>
 				</div> --%>
-				</form>
-		
+				
+			<%@include file="footer.jsp" %>
 </body>
 <script>
+function myFunction() {
+	  var x = document.getElementById("Demo");
+	  if (x.className.indexOf("w3-show") == -1) {
+	    x.className += " w3-show";
+	  } else { 
+	    x.className = x.className.replace(" w3-show", "");
+	  }
+	}	
 // 아이디 유효성 검사(1 = 중복 / 0 != 중복)
 	$("#email").blur(function() {
 		// id = "id_reg" / name = "userId"

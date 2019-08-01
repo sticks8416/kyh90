@@ -93,16 +93,7 @@ border: 1px solid grey;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>목록</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <!-- </i>
-   -->
-
-
-  
 <%@include file="header.jsp" %>
-
-
 <div class="left">
 <div style="width:90%; text-align:center">
   <h2></h2>
@@ -113,7 +104,6 @@ border: 1px solid grey;
   <div class="w3-panel w3-card-2" style="width:110%"><p>${member.email}</p></div>
 </div>
 </div>
-
 
   <c:if test="${not empty member.email}">
   <c:forEach var="board" items="${boardList}" varStatus="loop">
@@ -131,11 +121,8 @@ border: 1px solid grey;
         <form action="/action_page.php">
         <div class="w3-panel w3-border-top w3-border-bottom" style = "margin: 0px 0px 0px 0px">
        <div class="form-group" style = "padding: 10px 10px 0px 10px" >
-       
        <!-- 좋아요 카운팅으로 넘김버튼 -->
       <i class="glyphicon glyphicon-thumbs-up" style ="font-size:25px"></i>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       <i class="fas fa-heart" style ="font-size:25px"></i>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <!-- 수정페이지 넘김버튼 -->
        <a href="<c:url value="/board/edit/${board.num}"/>"><i class="fas fa-file" style ="font-size:25px"></i></a>

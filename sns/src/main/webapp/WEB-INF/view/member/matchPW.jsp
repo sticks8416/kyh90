@@ -18,6 +18,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%@include file="header.jsp" %>
 <h1>비번찾기</h1>
 		<form action="<c:url value="/member/matchPW"/>" method="POST" enctype="multipart/form-data" >
 				<table border="1">
@@ -38,6 +39,17 @@
 						<a href="<c:url value="/board/list" />">목록</a>
 				</div>
 				</form>
-		
+		<%@include file="footer.jsp" %>
 </body>
+<script>
+function myFunction() {
+	  var x = document.getElementById("Demo");
+	  if (x.className.indexOf("w3-show") == -1) {
+	    x.className += " w3-show";
+	  } else { 
+	    x.className = x.className.replace(" w3-show", "");
+	  }
+	}	
+
+</script>
 </html>

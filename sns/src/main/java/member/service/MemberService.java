@@ -19,7 +19,7 @@ public interface MemberService {
 	public MemberVO memberLogin(Map map);
 	public void memberInsert(MemberVO memberVO);
 	public MemberVO matchPW(Map map);
-
+	public int matchID(String email);
 	public int userIdCheck(String email);
 
 	

@@ -17,14 +17,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
+<style>
+div.container{
+border: 1px solid grey; 
+padding: 10px 10px 10px 10px;  
+margin-top: 15px; 
+margin-bottom: 15px;
+height: 150px;  
+width: 330px; 
+
+overflow: auto
+
+
+}
+
+
+</style>
 <body>
+<%@include file="header.jsp" %>
 	<div>
 	<c:if test="${empty member}">
 	<form action="<c:url value='/member/main/'/>" method="POST" >
-		 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
-    margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
+		 <div class="container" style = ";">
 	<div>
-	<div>
+	<div style = "width:300px">
 	<label><input type="text" name="email" placeholder="아이디" style = "padding-top: 0px; padding-bottom: 0px"></label>
 	<label><input type="password" name="password" placeholder="비밀번호" style = "padding-top: 0px; padding-bottom: 0px">	</label>
 
@@ -33,14 +49,25 @@
 		<button class="btn btn-success" onclick= "location.href=<c:url value='/board/list/${member.email}'/>">로그인</button>
 		<%-- <button type="button" class="btn btn-warning" onclick= "location.href=<c:url value="/member/signup"/>">회원가입</button>
 		<button type="button" class="btn btn-danger	" onclick= "location.href=<c:url value="/member/matchPW"/>">비밀번호 찾기</button> --%>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-			<a href =<c:url value="/member/matchPW"/>>비밀번호 찾기</a>
-			<a href =<c:url value="/member/signup"/>>회원가입</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href =<c:url value="/member/matchPW"/>>비밀번호 찾기/</a>
+			<a href =<c:url value="/member/signup"/>>/회원가입</a>
 					</div>
 					</div>
 	</form>
 	</c:if>
 	</div>
+	<%@include file="footer.jsp" %>
 </body>
+<script>
+function myFunction() {
+	  var x = document.getElementById("Demo");
+	  if (x.className.indexOf("w3-show") == -1) {
+	    x.className += " w3-show";
+	  } else { 
+	    x.className = x.className.replace(" w3-show", "");
+	  }
+	}	
+
+</script>
 </html>
