@@ -12,6 +12,8 @@
 	<typeAliases>
 		<typeAlias alias="memberVO" type="member.domain.MemberVO"/>
 		<typeAlias alias="boardVO" type="board.domain.BoardVO"/>
+		<typeAlias alias="replyVO" type="board.domain.ReplyVO"/>
 		<typeAlias alias="friendVO" type="friend.domain.FriendVO"/>
+		<typeAlias alias="boardLikeVO" type="board.domain.BoardLikeVO"/>
 	</typeAliases>
 </configuration>

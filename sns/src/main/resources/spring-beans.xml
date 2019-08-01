@@ -42,9 +42,11 @@
 			<property name="mapperLocations">
 				<list>
 					<value>classpath:config/sqlmap-board.xml</value>
+					<value>classpath:config/sqlmap-boardLike.xml</value>
 					<value>classpath:config/sqlmap-member.xml</value>
 					<value>classpath:config/sqlmap-friend.xml</value>
-					</list>
+					<value>classpath:config/sqlmap-reply.xml</value>
+				</list>
 			</property>
 	</bean>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
@@ -58,8 +60,22 @@
 	<bean id="boardServiceImpl" class="board.service.BoardServiceImpl">
 		<property name="boardDao" ref="boardDao"/>
 	</bean>
+	<bean id="replyDao" class="board.dao.ReplyDaoMybatis">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
+
+	<bean id="replyServiceImpl" class="board.service.ReplyServiceImpl">
+		<property name="replyDao" ref="replyDao"/>
+	</bean>
+	<bean id="boardLikeDao" class="board.dao.BoardLikeDaoMybatis">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
+
+	<bean id="boardLikeServiceImpl" class="board.service.BoardLikeServiceImpl">
+		<property name="boardLikeDao" ref="boardLikeDao"/>
+	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-				<property name="maxUploadSize" value="10485760" />
+			<property name="maxUploadSize" value="10485760" />
 		</bean>
 
 		<bean id="memberDao" class="member.dao.MemberDaoMybatis">
@@ -76,12 +92,14 @@
 		<property name="friendDao" ref="friendDao"/>
 	</bean>	
 	
+	<bean id="websocketHandler" class="friend.controller.WebsocketHandler">
+			<property name="friendService" ref="friendServiceImpl"/>	
+	</bean>
 	<websocket:handlers>
     <websocket:mapping handler="websocketHandler" path="chat"/>
     <websocket:handshake-interceptors>
 		   	<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
     </websocket:handshake-interceptors>
     <websocket:sockjs/>
-
 	</websocket:handlers>
 	</beans>

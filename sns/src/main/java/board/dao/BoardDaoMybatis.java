@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import board.domain.BoardVO;
+import board.domain.ReplyVO;
 import member.domain.MemberVO;
 
 @Repository
@@ -67,5 +68,9 @@ public class BoardDaoMybatis implements BoardDao{
 	public List<String> searchFriend(String email) {
 		return sqlSessionTemplate.selectList("friendId", email);
 	}
+	@Override
+	public List<ReplyVO> replyList() {
 
+		return sqlSessionTemplate.selectList("replyList");
+	}
 }

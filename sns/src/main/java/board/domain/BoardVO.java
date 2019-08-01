@@ -15,7 +15,14 @@ public class BoardVO {
 	private Timestamp regDate;
 	private String content;
 	private String email;
-
+	private int likes;
+	
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
 	public String getEmail() {
 		return email;
 	}

@@ -16,8 +16,11 @@
 	<bean id="friendController" class="friend.controller.FriendController">
 			<property name="friendService" ref="friendServiceImpl"/>	
 	</bean>
-	<bean id="websocketHandler" class="friend.controller.WebsocketHandler">
-			<property name="friendService" ref="friendServiceImpl"/>	
+	<bean id="boardLikeController" class="board.controller.BoardLikeController">
+			<property name="boardLikeService" ref="boardLikeServiceImpl"/>	
+	</bean>
+	<bean id="replyController" class="board.controller.ReplyController">
+			<property name="replyService" ref="replyServiceImpl"/>	
 	</bean>
 
 </beans>

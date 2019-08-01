@@ -3,6 +3,7 @@ package board.dao;
 import java.util.List;
 
 import board.domain.BoardVO;
+import board.domain.ReplyVO;
 import member.domain.MemberVO;
 
 public interface BoardDao {
@@ -15,5 +16,6 @@ public interface BoardDao {
 	public abstract MemberVO selectProfile(String email);
 	public abstract List<MemberVO> memberSearch(String Search);
 	public abstract List<String> searchFriend(String email);
+	public abstract List<ReplyVO> replyList();
 	// public abstract List<BoardVO> boardSearch(String search); 
 }

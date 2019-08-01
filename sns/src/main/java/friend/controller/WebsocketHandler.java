@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.OutputStream;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +16,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+import javax.websocket.server.HandshakeRequest;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -93,7 +100,7 @@ public class WebsocketHandler extends TextWebSocketHandler{
 		msg = sdf.format(date)+msg;
 		System.out.println(msg);
 		String chatFile = friendService.checkChat(friendVO);
-		file = new FileWriter("D:/반응형웹개발자/Spring/springwork/project/src/main/webapp/chatLog/"+chatFile,true);
+		file = new FileWriter("D:/반응형웹개발자/Project/kyh90-master/kyh90-master/sns/src/main/webapp/chatLog/"+chatFile,true);
 		BufferedWriter bf = new BufferedWriter(file);
 		bf.append(msg+"\r\n");
 		for(WebSocketSession s : list) {

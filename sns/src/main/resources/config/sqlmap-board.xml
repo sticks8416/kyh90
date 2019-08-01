@@ -49,4 +49,9 @@
 	<select id="friendId" parameterType="String" resultType="java.lang.String">
 		select email2 from snsfriend where email1= #{email} and relationship='friend'
 	</select>
+	
+	<select id="replyList" resultType="replyVO">
+		select * from snsreply
+		order by regdate asc
+	</select>
 </mapper>

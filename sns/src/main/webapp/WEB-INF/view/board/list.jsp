@@ -122,7 +122,8 @@ border: 1px solid grey;
         <div class="w3-panel w3-border-top w3-border-bottom" style = "margin: 0px 0px 0px 0px">
        <div class="form-group" style = "padding: 10px 10px 0px 10px" >
        <!-- 좋아요 카운팅으로 넘김버튼 -->
-      <i class="glyphicon glyphicon-thumbs-up" style ="font-size:25px"></i>
+ <a id="btn${board.num }"><i class="glyphicon glyphicon-thumbs-up" style ="font-size:25px"></i></a>
+      <Strong id="likes${board.num }" style="font-size:20px">${board.likes }</Strong>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <!-- 수정페이지 넘김버튼 -->
        <a href="<c:url value="/board/edit/${board.num}"/>"><i class="fas fa-file" style ="font-size:25px"></i></a>
@@ -133,10 +134,23 @@ border: 1px solid grey;
         <a href="<c:url value="/board/delete/${board.num}"/>"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
         </div>
        </div>
-       <input type="text" class="form-control" placeholder="답글 작성" name="text1" >
-       <a class="butt"><button type="submit" class="btn btn-secondary" style = "float:right">답글 달기</button></a>
-        
-        
+             <input type="text" class="form-control" placeholder="답글 작성" id="comments${board.num }" value="" >
+       <button type="button" class="btn btn-secondary" style = "float:right" id="reply${board.num }">답글 달기</button>
+        <c:if test="${replyList != null }">
+		<div id ="refresh${board.num }">
+			<h4>Comments</h4>
+		<c:forEach var="comment" items="${replyList }" varStatus="loop">
+			<c:if test="${comment.num == board.num }">
+			<span style="color:blue; font-size:13pt; font-weight: bold;">${comment.email }</span><div class="col-sm-1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="text-align:right; font-size:12pt;" >${comment.regDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:if test="${comment.email  == member.email }">
+			<button class="btn btn-danger btn-xs" type="button" id="delete${comment.replyNum }" >x</button>
+			</c:if>
+			<br>
+			<div class="col-sm-1"></div>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; <span style="font-size:13pt;">${comment.comments }</span><hr/>
+			</c:if>
+		</c:forEach>
+		</div>
+			</c:if>
         
         </form>
        </div>
@@ -181,19 +195,59 @@ $("[id^=btn]").on('click', function(event){
 		success: function(data){
 		
 			if(data.check == 0){
-				$('#img'+seq).attr('src', 'img/heart.png');
 				$('#likes'+seq).text(data.likes);
 			}else if(data.check ==1){
-				$('#img'+seq).attr('src', 'img/like.png');
 				$('#likes'+seq).text(data.likes);
 			}
 			if(data.msg != null){
 				alert(data.msg);
-				location.href='<c:url value="/login"/>';
+				location.href='<c:url value="/member/main"/>';
 			}
 		}
 	})
 	})
+$("[id^=reply]").on('click', function(){
+	var id = $(this).attr('id');
+	var num= id.replace("reply", "");
+	var comment = $('#comments'+num).val()
+	var alldata = {"num":num , "comments":comment};
+	console.log(comment);
+	console.log(num);
+	$.ajax({
+   		url: "<c:url value="/reply"/>",
+   		type: "post", 
+   		data: alldata,
+   		success: function(data){
+   			if(data.msg != null){
+   				alert(data.msg);
+   			}
+   			else if(data.success != null){
+				alert(data.success);
+				location.href='<c:url value="/board/list"/>';
+   			}
+   		}
+   	})
+})
+
+    	
+    	$("[id^=delete]").on('click', function(){
+    		var id = $(this).attr('id');
+    		var replyNum= id.replace("delete", "");
+    		var check = confirm("Want to delete this reply?");
+    		if(check){
+    		$.ajax({
+        		url: "<c:url value="/replyDelete"/>",
+        		type: "post", 
+        		data: "replyNum="+replyNum,
+        		success: function(data){
+        			if(data.success != null){
+     				alert(data.success);
+     				location.href='<c:url value="/board/list"/>';
+        			}
+        		}
+        	})}
+    	})
+    
 
 </script>
 
