@@ -19,26 +19,22 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<h1>비번찾기</h1>
+<div style = "width:40%; position:relateive; margin:auto">
+<h1>비밀번호 찾기</h1>
 		<form action="<c:url value="/member/matchPW"/>" method="POST" enctype="multipart/form-data" >
-				<table border="1">
-						<tr>
-								<th><label>이메일
-								<td><input type="text" name="email" ></td>
-								</label></th>
-						</tr>		
-						<tr>
-								<th><label>이름
-								<td><input type="text" name="name" ></td>
-								</label></th>
-						</tr>
-			
-				</table>
+				<div class="form-group" style="margin:auto">
+						<label>이메일</label>
+		<input type="text" class="form-control" id="email" name="email" placeholder="E-mail" required>
+<div class="check_font" id="id_check"></div>
+		<label>이름</label>
+		<input type="text" class="form-control" id="name" name="name" placeholder="NAME" required>					
 				<div>
 						<input type="submit" value="찾기">
 						<a href="<c:url value="/board/list" />">목록</a>
 				</div>
+				</div>
 				</form>
+				</div>
 		<%@include file="footer.jsp" %>
 </body>
 <script>

@@ -19,12 +19,9 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-
-	<h1>회원가입</h1>
-	
-	
+<div style = "width:40%; position:relateive; margin:auto">
 		<form action="<c:url value="/member/signup"/>" method="POST">
-		<div style ="width:600px" style = "position:center">
+		
 				<!-- 아이디 -->
 <div class="form-group" style="margin:auto">
 	<label for="user_email">이메일</label>
@@ -42,10 +39,10 @@
 </div>
 				<input type="submit" value="회원가입">
 						<a href="<c:url value="/board/list" />">목록</a>
-		</div>
+		
 		</form>	
 				
-			
+		</div>	
 				
 			<%-- 	<table border="1">
 						<tr>
