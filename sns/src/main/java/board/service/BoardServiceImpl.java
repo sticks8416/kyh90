@@ -38,8 +38,8 @@ public class BoardServiceImpl implements BoardService{
 			return boardDao.select(num);
 		}
 		@Override
-		public MemberVO readProfile(String writer) {
-			return boardDao.selectProfile(writer);
+		public MemberVO readProfile(String email) {
+			return boardDao.selectProfile(email);
 		}
 		@Override
 		public List<MemberVO> memberSearch(String Search){

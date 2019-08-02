@@ -15,6 +15,14 @@ public class BoardVO {
 	private Timestamp regDate;
 	private String content;
 	private String email;
+	private String password;
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	private int likes;
 	
 	public int getLikes() {

@@ -20,6 +20,7 @@
 <!-- 검색 후 유저 목록 친구목록 구현 -->
 <body>
 <%@include file="header.jsp" %>
+<div style = "width:40%; position:relateive; margin:auto">
 <c:if test="${searchList != null }">
         <h4 class="text-center">Search List</h4>
          <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 5px;">
@@ -43,7 +44,7 @@
         </c:forEach>
         </table>
         </c:if>
-
+</div>
  <%@include file="footer.jsp" %>
 </body>
 </html>

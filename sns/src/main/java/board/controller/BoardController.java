@@ -53,10 +53,14 @@ public class BoardController {
 		List<MemberVO> friendList = new ArrayList<MemberVO>();
 		List<String> emailList = new ArrayList<String>();
 		emailList = boardService.searchFriend(memberVO.getEmail());
+		System.out.println(emailList);
 		for(String email: emailList) {
 			friendList.add(boardService.readProfile(email));
+			System.out.println(friendList);
 		}
 		model.addAttribute("friendList",friendList);
+		model.addAttribute("emailList", emailList);
+		System.out.println(emailList);
 		return "/board/list";	
 	}
 	@RequestMapping(value="/board/list", method=RequestMethod.POST)
@@ -97,14 +101,23 @@ public class BoardController {
 			
 			MemberVO memberVO = (MemberVO) session.getAttribute("member");
 			System.out.println("session : "+memberVO);
+			System.out.println(memberVO.getEmail());
+			System.out.println(memberVO.getPassword());
 			boardVO.setImages(uploadfile.getOriginalFilename());
 			String path = req.getSession().getServletContext().getRealPath("upload");
 			System.out.println(path);
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
 			boardVO.setEmail(memberVO.getEmail());
 			boardVO.setWriter(memberVO.getName());
+			boardVO.setPassword(memberVO.getPassword());
 			memberVO.getName();
 			memberVO.getPassword();
+			System.out.println(boardVO.getEmail());
+			System.out.println(boardVO.getNum());
+			System.out.println(boardVO.getWriter());
+			System.out.println(boardVO.getImages());
+			System.out.println(boardVO.getPassword());
+			System.out.println(boardVO.getContent());
 			boardService.write(boardVO);
 			return "redirect:/board/list";
 	}

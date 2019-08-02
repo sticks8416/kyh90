@@ -23,10 +23,10 @@
 	</select>
 	<insert id="insert" parameterType="boardVO">
 			INSERT INTO SNSBOARD
-			(num, title, writer, email, content, regdate, images)
+			(num, title, password, writer, email, content, regdate, images)
 			VALUES
 			(SNSBOARD_num.nextval,
-					#{title}, #{writer}, #{email}, #{content}, SYSDATE, #{images})
+					#{title},#{password}, #{writer}, #{email}, #{content}, SYSDATE, #{images})
 	</insert>
 	<select id="memberSearch"  parameterType="String" resultType="memberVO">
 			SELECT * FROM SNSMEMBER

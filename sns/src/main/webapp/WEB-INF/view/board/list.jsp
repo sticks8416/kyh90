@@ -114,7 +114,7 @@ border: 1px solid grey;
    <div class="w3-panel w3-border-top w3-border-bottom">
     <a style= "text-align:left">${board.email}</a><a style = "float:right">${board.regDate}</a>
     </div>
-      <div><img src="../upload/${board.images}" width="auto" height="150" alt="no img"></div>
+      <div><img src="../images/${board.images}"  width="auto" height="150" alt="no img"></div>
       <div>
       <h4>${board.content}</h4><!-- content,regdate 안됨 -->
        </div>
@@ -156,19 +156,19 @@ border: 1px solid grey;
        </div>
  </c:forEach>
   </c:if>
- <div class ="right">
- 
-<div class="w3-container">
-  <h2></h2>
+  
   <c:if test="${not empty member.email}">
+ <div class ="right">
+
+  <h2></h2>
+  
   <p>친구목록</p>
 <c:forEach var="friend" items="${friendList}" varStatus="loop">
-  <div class="w3-panel w3-card" style = "height:70px"><p>${friend.email}</p><p>${friend.name}</p><button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.email }"/>','new','left=650, top=250, width=500, height=600')">Chat</button></div>
+  <div class="w3-panel w3-card" style = "height:70px"><div><p>${friend.email}</p></div><div><p>${friend.name}</p></div><button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.email }"/>','new','left=650, top=250, width=500, height=600')">Chat</button></div>
   </c:forEach>
-  </c:if>
-
+  
 </div>
-</div>
+</c:if>
 <%@include file="footer.jsp" %>
 <script>
 function myFunction() {
