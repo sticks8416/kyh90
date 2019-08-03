@@ -20,7 +20,7 @@
 <body>
 <%@include file="header.jsp" %>
 <div style = "width:40%; position:relateive; margin:auto">
-<h1>비밀번호 찾기</h1>
+<h2>비밀번호 찾기</h2>
 		<form action="<c:url value="/member/matchPW"/>" method="POST" enctype="multipart/form-data" >
 				<div class="form-group" style="margin:auto">
 						<label>이메일</label>
@@ -28,6 +28,7 @@
 <div class="check_font" id="id_check"></div>
 		<label>이름</label>
 		<input type="text" class="form-control" id="name" name="name" placeholder="NAME" required>					
+		<p></p>
 				<div>
 						<input type="submit" value="찾기">
 						<a href="<c:url value="/board/list" />">목록</a>

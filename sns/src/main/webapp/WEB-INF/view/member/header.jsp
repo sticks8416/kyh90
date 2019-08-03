@@ -78,7 +78,8 @@ butt{
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <h1> ${member.name}님 환영합니다. 제목 미정</h1>
+  <h1></h1>
+  <p></p>
   <p><%-- 경로 값 :${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/ --%></p> 
 </div>
 
@@ -92,15 +93,14 @@ butt{
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">    
       <li class="nav-item">
-        <a class="nav-link" href="<c:url value="/board/write"/>">글쓰기</a>
       </li>    
     </ul>
   </div>&nbsp;&nbsp;&nbsp;
     <a href="<c:url value="/requestList"/>"><i class="far fa-bell" style ="font-size:25px"></i></a>&nbsp;&nbsp;
-  <form class="form-inline" action="<c:url value='/board/list'/>" method = "post">
+ <form class="form-inline">
     <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
     <button class="btn btn-success" type="submit">search User</button>
-  </form>
+</form>
  <!--  <i class="fas fa-bars" style= "float:right; font-size: 30px"> -->
   <div class="w3-container">   
   <div class="w3-dropdown-click">

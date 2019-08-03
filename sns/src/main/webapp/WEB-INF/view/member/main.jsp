@@ -35,16 +35,18 @@ overflow: auto
 </style>
 <body>
 <%@include file="header.jsp" %>
+
 <c:if test="${empty member}">
 	<form action="<c:url value='/member/main/'/>" method="POST" >
 <div class="form-group" style="margin:auto;width:40%">
+<h2>로그인</h2>
 	<label>이메일</label>
 		<input type="text" class="form-control" id="email" name="email" placeholder="E-mail" required>
 <div class="check_font" id="id_check"></div>
 <label>비밀번호</label>
 		<input type="text" class="form-control" id="password" name="password" placeholder="PASSWORD" required>
 
-
+<p></p>
 				<button class="btn btn-success" onclick= "location.href=<c:url value='/board/list/${member.email}'/>">로그인</button>
 	<a href =<c:url value="/member/matchPW"/>>비밀번호 찾기/</a>
 			<a href =<c:url value="/member/signup"/>>/회원가입</a>

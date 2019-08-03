@@ -17,7 +17,7 @@
   top : 300px;
   right : 30px;
   border: 1px solid black;
- border-radius:10px;
+ border-radius:5px;
   color: #000000;
 }
  div.left {
@@ -160,12 +160,13 @@ border: 1px solid grey;
   <c:if test="${not empty member.email}">
  <div class ="right">
 
-  <h2></h2>
-  
-  <p>친구목록</p>
-<c:forEach var="friend" items="${friendList}" varStatus="loop">
-  <div class="w3-panel w3-card" style = "height:70px"><div><p>${friend.email}</p></div><div><p>${friend.name}</p></div><button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.email }"/>','new','left=650, top=250, width=500, height=600')">Chat</button></div>
-  </c:forEach>
+   <div class="card">
+    <div class="card-header"style= "border-bottom: 1px solid black; hight:40px"><h5>친구목록</h5></div>
+    <c:forEach var="friend" items="${friendList}" varStatus="loop">
+    <div class="card-body" style= "border-bottom: 1px solid black/* ;border-top: 1px solid black */"><p>${friend.email}</p><p>${friend.name}</p>
+    <button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.email }"/>','new','left=650, top=250, width=500, height=600')">Chat</button></div> 
+ </c:forEach>
+  </div>
   
 </div>
 </c:if>
