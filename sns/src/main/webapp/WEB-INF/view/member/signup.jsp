@@ -40,7 +40,7 @@
 
 </div>
 <p></p>
-<p></p>
+
 				<input type="submit" value="회원가입">
 						<a href="<c:url value="/board/list" />">목록</a>
 		</form>		

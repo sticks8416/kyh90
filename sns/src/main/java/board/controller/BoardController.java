@@ -158,7 +158,7 @@ public class BoardController {
 					if(memberVO.getName()!=null) {
 						boardService.edit(boardVO);
 						sessionStatus.setComplete();
-						return "redirect:/board/list";
+						return "/board/list";
 					}
 			}
 			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");

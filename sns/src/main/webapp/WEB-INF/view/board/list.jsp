@@ -98,9 +98,10 @@ border: 1px solid grey;
 <div style="width:90%; text-align:center">
   <h2></h2>
   <!-- <div><input type="file" name="filename"></div> -->
-  <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label>
-<!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
-  <div class="w3-panel w3-card" style="width:110%" ><p>${member.name}</p></div>
+  <label ><input type="file" name="filename" src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label>
+<%--   <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label>
+ --%><!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
+  <div class="w3-panel w3-card" style="width:110%" ><p>${member.name	}</p></div>
   <div class="w3-panel w3-card-2" style="width:110%"><p>${member.email}</p></div>
 </div>
 </div>
@@ -163,7 +164,7 @@ border: 1px solid grey;
    <div class="card">
     <div class="card-header"style= "border-bottom: 1px solid black; hight:40px"><h5>친구목록</h5></div>
     <c:forEach var="friend" items="${friendList}" varStatus="loop">
-    <div class="card-body" style= "border-bottom: 1px solid black/* ;border-top: 1px solid black */"><p>${friend.email}</p><p>${friend.name}</p>
+    <div class="card-body" style= "border-bottom: 1px solid black"><p>${friend.email}</p><p>${friend.name}</p>
     <button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.email }"/>','new','left=650, top=250, width=500, height=600')">Chat</button></div> 
  </c:forEach>
   </div>

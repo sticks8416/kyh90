@@ -89,7 +89,6 @@ border: 1px solid grey;
 </head>
 <body>
 <%@include file="header.jsp" %>
-        <!-- ----------------------------------------------------------------------------------- -->
        <form action="<c:url value="/board/edit/{num}"/>" method="POST" enctype="multipart/form-data" >
     	 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
     margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
