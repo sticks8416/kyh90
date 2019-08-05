@@ -44,12 +44,12 @@ overflow: auto
 		<input type="text" class="form-control" id="email" name="email" placeholder="E-mail" required>
 <div class="check_font" id="id_check"></div>
 <label>비밀번호</label>
-		<input type="text" class="form-control" id="password" name="password" placeholder="PASSWORD" required>
+		<input type="password" class="form-control" id="password" name="password" placeholder="PASSWORD" required>
 
 <p></p>
 				<button class="btn btn-success" onclick= "location.href=<c:url value='/board/list/${member.email}'/>">로그인</button>
-	<a href =<c:url value="/member/matchPW"/>>비밀번호 찾기/</a>
-			<a href =<c:url value="/member/signup"/>>/회원가입</a>
+	<a class ="btn btn-danger" href =<c:url value="/member/matchPW"/>>비밀번호 찾기</a>
+			<a class ="btn btn-warning" href =<c:url value="/member/signup"/>>회원가입</a>
 	</div>			
 	</form>
 	</c:if>

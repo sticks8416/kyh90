@@ -94,14 +94,21 @@ border: 1px solid grey;
 <title>목록</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="header.jsp" %>
+<%-- <%request.getContextPath();%> --%>
 <div class="left">
 <div style="width:90%; text-align:center">
   <h2></h2>
   <!-- <div><input type="file" name="filename"></div> -->
-  <label ><input type="file" name="filename" src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label>
+  <form action="<c:url value="/board/editProfile/${member.profile}" />" method="POST" enctype="multipart/form-data" >
+  <input type=file name='filename' style="display: none"> 
+<!-- form으로 싸서  editprofile 매핑찍어논 곳으로 -->
+<img src="../images/${member.profile}" border='0' width="200" height="150" alt="no img" onclick='document.all.filename.click(); document.all.filename2.value=document.all.filename.value'> 
+<input type='text' name='filename2' id='filename2'> 
+</form>
+<%--   <label ><input type="file" name="filename" src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label> --%>
 <%--   <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label>
  --%><!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
-  <div class="w3-panel w3-card" style="width:110%" ><p>${member.name	}</p></div>
+  <div class="w3-panel w3-card" style="width:110%" ><p>${member.name}</p></div>
   <div class="w3-panel w3-card-2" style="width:110%"><p>${member.email}</p></div>
 </div>
 </div>
@@ -143,7 +150,7 @@ border: 1px solid grey;
 		<c:forEach var="comment" items="${replyList }" varStatus="loop">
 			<c:if test="${comment.num == board.num }">
 			<span style="color:blue; font-size:13pt; font-weight: bold;">${comment.email }</span><div class="col-sm-1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="text-align:right; font-size:12pt;" >${comment.regDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<c:if test="${comment.email  == member.email }">
+			<c:if test="${comment.email  == board.email }">
 			<button class="btn btn-danger btn-xs" type="button" id="delete${comment.replyNum }" >x</button>
 			</c:if>
 			<br>
@@ -164,7 +171,7 @@ border: 1px solid grey;
    <div class="card">
     <div class="card-header"style= "border-bottom: 1px solid black; hight:40px"><h5>친구목록</h5></div>
     <c:forEach var="friend" items="${friendList}" varStatus="loop">
-    <div class="card-body" style= "border-bottom: 1px solid black"><p>${friend.email}</p><p>${friend.name}</p>
+    <div class="card-body" style= "border-bottom: 1px solid black"><p>${friend.email}&nbsp;&nbsp;&nbsp;${friend.name}</p>
     <button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.email }"/>','new','left=650, top=250, width=500, height=600')">Chat</button></div> 
  </c:forEach>
   </div>

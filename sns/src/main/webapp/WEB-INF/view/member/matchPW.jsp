@@ -30,8 +30,8 @@
 		<input type="text" class="form-control" id="name" name="name" placeholder="NAME" required>					
 		<p></p>
 				<div>
-						<input type="submit" value="찾기">
-						<a href="<c:url value="/board/list" />">목록</a>
+						<input  class="btn btn-success" type="submit" value="찾기">
+						<a class="btn btn-info" href="<c:url value="/board/list" />">목록</a>
 				</div>
 				</div>
 				</form>

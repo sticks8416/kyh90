@@ -208,7 +208,7 @@ public class BoardController {
 			
 			return "/board/editProfile";
 		}
-		@RequestMapping(value="/member/editProfile/{email}", method=RequestMethod.POST)
+		@RequestMapping(value="/member/editProfile/{profile}", method=RequestMethod.POST)
 		public String editProfile(Model model,HttpSession session) {
 			MemberVO memberVO = (MemberVO) session.getAttribute("member");
 			model.addAttribute("memberVO2", memberVO);
