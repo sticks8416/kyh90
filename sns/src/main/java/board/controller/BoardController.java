@@ -147,11 +147,16 @@ public class BoardController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		System.out.println(memberVO.getName());
 		boardVO.setWriter(memberVO.getName());
+		boardVO.setEmail(memberVO.getEmail());
 		System.out.println(boardVO.getWriter());
+		System.out.println(boardVO.getEmail());
 		System.out.println(boardVO.getTitle());
 		System.out.println(boardVO.getContent());
 		System.out.println(boardVO.getImages());
 			if(result.hasErrors()) {
+				System.out.println("경로 1");
+			List<obeject> list ();
+					System.out.println();
 				return "/board/edit";
 			} 	
 			else {
@@ -161,6 +166,7 @@ public class BoardController {
 						return "/board/list";
 					}
 			}
+			System.out.println("경로2");
 			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 			return "/board/edit";
 	}

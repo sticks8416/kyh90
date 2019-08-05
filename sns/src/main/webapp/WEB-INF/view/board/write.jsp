@@ -102,10 +102,13 @@ border: 1px solid grey;
         </div>
     	<div style = "float:right">
 					<input type="submit" value="등록" onclick="write_click();">
-					<input type="submit" value="목록"><a href="<c:url value="/board/list"/>"></a></div>
+					<a class="btn btn-success" href =<c:url value="/board/list"/>>목록</a>					
+					</div>
 					</div>
 					
 		</form> 
+		
+		
 		<%@include file="footer.jsp" %>
 <script>
  function myFunction() {
