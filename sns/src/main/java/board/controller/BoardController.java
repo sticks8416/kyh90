@@ -18,6 +18,7 @@ import org.springframework.core.style.ValueStyler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,6 +48,7 @@ public class BoardController {
 	public String list(Model model,HttpSession session, HttpServletRequest req) {
 		model.addAttribute("boardList", boardService.list());
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		model.addAttribute("replyList", boardService.replyList());
 		if(memberVO==null) {
 			return "redirect:/member/main";
 		}
@@ -139,33 +141,36 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.POST)
 	public String edit(
-			@Valid @ModelAttribute("boardVO2") BoardVO boardVO,
-			BindingResult result,
+			@PathVariable("num") int num,
 			HttpSession session, SessionStatus sessionStatus,
 			Model model)throws IOException  {
-		
+		BoardVO boardVO = new BoardVO(); 	
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		System.out.println(memberVO.getName());
 		boardVO.setWriter(memberVO.getName());
 		boardVO.setEmail(memberVO.getEmail());
+	
+		System.out.println(boardVO.getNum());
 		System.out.println(boardVO.getWriter());
 		System.out.println(boardVO.getEmail());
 		System.out.println(boardVO.getTitle());
 		System.out.println(boardVO.getContent());
 		System.out.println(boardVO.getImages());
-			if(result.hasErrors()) {
+			/*if(result.hasErrors()) {
 				System.out.println("경로 1");
-			List<obeject> list ();
+				
+			List<ObjectError> error = result.getAllErrors();
+				System.out.println(error);
 					System.out.println();
 				return "/board/edit";
-			} 	
-			else {
+			} 	*/
+			
 					if(memberVO.getName()!=null) {
 						boardService.edit(boardVO);
 						sessionStatus.setComplete();
 						return "/board/list";
 					}
-			}
+			
 			System.out.println("경로2");
 			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 			return "/board/edit";

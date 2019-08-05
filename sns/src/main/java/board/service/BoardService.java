@@ -3,6 +3,7 @@ package board.service;
 import java.util.List;
 
 import board.domain.BoardVO;
+import board.domain.ReplyVO;
 import member.domain.MemberVO;
 
 public interface BoardService {
@@ -16,4 +17,5 @@ public interface BoardService {
 	public abstract int updateProfile(MemberVO memberVO);
 	public abstract MemberVO readProfile(String email);
 	public abstract List<String> searchFriend(String email);
+	public abstract List<ReplyVO> replyList();
 }

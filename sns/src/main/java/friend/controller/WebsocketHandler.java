@@ -66,7 +66,7 @@ public class WebsocketHandler extends TextWebSocketHandler{
 		if(chatFile == null) {
 			System.out.println("새로생성");
 			String fileName = System.currentTimeMillis() + ".txt";
-			file = new FileWriter("D:/반응형웹개발자/Project/kyh90-master/kyh90-master/sns/src/main/webapp/chatLog/"+fileName,true);
+			file = new FileWriter("C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\chatLog\\"+fileName,true);
 			friendVO.setChat(fileName);
 			friendService.updateChat(friendVO);
 			friendVO.setEmail1(map.get("friendId").toString());
@@ -74,7 +74,7 @@ public class WebsocketHandler extends TextWebSocketHandler{
 			friendService.updateChat(friendVO);
 		}else {
 			System.out.println("이미 존재");
-			BufferedReader reader = new BufferedReader(new FileReader("D:/반응형웹개발자/Project/kyh90-master/kyh90-master/sns/src/main/webapp/chatLog/"+chatFile));
+			BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\chatLog\\"+chatFile));
 			for(int i = 0; i<30; i++) {
 				String msg = reader.readLine();
 				if(msg != null) {
@@ -100,7 +100,7 @@ public class WebsocketHandler extends TextWebSocketHandler{
 		msg = sdf.format(date)+msg;
 		System.out.println(msg);
 		String chatFile = friendService.checkChat(friendVO);
-		file = new FileWriter("D:/반응형웹개발자/Project/kyh90-master/kyh90-master/sns/src/main/webapp/chatLog/"+chatFile,true);
+		file = new FileWriter("C:\\Users\\Yeonheung\\springwork\\sns\\src\\main\\webapp\\chatLog\\"+chatFile,true);
 		BufferedWriter bf = new BufferedWriter(file);
 		bf.append(msg+"\r\n");
 		for(WebSocketSession s : list) {

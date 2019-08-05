@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import board.dao.BoardDao;
 import board.domain.BoardVO;
+import board.domain.ReplyVO;
 import member.domain.MemberVO;
 
 @Service
@@ -61,5 +62,10 @@ public class BoardServiceImpl implements BoardService{
 		@Override
 		public List<String> searchFriend(String email) {
 			return boardDao.searchFriend(email);
+		}
+
+		@Override
+		public List<ReplyVO> replyList() {
+			return boardDao.replyList();
 		}
 }
