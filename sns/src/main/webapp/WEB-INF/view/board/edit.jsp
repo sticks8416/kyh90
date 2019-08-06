@@ -89,7 +89,7 @@ border: 1px solid grey;
 </head>
 <body>
 <%@include file="header.jsp" %>
-       <form action="<c:url value="/board/edit/{num}"/>" method="POST" enctype="multipart/form-data" >
+       <form action="<c:url value="/board/edit"/>" method="POST" enctype="multipart/form-data" >
     	 <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
     margin-top: 15px; margin-bottom: 15px;height: auto;  max-width: 500px; min-height: 100px; overflow: auto;">
   <label><input value="${boardVO2.title}" type="text" name="title" placeholder="제목" style = "padding-top: 0px; padding-bottom: 0px"></label>
@@ -98,8 +98,9 @@ border: 1px solid grey;
       <div>
       <label><input value="${boardVO2.content}" type="text" name="content" placeholder="글 내용" style="width:250%;height:300px">	</label><!-- content,regdate 안됨 -->
        </div>
+       <input type="hidden" value="${boardVO2.num}" name="num2">
        <div class="w3-panel w3-border-top w3-border-bottom">
-        <div><input type="file" name="filename"></div>
+        <div><input type="file" name="filename" value="${boardVO2.images}"></div>
         </div>
     	<div style = "float:right">
 					<input type="submit" value="등록">

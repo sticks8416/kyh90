@@ -13,8 +13,8 @@
 	</select>
 	
 	<insert id="memberInsert" parameterType="memberVO">
-			INSERT INTO SNSMEMBER (NAME, EMAIL, PASSWORD, regdate)
-			VALUES( #{name}, #{email}, #{password}, SYSDATE)
+			INSERT INTO SNSMEMBER (NAME, EMAIL, PASSWORD, regdate, PROFILE)
+			VALUES( #{name}, #{email}, #{password}, SYSDATE, 'guest.jpg')
 
 	</insert>
 	<update id="memberUpdate" parameterType="memberVO">

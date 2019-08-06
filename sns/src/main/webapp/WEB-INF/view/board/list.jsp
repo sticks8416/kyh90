@@ -94,16 +94,16 @@ border: 1px solid grey;
 <title>목록</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="header.jsp" %>
-<%-- <%request.getContextPath();%> --%>
 <div class="left">
 <div style="width:90%; text-align:center">
   <h2></h2>
   <!-- <div><input type="file" name="filename"></div> -->
-  <form action="<c:url value="/board/editProfile/${member.profile}" />" method="POST" enctype="multipart/form-data" >
+  <form action="<c:url value="/board/editProfile"/>" method="POST" enctype="multipart/form-data" >
   <input type=file name='filename' style="display: none"> 
 <!-- form으로 싸서  editprofile 매핑찍어논 곳으로 -->
-<img src="../images/${member.profile}" border='0' width="200" height="150" alt="no img" onclick='document.all.filename.click(); document.all.filename2.value=document.all.filename.value'> 
+<img src="../upload/${member.profile}" border='0' width="200" height="150" alt="no img" onclick='document.all.filename.click(); document.all.filename2.value=document.all.filename.value'> 
 <input type='text' name='filename2' id='filename2'> 
+<input type="submit" value="등록">
 </form>
 <%--   <label ><input type="file" name="filename" src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label> --%>
 <%--   <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label>
@@ -122,7 +122,7 @@ border: 1px solid grey;
    <div class="w3-panel w3-border-top w3-border-bottom">
     <a style= "text-align:left">${board.email}</a><a style = "float:right">${board.regDate}</a>
     </div>
-      <div><img src="../images/${board.images}"  width="auto" height="150" alt="no img"></div>
+      <div><img src="../upload/${board.images}"  width="auto" height="150" alt="no img"></div>
       <div>
       <h4>${board.content}</h4><!-- content,regdate 안됨 -->
        </div>
@@ -136,8 +136,6 @@ border: 1px solid grey;
       <!-- 수정페이지 넘김버튼 -->
        <a href="<c:url value="/board/edit/${board.num}"/>"><i class="fas fa-file" style ="font-size:25px"></i></a>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      
-     
       <!-- 삭제팝업창으로 넘김버튼 -->
         <a href="<c:url value="/board/delete/${board.num}"/>"><i class="glyphicon glyphicon-remove" style ="font-size:25px"></i></a>
         </div>

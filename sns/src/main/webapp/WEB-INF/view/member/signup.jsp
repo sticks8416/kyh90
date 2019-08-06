@@ -42,7 +42,7 @@
 <p></p>
 
 				<input class="btn btn-success" type="submit" value="회원가입">
-						<a class="btn btn-info" href="<c:url value="/board/list" />">목록</a>
+						<a class="btn btn-info" 	href="<c:url value="/board/list" />">목록</a>
 		</form>		
 		</div>
 			<%@include file="footer.jsp" %>

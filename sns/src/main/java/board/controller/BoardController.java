@@ -131,6 +131,8 @@ public class BoardController {
 		BoardVO boardVO = boardService.read(num);
 		model.addAttribute("boardVO2", boardVO);
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		boardVO.setWriter(memberVO.getName()); 
+		boardVO.setEmail(memberVO.getEmail());
 		System.out.println(boardVO.getWriter());
 		System.out.println(boardVO.getTitle());
 		System.out.println(boardVO.getContent());
@@ -138,46 +140,76 @@ public class BoardController {
 		
 		return "/board/edit";
 	}
+//	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.POST)
+//	public String edit(@Valid @ModelAttribute BoardVO boardVO,
+//			BindingResult result, int num,
+//			HttpSession session,
+//			SessionStatus sessionStatus, Model model) {
+//		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+//		model.addAttribute("boardVO2", boardVO);
+//		boardVO.setWriter(memberVO.getName());
+//		boardVO.setEmail(memberVO.getEmail());
+//		System.out.println(boardVO.getWriter());
+//		System.out.println(boardVO.getEmail());
+//		System.out.println(boardVO.getImages());
+//		if(result.hasErrors()) {
+//			System.out.println("경로1");
+//			
+//			List<ObjectError> error = result.getAllErrors();
+//				System.out.println(error);
+//			return "/board/edit";
+//		} else {
+//			if (boardVO.getEmail()!=null) {
+//				System.out.println("경로2");
+//				boardService.edit(boardVO);
+//				sessionStatus.setComplete();
+//				return "redirect:/board/list";
+//			}
+//			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+//			return "/board/edit";
+//		}
+//	}
+
 	
-	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.POST)
-	public String edit(
-			@PathVariable("num") int num,
-			HttpSession session, SessionStatus sessionStatus,
-			Model model)throws IOException  {
-		BoardVO boardVO = new BoardVO(); 	
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getName());
-		boardVO.setWriter(memberVO.getName());
-		boardVO.setEmail(memberVO.getEmail());
-	
-		System.out.println(boardVO.getNum());
-		System.out.println(boardVO.getWriter());
-		System.out.println(boardVO.getEmail());
-		System.out.println(boardVO.getTitle());
-		System.out.println(boardVO.getContent());
-		System.out.println(boardVO.getImages());
-			/*if(result.hasErrors()) {
-				System.out.println("경로 1");
-				
-			List<ObjectError> error = result.getAllErrors();
-				System.out.println(error);
-					System.out.println();
-				return "/board/edit";
-			} 	*/
-			
-					if(memberVO.getName()!=null) {
-						boardService.edit(boardVO);
-						sessionStatus.setComplete();
-						return "/board/list";
-					}
-			
-			System.out.println("경로2");
-			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
-			return "/board/edit";
-	}
+	  @RequestMapping(value="/board/edit", method=RequestMethod.POST) 
+	  public String edit(@RequestParam("num2")int num2,BoardVO boardVO,
+			  BindingResult result, HttpSession session,@RequestParam("filename")MultipartFile uploadfile,
+	  SessionStatus sessionStatus, Model model, HttpServletRequest req)throws IOException { 
+	  
+      MemberVO memberVO = (MemberVO)session.getAttribute("member"); 
+      boardVO.setNum(num2);
+      System.out.println(memberVO.getName());
+	  boardVO.setWriter(memberVO.getName()); 
+	  boardVO.setEmail(memberVO.getEmail());
+	  String path = req.getSession().getServletContext().getRealPath("upload");
+		System.out.println(path);
+		String profileName = uploadfile.getOriginalFilename();
+		uploadfile.transferTo(new File(path,profileName ));
+		boardVO.setImages(profileName);
+	  if(result.hasErrors()) {
+		  System.out.println("경로 1");
+	  
+		  List<ObjectError> error = result.getAllErrors();
+		  System.out.println(error);
+		  System.out.println(); 
+		  return "/board/edit"; 
+		  }
+	  else {	
+	  if(memberVO.getName()!=null) { 
+		  System.out.println("경로3");
+		  boardService.edit(boardVO); 
+		  sessionStatus.setComplete(); 
+		  return "redirect:/board/list"; 
+	  }
+	  }
+	  System.out.println("경로2"); model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+	  return "/board/edit"; 
+	  }
+	 
 	//글 삭제 요청을 처리할 메서드
 	@RequestMapping(value="/board/delete/{num}", method=RequestMethod.GET)
-	public String delete(@PathVariable int num, Model model) {
+	public String delete(@PathVariable int num, Model model
+			) {
 		model.addAttribute("num", num);
 		return "/board/delete";
 	}
@@ -201,32 +233,25 @@ public class BoardController {
 			return "redirect:/board/list";
 		}
 	}
-	//내정보 수정					'/member/editProfile/${member.email}'
-		@RequestMapping(value="/member/editProfile/{email}", method=RequestMethod.GET)
-		public String editProfile(@PathVariable String email,HttpServletRequest req , Model model) {
-			HttpSession session = req.getSession();
+	
+		@RequestMapping(value="/board/editProfile", method=RequestMethod.POST)
+		public String editProfile(Model model, HttpSession session,
+				@RequestParam("filename")MultipartFile uploadfile,
+				HttpServletRequest req) throws IllegalStateException, IOException {
 			MemberVO memberVO = (MemberVO) session.getAttribute("member");
 			
-			memberVO = boardService.readProfile(email);
-			memberVO.getEmail();
-			memberVO.getName();
-			memberVO.getPassword();
 			model.addAttribute("memberVO2", memberVO);
-			System.out.println(memberVO.getEmail());
-			System.out.println(memberVO.getName());
-			System.out.println(memberVO.getPassword());
-			
-			
-			return "/board/editProfile";
-		}
-		@RequestMapping(value="/member/editProfile/{profile}", method=RequestMethod.POST)
-		public String editProfile(Model model,HttpSession session) {
-			MemberVO memberVO = (MemberVO) session.getAttribute("member");
-			model.addAttribute("memberVO2", memberVO);
+			String path = req.getSession().getServletContext().getRealPath("upload");
+			System.out.println(path);
+			String profileName = uploadfile.getOriginalFilename();
+			uploadfile.transferTo(new File(path,profileName ));
+			memberVO.setProfile(profileName);
 			boardService.updateProfile(memberVO);
+			
 			System.out.println(memberVO.getName());
 			System.out.println(memberVO.getPassword());
 			System.out.println(memberVO.getEmail());
+			System.out.println(memberVO.getProfile());
 			return "redirect:/board/list";
 		}
 		

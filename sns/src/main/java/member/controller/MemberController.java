@@ -69,19 +69,15 @@ public class MemberController {
 		map.put("email", email);
 		map.put("password", pass);
 		MemberVO memberVO = memberService.memberLogin(map);
-		
-		Cookie[] cookies = req.getCookies();
-		if(cookies != null && cookies.length >0) {
-			for(int i = 0; i<cookies.length; i++) {
-				if(cookies[i].getName().equals("email")) {
-					Cookie cookie = new Cookie("email", "");
-					cookie.setMaxAge(0);
-					resp.addCookie(cookie);
-					
-							
-				}
-			}
-		}
+		/*
+		 * Cookie[] cookies = req.getCookies(); if(cookies != null && cookies.length >0)
+		 * { for(int i = 0; i<cookies.length; i++) {
+		 * if(cookies[i].getName().equals("email")) { Cookie cookie = new
+		 * Cookie("email", ""); cookie.setMaxAge(0); resp.addCookie(cookie);
+		 * 
+		 * 
+		 * } } }
+		 */
 		if (memberVO == null) {
 			return "redirect:/member/main";
 		} else {

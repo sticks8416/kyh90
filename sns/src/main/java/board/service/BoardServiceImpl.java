@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import board.dao.BoardDao;
 import board.domain.BoardVO;
 import board.domain.ReplyVO;
+import member.dao.MemberDao;
 import member.domain.MemberVO;
 
 @Service

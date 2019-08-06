@@ -101,8 +101,8 @@ border: 1px solid grey;
         <div><input type="file" name="filename"></div>
         </div>
     	<div style = "float:right">
-					<input type="submit" value="등록" onclick="write_click();">
-					<a class="btn btn-success" href =<c:url value="/board/list"/>>목록</a>					
+					<input class="btn btn-success" type="submit" value="등록">
+					<a class="btn btn-primary" href =<c:url value="/board/list"/>>목록</a>					
 					</div>
 					</div>
 					

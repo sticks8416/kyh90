@@ -53,29 +53,6 @@ overflow: auto
 	</div>			
 	</form>
 	</c:if>
-
-
-
-	<%-- <c:if test="${empty member}">
-	<form action="<c:url value='/member/main/'/>" method="POST" >
-		 <div class="container" style = ";">
-	
-	<div style = "width:300px">
-	<label><input type="text" name="email" placeholder="아이디" ></label>
-	<label><input type="password" name="password" placeholder="비밀번호">	</label>
-
-		</div>
-		<button value="로그인"><a href="<c:url value='/board/list/${member.writer}'/>"></a>로그인</button>
-		<button class="btn btn-success" onclick= "location.href=<c:url value='/board/list/${member.email}'/>">로그인</button>
-		<button type="button" class="btn btn-warning" onclick= "location.href=<c:url value="/member/signup"/>">회원가입</button>
-		<button type="button" class="btn btn-danger	" onclick= "location.href=<c:url value="/member/matchPW"/>">비밀번호 찾기</button>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href =<c:url value="/member/matchPW"/>>비밀번호 찾기/</a>
-			<a href =<c:url value="/member/signup"/>>/회원가입</a>
-				
-					</div>
-	</form>
-	</c:if> --%>
 	<%@include file="footer.jsp" %>
 </body>
 <script>

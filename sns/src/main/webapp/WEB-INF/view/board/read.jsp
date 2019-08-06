@@ -37,6 +37,7 @@
 				<button class="btn btn-default" type="button" onclick="location.href='<c:url value=""/>'">My profile</button>		
 			</c:when>
 			<c:otherwise>
+			
       			  <button class="btn btn-default" type="button" onclick="location.href='<c:url value="/friendRequest/${list.email }"/>'">Request</button>
 			</c:otherwise>
 			</c:choose>
