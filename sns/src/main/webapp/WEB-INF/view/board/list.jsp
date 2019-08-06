@@ -21,16 +21,13 @@
   color: #000000;
 }
  div.left {
-  position:fixed;
-  text-position:center;
-  width: 18%;
+  
   height: 40%;
   top : 202px;
   left : 4%;
   bottom-padding: 100px;
-  border: 1px solid black;
-  border-radius:10px;	
   color: #000000;
+  border: 1px solid white;
 }
 butt{
  position:fixed;
@@ -95,21 +92,20 @@ border: 1px solid grey;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="header.jsp" %>
 <div class="left">
-<div style="width:90%; text-align:center">
+<div class="card" style="width:90%;  border: 1px solid black; width: 18%; position:fixed; " >
+<div class="card-header">
   <h2></h2>
-  <!-- <div><input type="file" name="filename"></div> -->
   <form action="<c:url value="/board/editProfile"/>" method="POST" enctype="multipart/form-data" >
   <input type=file name='filename' style="display: none"> 
 <!-- form으로 싸서  editprofile 매핑찍어논 곳으로 -->
-<img src="../upload/${member.profile}" border='0' width="200" height="150" alt="no img" onclick='document.all.filename.click(); document.all.filename2.value=document.all.filename.value'> 
-<input type='text' name='filename2' id='filename2'> 
+<img src="../upload/${member.profile}" border='0' width="90%" height="150" alt="no img" onclick='document.all.filename.click(); document.all.filename2.value=document.all.filename.value'> 
+<h2></h2>
+<input type='text' name='filename2' id='filename2'style="display:none"> 
 <input type="submit" value="등록">
 </form>
-<%--   <label ><input type="file" name="filename" src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label> --%>
-<%--   <label ><img src="../images/${member.profile}" width="200" height="150" alt="no img" style ="text-position:center"></label>
- --%><!--   <div class="w3-panel w3-card-4"><p>w3-card-4</p></div> -->
-  <div class="w3-panel w3-card" style="width:110%" ><p>${member.name}</p></div>
-  <div class="w3-panel w3-card-2" style="width:110%"><p>${member.email}</p></div>
+  </div>
+  <div class="card-body" style="width:110%" ><p>${member.name}</p></div>
+  <div class="card-body" style="width:110%"><p>${member.email}</p></div>
 </div>
 </div>
 
