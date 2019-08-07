@@ -31,10 +31,10 @@
 <div class="check_font" id="id_check"></div>
 
 	<label for="user_email">비밀번호</label>
-		<input type="text" class="form-control" id="password" name="password" placeholder="PASSWORD" required>
+		<input type="password" class="form-control" id="password" name="password" placeholder="PASSWORD" required>
 
 	<label for="user_email">비밀번호 체크</label>
-		<input type="text" class="form-control" id="password2" name="password2" placeholder="Confirm PASSWORD" required>
+		<input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm PASSWORD" required>
 <label for="user_email">이름</label>
 		<input type="text" class="form-control" id="name" name="name" placeholder="NAME" required>
 

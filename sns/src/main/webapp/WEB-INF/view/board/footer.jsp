@@ -86,7 +86,7 @@ border: 1px solid grey;
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <p>Copyright 2019 Yeonheung Kang</p>
+  <p>Copyright 2019 Team Compose</p>
 </div>
 </body>
 </html>

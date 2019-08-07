@@ -244,7 +244,7 @@ public class BoardController {
 			String path = req.getSession().getServletContext().getRealPath("upload");
 			System.out.println(path);
 			String profileName = uploadfile.getOriginalFilename();
-			uploadfile.transferTo(new File(path,profileName ));
+			uploadfile.transferTo(new File(path,profileName));
 			memberVO.setProfile(profileName);
 			boardService.updateProfile(memberVO);
 			

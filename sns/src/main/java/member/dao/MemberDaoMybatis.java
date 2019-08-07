@@ -45,7 +45,10 @@ public int checkOverId(String user_id) {
 	// TODO Auto-generated method stub
 	return 0;
 }
-
+@Override
+public void memberUpdate(MemberVO memberVO) {
+	 sqlSessionTemplate.update("memberUpdate", memberVO);
+}
 
 }
 

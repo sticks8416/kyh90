@@ -21,6 +21,6 @@ public interface MemberService {
 	public MemberVO matchPW(Map map);
 	public int matchID(String email);
 	public int userIdCheck(String email);
-
+	public void memberUpdate(MemberVO memberVO);
 	
 }

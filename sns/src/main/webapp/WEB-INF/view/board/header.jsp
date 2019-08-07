@@ -78,7 +78,7 @@ butt{
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <h1> ${member.name}님 환영합니다. 제목 미정</h1>
+  <h1></h1>
   <p><%-- 경로 값 :${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/ --%></p> 
 </div>
 
@@ -113,7 +113,7 @@ butt{
       </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
        <c:if test="${not empty member.email}">
       <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
-      <a href="<c:url value='/member/editProfile/${member.email}'/>" class="w3-bar-item w3-button">내정보</a>
+      <a href="<c:url value='/member/editProfile'/>" class="w3-bar-item w3-button">내정보</a>
       
       </c:if>
     </div>

@@ -13,4 +13,5 @@ public interface MemberDao {
 	public abstract MemberVO matchPW(Map map);
 	int checkOverId(String user_id);
 	public abstract int matchID(String email);
+	public abstract void memberUpdate(MemberVO memberVO);
 }

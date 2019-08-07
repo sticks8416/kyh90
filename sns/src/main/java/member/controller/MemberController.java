@@ -69,15 +69,6 @@ public class MemberController {
 		map.put("email", email);
 		map.put("password", pass);
 		MemberVO memberVO = memberService.memberLogin(map);
-		/*
-		 * Cookie[] cookies = req.getCookies(); if(cookies != null && cookies.length >0)
-		 * { for(int i = 0; i<cookies.length; i++) {
-		 * if(cookies[i].getName().equals("email")) { Cookie cookie = new
-		 * Cookie("email", ""); cookie.setMaxAge(0); resp.addCookie(cookie);
-		 * 
-		 * 
-		 * } } }
-		 */
 		if (memberVO == null) {
 			return "redirect:/member/main";
 		} else {
@@ -159,53 +150,27 @@ public class MemberController {
 
 		return "/member/main";
 	}
+	@RequestMapping(value = "/member/editProfile", method = RequestMethod.GET)
+	public String editProfile(HttpSession session) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		
+		if(memberVO == null) {
+			return "/member/main";
+		}
+		
+			return "/member/editProfile";
+		
+		}
 
-	/*
-	 * @RequestMapping(value = "/member/serchmember", method = RequestMethod.GET) //
-	 * get방식으로 하나 더 만들어야 하는가 public String memberlist(Model model,
-	 * HttpServletRequest req, HttpServletResponse resp) throws Exception {
-	 * model.addAttribute("memberserch", memberService.memberserch());
-	 * model.addAttribute("memberList", memberService.memberlist());
-	 * 
-	 * 
-	 * 
-	 * model.addAttribute("memberSerch", memberService.memberSerch());
-	 * 
-	 * memberService.memberserch(memberVO); return "/board/read"; }
-	 */
-	/*
-	 * @RequestMapping(value = "/member/serchmember", method = RequestMethod.POST)
-	 * //get방식으로 하나 더 만들어야 하는가 public String memberSerch(Model model,
-	 * HttpServletRequest req, HttpServletResponse resp) throws Exception {
-	 * model.addAttribute("memberserch", memberService.memberserch());
-	 * model.addAttribute("memberList", memberService.memberlist());
-	 * model.addAttribute("memberSerch", memberService.memberSerch());
-	 * 
-	 * memberService.memberserch(memberVO); return "/board/read"; }
-	 */
-
-	/*
-	 * @RequestMapping(value = "/member/serchmember" ,method=RequestMethod.POST)
-	 * public String memberserch(Model model, HttpServletRequest
-	 * req,HttpServletResponse resp) throws Exception{
-	 * model.addAttribute("memberserch", memberService.memberserch());
-	 * model.addAttribute("memberSerch", memberService.memberserch());
-	 * 
-	 * memberService.memberserch(memberVO); return "/board/read"; }
-	 */
-
-	/*
-	 * @RequestMapping(value="/member/signup", method=RequestMethod.POST) public
-	 * boolean loginHandle(HttpServletRequest req,HttpServletResponse resp,Object
-	 * handler)throws Exception { HttpSession session = req.getSession(false);
-	 * 
-	 * if(session==null) { resp.sendRedirect(req.getContextPath()+"/member/signup");
-	 * return false; }
-	 * 
-	 * MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
-	 * 
-	 * if(memberVO==null) {
-	 * resp.sendRedirect(req.getContextPath()+"/member/signup"); } return true; }
-	 */
+	@RequestMapping(value = "/member/editProfile", method = RequestMethod.POST)
+	public String editProfile(@RequestParam("name")String name,@RequestParam("password")String password, HttpSession session, HttpServletRequest req) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		memberVO.setName(name);
+		memberVO.setPassword(password);
+		memberService.memberUpdate(memberVO);
+		
+		return "redirect:/board/list";
+	
+	}
 
 }

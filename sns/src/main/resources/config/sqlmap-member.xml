@@ -18,7 +18,7 @@
 
 	</insert>
 	<update id="memberUpdate" parameterType="memberVO">
-			UPDATE SNSMEMBER SET name = #{name}, PASS = #{PASS}
+			UPDATE SNSMEMBER SET name = #{name}, password = #{password}
 				where email = #{email}
 	</update>
 	<select id="matchPW" parameterType="map" resultType="memberVO">

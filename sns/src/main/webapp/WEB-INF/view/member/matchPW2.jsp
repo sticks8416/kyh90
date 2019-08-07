@@ -19,8 +19,9 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-비번은${memberVO.password}입니다.
-<a href="<c:url value="/member/main" />">로그인 화면으로 돌아가기</a>
+<h4 style="text-align:center">비밀번호는${memberVO.password}입니다.
+<br><br>
+<a href="<c:url value="/member/main" />">로그인 화면으로 돌아가기</a></h4>
 <%@include file="footer.jsp" %>
 </body>
 <script>

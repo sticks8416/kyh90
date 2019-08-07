@@ -56,4 +56,8 @@ public class MemberServiceImpl implements MemberService{
 	public int matchID(String email) {
 		return memberDao.matchID(email);
 	}
+	@Override
+	public void memberUpdate(MemberVO memberVO) {
+		memberDao.memberUpdate(memberVO);
+	}
 }
