@@ -46,10 +46,11 @@ public class BoardLikeServiceImpl implements BoardLikeService{
 		
 	}
 
-	@Override
-	public void checkLike(Map<String, Object> map) {
-		boardLikeDao.checkLike(map);
-		
-	}
+	/*
+	 * @Override public void checkLike(Map<String, Object> map) {
+	 * boardLikeDao.checkLike(map);
+	 * 
+	 * }
+	 */
 
 }

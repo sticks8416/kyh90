@@ -49,10 +49,11 @@ public class BoardLikeDaoMybatis implements BoardLikeDao{
 		
 	}
 
-	@Override
-	public void checkLike(Map<String, Object> map) {
-		sqlSessionTemplate.update("checkLike", map);
-		
-	}
+	/*
+	 * @Override public void checkLike(Map<String, Object> map) {
+	 * sqlSessionTemplate.update("checkLike", map);
+	 * 
+	 * }
+	 */
 
 }
