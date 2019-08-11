@@ -43,7 +43,7 @@
 	var websocket;
 	//입장 버튼을 눌렀을 때 호출되는 함수 
 	function connect() {
-		websocket = new WebSocket("ws://192.168.0.71:8080<c:url value='/chat/websocket'/>");
+		websocket = new WebSocket("ws://192.168.200.130:8080<c:url value='/chat/websocket'/>");
 		//웹 소켓에 이벤트가 발생했을 때 호출될 함수 등록 
 		websocket.onopen = onOpen;
 		websocket.onmessage = onMessage;

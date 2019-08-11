@@ -49,7 +49,6 @@ import member.service.MemberService;
 public class MemberController {
 	
 	private MemberService memberService;
-	// 로그인 버튼 submit시에 피드/메인창으로 넘겼을 시 보드.list 쿼리 실행하면서 들고오기 위해
 
 
 	public void setMemberService(MemberService memberService) {
@@ -88,13 +87,7 @@ public class MemberController {
 	public String signUp2(Model model,String email, MemberVO memberVO, HttpServletRequest req) {
 		model.addAttribute("memberVO", new MemberVO());
 		email = req.getParameter("email");
-		System.out.println(memberVO.getEmail());
-		System.out.println(memberVO.getPassword());
-		System.out.println(memberVO.getName());
-		System.out.println(email);
 		int check = memberService.matchID(email);
-		System.out.println(memberVO.getEmail());
-		System.out.println(check);
 		if(check==1) {
 			System.out.println("이미 존재하는 아이디 입니다.");
 			return "redirect:/member/signup";
@@ -102,18 +95,10 @@ public class MemberController {
 		else {
 		//멤버보드 쿼리문 list로 가져와서 입력받은값이랑 비교해서 if/else로 페이징 각각 시키기... ajax 실패 
 		memberService.memberInsert(memberVO);
-		System.out.println(memberVO.getEmail());
-		System.out.println(memberVO.getPassword());
-		System.out.println(memberVO.getName());
 		return "/member/main";
 	}
 	}
-	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
-	@ResponseBody
-	public int idCheck(@RequestParam("userId") String email) {
 
-		return memberService.userIdCheck(email);
-	}
 	@RequestMapping(value = "/member/matchPW", method = RequestMethod.GET)
 	public String matchPW(Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();

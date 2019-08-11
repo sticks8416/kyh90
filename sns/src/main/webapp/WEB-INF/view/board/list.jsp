@@ -91,7 +91,7 @@ border: 1px solid grey;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="header.jsp" %>
 <div class="left">
-<div class="card" style="width:90%;  border: 1px solid black; width: 16%; position:fixed; " >
+<div class="card" style="width:90%;  border: 1px solid black; width: 16%; position:fixed;">
 <div class="card-header" style= "border-bottom: 1px solid black; background-color:#FFFFFF" >
   <h2></h2>
   <form action="<c:url value="/board/editProfile"/>" method="POST" enctype="multipart/form-data" >
@@ -110,16 +110,14 @@ border: 1px solid grey;
 
   <c:if test="${not empty member.email}">
   <c:forEach var="board" items="${boardList}" varStatus="loop">
-    <div class="container" style = "border: 1px solid grey; padding: 10px 10px 10px 10px;  
-    margin-top: 15px; margin-bottom: 15px;height: auto;width: 500;  max-width: 600px; min-height: 100px;">
-   <p style = "text-align: center;">${board.title}
-   <!-- <i class="fas fa-bars" style= "float:right; font-size: 30px"> </i> --></p>
+    <div class="container">
+   <p style = "text-align: center;">${board.title}</p>
    <div class="w3-panel w3-border-top w3-border-bottom">
     <a style= "text-align:left">${board.email}</a><a style = "float:right">${board.regDate}</a>
     </div>
       <div><img src="../upload/${board.images}"  width="auto" height="150" alt="no img"></div>
       <div>
-      <h4>${board.content}</h4><!-- content,regdate 안됨 -->
+      <h4>${board.content}</h4>
        </div>
         <form action="/action_page.php">
         <div class="w3-panel w3-border-top w3-border-bottom" style = "margin: 0px 0px 0px 0px">

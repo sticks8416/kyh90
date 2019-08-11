@@ -102,29 +102,17 @@ public class BoardController {
 			model.addAttribute("boardVO", new BoardVO());
 			
 			MemberVO memberVO = (MemberVO) session.getAttribute("member");
-			System.out.println("session : "+memberVO);
-			System.out.println(memberVO.getEmail());
-			System.out.println(memberVO.getPassword());
 			boardVO.setImages(uploadfile.getOriginalFilename());
 			String path = req.getSession().getServletContext().getRealPath("upload");
-			System.out.println(path);
 			uploadfile.transferTo(new File(path, uploadfile.getOriginalFilename()));
 			boardVO.setEmail(memberVO.getEmail());
 			boardVO.setWriter(memberVO.getName());
 			boardVO.setPassword(memberVO.getPassword());
 			memberVO.getName();
 			memberVO.getPassword();
-			System.out.println(boardVO.getEmail());
-			System.out.println(boardVO.getNum());
-			System.out.println(boardVO.getWriter());
-			System.out.println(boardVO.getImages());
-			System.out.println(boardVO.getPassword());
-			System.out.println(boardVO.getContent());
 			boardService.write(boardVO);
 			return "redirect:/board/list";
 	}
-	////글 수정 창
-	//input창에 readonly 라고 걸어두면 수정안됨
 	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.GET)
 	public String edit(@PathVariable int num,HttpServletRequest req , Model model) {
 		HttpSession session = req.getSession();
@@ -140,37 +128,7 @@ public class BoardController {
 		
 		return "/board/edit";
 	}
-//	@RequestMapping(value="/board/edit/{num}", method=RequestMethod.POST)
-//	public String edit(@Valid @ModelAttribute BoardVO boardVO,
-//			BindingResult result, int num,
-//			HttpSession session,
-//			SessionStatus sessionStatus, Model model) {
-//		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-//		model.addAttribute("boardVO2", boardVO);
-//		boardVO.setWriter(memberVO.getName());
-//		boardVO.setEmail(memberVO.getEmail());
-//		System.out.println(boardVO.getWriter());
-//		System.out.println(boardVO.getEmail());
-//		System.out.println(boardVO.getImages());
-//		if(result.hasErrors()) {
-//			System.out.println("경로1");
-//			
-//			List<ObjectError> error = result.getAllErrors();
-//				System.out.println(error);
-//			return "/board/edit";
-//		} else {
-//			if (boardVO.getEmail()!=null) {
-//				System.out.println("경로2");
-//				boardService.edit(boardVO);
-//				sessionStatus.setComplete();
-//				return "redirect:/board/list";
-//			}
-//			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
-//			return "/board/edit";
-//		}
-//	}
 
-	
 	  @RequestMapping(value="/board/edit", method=RequestMethod.POST) 
 	  public String edit(@RequestParam("num2")int num2,BoardVO boardVO,
 			  BindingResult result, HttpSession session,@RequestParam("filename")MultipartFile uploadfile,
@@ -178,31 +136,25 @@ public class BoardController {
 	  
       MemberVO memberVO = (MemberVO)session.getAttribute("member"); 
       boardVO.setNum(num2);
-      System.out.println(memberVO.getName());
 	  boardVO.setWriter(memberVO.getName()); 
 	  boardVO.setEmail(memberVO.getEmail());
 	  String path = req.getSession().getServletContext().getRealPath("upload");
-		System.out.println(path);
 		String profileName = uploadfile.getOriginalFilename();
 		uploadfile.transferTo(new File(path,profileName ));
 		boardVO.setImages(profileName);
 	  if(result.hasErrors()) {
-		  System.out.println("경로 1");
-	  
 		  List<ObjectError> error = result.getAllErrors();
 		  System.out.println(error);
-		  System.out.println(); 
 		  return "/board/edit"; 
 		  }
 	  else {	
 	  if(memberVO.getName()!=null) { 
-		  System.out.println("경로3");
 		  boardService.edit(boardVO); 
 		  sessionStatus.setComplete(); 
 		  return "redirect:/board/list"; 
+	  	}
 	  }
-	  }
-	  System.out.println("경로2"); model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+	  model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 	  return "/board/edit"; 
 	  }
 	 
@@ -220,8 +172,6 @@ public class BoardController {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setNum(num);
 		boardVO.setEmail(memberVO.getEmail());
-		System.out.println(boardVO.getEmail());
-		System.out.println(boardVO.getNum());
 		rowCount = boardService.delete(boardVO);
 		
 		if(rowCount == 0) {
@@ -247,11 +197,6 @@ public class BoardController {
 			uploadfile.transferTo(new File(path,profileName));
 			memberVO.setProfile(profileName);
 			boardService.updateProfile(memberVO);
-			
-			System.out.println(memberVO.getName());
-			System.out.println(memberVO.getPassword());
-			System.out.println(memberVO.getEmail());
-			System.out.println(memberVO.getProfile());
 			return "redirect:/board/list";
 		}
 		
