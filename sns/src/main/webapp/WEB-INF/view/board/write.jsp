@@ -120,9 +120,5 @@ border: 1px solid grey;
 	  }
 	}
 </script>
- 
-<!-- <div class="jumbotron text-center" style="margin-bottom:0; padding: 10px 10px 10px 10px">
-  <p>Copyright 2019 Yeonheung Kang</p>
-</div> -->
 </body>
 </html>

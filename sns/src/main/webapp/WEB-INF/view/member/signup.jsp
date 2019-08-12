@@ -23,8 +23,6 @@
 <div style = "width:40%; position:relateive; margin:auto">
 <h2>회원가입</h2>
 		<form action="<c:url value="/member/signup"/>" method="POST">
-		
-				<!-- 아이디 -->
 <div class="form-group" style="margin:auto">
 	<label for="user_email">이메일</label>
 		<input type="text" class="form-control" id="email" name="email" placeholder="E-mail" required>

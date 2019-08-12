@@ -101,7 +101,6 @@ butt{
     <input class="form-control mr-sm-2" type="text" placeholder="Search" name ="search">
     <button class="btn btn-success" type="submit">search User</button>
 </form>
- <!--  <i class="fas fa-bars" style= "float:right; font-size: 30px"> -->
   <div class="w3-container">   
   <div class="w3-dropdown-click">
     <button onclick="myFunction()" class="fas fa-bars" style= "font-size: 30px"></button>
@@ -110,7 +109,7 @@ butt{
       <a href="<c:url value='/member/main'/>" class="w3-bar-item w3-button">로그인</a>
       <a href="#" class="w3-bar-item w3-button">회원가입</a>
       
-      </c:if><!-- <a href="#" class="w3-bar-item w3-button">Link 3</a> -->
+      </c:if>
        <c:if test="${not empty member.email}">
       <a href="<c:url value='/member/logout'/>" class="w3-bar-item w3-button">로그아웃</a>
       <a href="<c:url value='/member/editProfile/{email}'/>" class="w3-bar-item w3-button">내정보</a>

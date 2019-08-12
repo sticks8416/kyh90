@@ -17,5 +17,4 @@ public interface BoardDao {
 	public abstract List<MemberVO> memberSearch(String Search);
 	public abstract List<String> searchFriend(String email);
 	public abstract List<ReplyVO> replyList();
-	// public abstract List<BoardVO> boardSearch(String search); 
 }

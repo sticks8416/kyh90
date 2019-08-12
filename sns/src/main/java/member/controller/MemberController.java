@@ -93,7 +93,6 @@ public class MemberController {
 			return "redirect:/member/signup";
 		}
 		else {
-		//멤버보드 쿼리문 list로 가져와서 입력받은값이랑 비교해서 if/else로 페이징 각각 시키기... ajax 실패 
 		memberService.memberInsert(memberVO);
 		return "/member/main";
 	}
@@ -138,13 +137,10 @@ public class MemberController {
 	@RequestMapping(value = "/member/editProfile", method = RequestMethod.GET)
 	public String editProfile(HttpSession session) {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		
 		if(memberVO == null) {
 			return "/member/main";
 		}
-		
 			return "/member/editProfile";
-		
 		}
 
 	@RequestMapping(value = "/member/editProfile", method = RequestMethod.POST)
@@ -153,9 +149,6 @@ public class MemberController {
 		memberVO.setName(name);
 		memberVO.setPassword(password);
 		memberService.memberUpdate(memberVO);
-		
 		return "redirect:/board/list";
-	
 	}
-
 }
